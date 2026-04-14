@@ -616,23 +616,49 @@ def main(days=3):
 
 if __name__ == "__main__":
     import sys
+    import json
+    
+    # 1. 确定抓取天数
     days = 7
     if len(sys.argv) > 1:
         try:
             days = int(sys.argv[1])
         except ValueError:
             pass
-    main(days)
-import json
-    # 处理日期，使 JSON 可以序列化
+            
+    # 2. 执行抓取逻辑
+    print(f"开始抓取最近 {days} 天的新闻...")
+    all_posts = []
+    days_delta = max(days, 1)
+    cutoff = datetime.now() - timedelta(days=days_delta-1)
+    
+    for url in websites:
+        posts = scrape_website(url)
+        for post in posts:
+            date = post.get('date')
+            date = normalize_date(date) if isinstance(date, datetime) else date
+            post['date'] = date
+            # 只有符合日期条件的数据才加入列表
+            if date and isinstance(date, datetime) and date >= cutoff:
+                all_posts.append(post)
+            elif not date:
+                all_posts.append(post)
+
+    # 3. 对数据进行排序（按日期从新到旧）
+    all_posts.sort(key=lambda x: x.get('date') or datetime.min, reverse=True)
+
+    # 4. 【关键步骤】处理日期格式并保存为 JSON
+    # 因为 json 库不认识 Python 的 datetime 对象，我们要把它转成字符串
     serializable_posts = []
     for post in all_posts:
         item = post.copy()
-        if item.get('date'):
-            item['date'] = item['date'].isoformat()
+        if isinstance(item.get('date'), datetime):
+            item['date'] = item['date'].isoformat() # 转为 "2024-05-20T..." 这种格式
         serializable_posts.append(item)
-        
+
+    # 5. 写入文件（供 Actions 提交和 App 读取）
     with open('visa_data.json', 'w', encoding='utf-8') as f:
         json.dump(serializable_posts, f, ensure_ascii=False, indent=4)
-    
-    print(f"成功抓取 {len(serializable_posts)} 条数据并保存到 visa_data.json")
+
+    print(f"✅ 抓取完成！共获得 {len(serializable_posts)} 条数据。")
+    print("文件 'visa_data.json' 已成功生成。")
