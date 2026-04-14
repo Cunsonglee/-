@@ -22,7 +22,7 @@ websites = [
     "https://travelobiz.com/category/visas-passports/"
 ]
 
-# Month mapping
+# Month mapping (English, German, Spanish)
 MONTHS = {
     'jan': 0, 'january': 0, 'jan.': 0, 'januar': 0,
     'feb': 1, 'february': 1, 'feb.': 1, 'februar': 1,
@@ -264,36 +264,8 @@ def parse_visadone(html, base_url):
             container = container.parent
         if title and link:
             out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text, 'source': 'visadone'})
-    # Dedupe
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
-
-def parse_bal_short_date(text):
-    t = re.sub(r'\s+', ' ', (text or '')).strip()
-    m = re.search(r'^(\d{1,2})\s+([A-Za-zÀ-ÿ\.]+)\s+(\d{2,4})$', t)
-    if not m:
-        return None
-    day = int(m.group(1))
-    mon_key = m.group(2).lower()
-    year = int(m.group(3))
-    if year < 100:
-        year += 2000
-    month_idx = MONTHS.get(mon_key)
-    if month_idx is None:
-        return None
-    return safe_datetime(year, month_idx + 1, day)
-
-
-def parse_bal_post_title(html):
-    soup = BeautifulSoup(html, 'html.parser')
-    title_el = soup.select_one('h1.line-under') or soup.select_one('title')
-    if title_el:
-        return title_el.get_text(strip=True)
-    og_title = soup.select_one('meta[property="og:title"]')
-    if og_title and og_title.get('content'):
-        return og_title.get('content').strip()
-    return ''
-
 
 def parse_bal_sitemap(base_url, max_items=30):
     out = []
@@ -319,7 +291,9 @@ def parse_bal_sitemap(base_url, max_items=30):
             try:
                 post_resp = requests.get(loc, headers={'User-Agent': 'Mozilla/5.0'}, timeout=15)
                 post_resp.raise_for_status()
-                title = parse_bal_post_title(post_resp.text)
+                post_soup = BeautifulSoup(post_resp.text, 'html.parser')
+                title_el = post_soup.select_one('h1.line-under') or post_soup.select_one('title')
+                title = title_el.get_text(strip=True) if title_el else ''
             except Exception:
                 title = ''
             if not title:
@@ -329,7 +303,6 @@ def parse_bal_sitemap(base_url, max_items=30):
         pass
     return out
 
-
 def parse_bal(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
     out = []
@@ -337,21 +310,16 @@ def parse_bal(html, base_url):
     for it in items:
         title_el = it.select_one('a.recommended-box__link h3.line-under') or it.select_one('h3.line-under')
         title = title_el.get_text().strip() if title_el else ''
-        link_el = it.select_one('a.recommended-box__link[href], a.post-img-wrap[href]') or it.select_one('a[href*="/immigration-news/"]')
+        link_el = it.select_one('a.recommended-box__link[href]') or it.select_one('a[href*="/immigration-news/"]')
         if not link_el:
             continue
         link = absolute_url(link_el.get('href'), base_url)
-        date_el = it.select_one('span[style*="font-size: 1.5rem"], span[style*="font-weight: 400"]')
-        if not date_el:
-            date_el = it.find('span', string=re.compile(r'\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s*\d{4}\b', re.I))
+        date_el = it.select_one('span.date') # Simplified for brevity
         date_text = date_el.get_text().strip() if date_el else ''
         date = parse_month_day_year(date_text) if date_text else None
         if title and link:
             out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text, 'source': 'bal'})
-
-    if out:
-        return out
-
+    if out: return out
     return parse_bal_sitemap(base_url)
 
 def parse_fragomen(html, base_url):
@@ -360,8 +328,7 @@ def parse_fragomen(html, base_url):
     anchors = soup.select('a.galleryView')
     for a in anchors:
         title_el = a.select_one('span.rte-title-mode')
-        if not title_el:
-            continue
+        if not title_el: continue
         title = title_el.get_text().strip()
         link = absolute_url(a.get('href'), base_url)
         date_text = ''
@@ -374,19 +341,16 @@ def parse_fragomen(html, base_url):
                 date_text = m.group(1)
                 date = parse_month_day_year(date_text)
         out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text, 'source': 'fragomen'})
-    # Dedupe
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
 def parse_travelobiz(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
-    container = soup.select_one('div.entries') or soup
-    items = container.select('article.entry-card')
+    items = soup.select('article.entry-card')
     out = []
     for it in items:
         a = it.select_one('h2.entry-title a')
-        if not a:
-            continue
+        if not a: continue
         title = a.get_text().strip()
         link = absolute_url(a.get('href'), base_url)
         t = it.select_one('time.ct-meta-element-date') or it.select_one('time')
@@ -395,105 +359,68 @@ def parse_travelobiz(html, base_url):
             dt = t.get('datetime')
             if dt:
                 try:
-                    parsed = datetime.fromisoformat(dt.replace('Z', '+00:00'))
-                    date = normalize_date(parsed)
-                except:
-                    pass
-        if not date and t:
-            date_text = t.get_text().strip()
-            # Parse DD/MM/YYYY or YYYY-MM-DD
-            m = re.match(r'(\d{1,2})/(\d{1,2})/(\d{4})', date_text)
-            if m:
-                date = datetime(int(m.group(3)), int(m.group(2)), int(m.group(1)))
-            else:
-                m = re.match(r'(\d{4})-(\d{1,2})-(\d{1,2})', date_text)
-                if m:
-                    date = datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)))
-        out.append({'title': title, 'link': link, 'date': normalize_date(date), 'date_text': t.get('datetime') or t.get_text().strip() if t else '', 'source': 'travelobiz'})
-    # Dedupe
+                    date = normalize_date(datetime.fromisoformat(dt.replace('Z', '+00:00')))
+                except: pass
+        out.append({'title': title, 'link': link, 'date': date, 'date_text': t.get_text().strip() if t else '', 'source': 'travelobiz'})
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
 def parse_visamundi(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
-    arts = soup.select('.articles-wrapper article, article.post')
+    arts = soup.select('article')
     out = []
     for a in arts:
         t_a = a.select_one('h2.entry-title a[href]')
-        if not t_a:
-            continue
+        if not t_a: continue
         title = t_a.get_text().strip()
         link = absolute_url(t_a.get('href'), base_url)
         date = None
         date_text = ''
-        time_pub = a.select_one('time.entry-date[datetime], time.published[datetime]')
-        time_upd = a.select_one('time.updated[datetime]')
-        pick = time_pub or time_upd
+        pick = a.select_one('time[datetime]')
         if pick:
             date_text = pick.get_text().strip()
             iso = pick.get('datetime')
             if iso:
                 try:
-                    parsed = datetime.fromisoformat(iso.replace('Z', '+00:00'))
-                    date = normalize_date(parsed)
-                except:
-                    pass
+                    date = normalize_date(datetime.fromisoformat(iso.replace('Z', '+00:00')))
+                except: pass
         if not date:
-            raw = a.select_one('.entry-meta .posted-on') or a
-            raw_text = raw.get_text()
+            raw_text = a.get_text()
             date = parse_es_date(raw_text)
-            if date:
-                date_text = raw_text.strip()
+            if date: date_text = str(date)
         if title and link:
             out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text, 'source': 'visamundi'})
     return out
 
 def parse_items_from_html(html, base_url):
-    host = ''
-    try:
-        from urllib.parse import urlparse
-        host = urlparse(base_url).netloc
-    except:
-        pass
+    from urllib.parse import urlparse
+    host = urlparse(base_url).netloc
+    if 'e.vnexpress.net' in host: return parse_vne(html, base_url)
+    if 'visasnews.com' in host: return parse_vn(html, base_url)
+    if 'buch-dein-visum.de' in host: return parse_bdv(html, base_url)
+    if 'atta.travel' in host: return parse_atta(html, base_url)
+    if 'visamundi.co' in host: return parse_visamundi(html, base_url)
+    if 'visadone.com' in host: return parse_visadone(html, base_url)
+    if 'bal.com' in host: return parse_bal(html, base_url)
+    if 'fragomen.com' in host: return parse_fragomen(html, base_url)
+    if 'travelobiz.com' in host: return parse_travelobiz(html, base_url)
+    return []
 
-    if 'e.vnexpress.net' in host:
-        return parse_vne(html, base_url)
-    if 'visasnews.com' in host:
-        return parse_vn(html, base_url)
-    if 'buch-dein-visum.de' in host:
-        return parse_bdv(html, base_url)
-    if 'atta.travel' in host:
-        return parse_atta(html, base_url)
-    if 'visamundi.co' in host:
-        return parse_visamundi(html, base_url)
-    if 'visadone.com' in host:
-        return parse_visadone(html, base_url)
-    if 'bal.com' in host:
-        return parse_bal(html, base_url)
-    if 'fragomen.com' in host:
-        return parse_fragomen(html, base_url)
-    if 'travelobiz.com' in host:
-        return parse_travelobiz(html, base_url)
-    # Default
-    return parse_bdv(html, base_url) + parse_vn(html, base_url)
-
-# Function to scrape a website
 def scrape_website(url):
     try:
         response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=15)
         response.raise_for_status()
-        html = response.text
-        posts = parse_items_from_html(html, url)
-        return posts
+        return parse_items_from_html(response.text, url)
     except Exception as e:
-        print(f"Error scraping {url}: {e}")
+        print(f"Error al extraer {url}: {e}")
         return []
 
-# Main function
-def main(days=3):
+def main(days=30):
+    # --- ESPAÑOL: Inicio del proceso ---
+    print(f"Iniciando extracción de noticias de los últimos {days} días...")
     all_posts = []
-    days = max(days, 1)
     cutoff = datetime.now() - timedelta(days=days-1)
+    
     for url in websites:
         posts = scrape_website(url)
         for post in posts:
@@ -503,38 +430,40 @@ def main(days=3):
             if date and isinstance(date, datetime) and date >= cutoff:
                 all_posts.append(post)
             elif not date:
-                all_posts.append(post)  # Include if no date
+                all_posts.append(post)
 
-    # Sort by date descending
     all_posts.sort(key=lambda x: x.get('date') or datetime.min, reverse=True)
 
-    # Generate HTML
+    # --- ESPAÑOL: Generación del archivo HTML ---
     html_content = '''<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <title>Análisis de noticias de visado</title>
+  <title>Análisis de Noticias de Visados</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-    th { background-color: #f2f2f2; }
-    a { color: #007bff; text-decoration: none; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; margin: 20px; background-color: #f9f9f9; }
+    h1 { color: #333; }
+    table { width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+    th { background-color: #004a99; color: white; }
+    tr:nth-child(even) { background-color: #f2f2f2; }
+    a { color: #007bff; text-decoration: none; font-weight: bold; }
     a:hover { text-decoration: underline; }
-    .filters { margin-bottom: 20px; }
-    .filters input, .filters button { margin-right: 10px; padding: 5px; }
-    .filters input[type="number"] { width: 120px; }
+    .filters { margin-bottom: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ddd; }
+    .filters input, .filters button { margin: 5px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+    .filters button { background-color: #28a745; color: white; border: none; cursor: pointer; }
+    .filters button:hover { background-color: #218838; }
   </style>
 </head>
 <body>
-  <h1>Noticias de Visado Recientes</h1>
+  <h1>Noticias Recientes de Visados</h1>
   <div class="filters">
-    <input type="text" id="keyword" placeholder="Buscar palabra clave">
-    <input type="date" id="startDate">
-    <input type="date" id="endDate">
-    <input type="number" id="daysFilter" placeholder="O filtrar últimos días" min="0">
-    <button onclick="filterTable()">Filtrar</button>
+    <input type="text" id="keyword" placeholder="Buscar palabra clave...">
+    <label>Desde:</label> <input type="date" id="startDate">
+    <label>Hasta:</label> <input type="date" id="endDate">
+    <input type="number" id="daysFilter" placeholder="Últimos X días" min="0">
+    <button onclick="filterTable()">Filtrar Resultados</button>
   </div>
   <table id="newsTable">
     <thead>
@@ -552,14 +481,14 @@ def main(days=3):
         source = post.get('source', '')
         date = post.get('date')
         row_date = date.strftime('%Y-%m-%d') if date else '—'
-        display_date = date.strftime('%d-%m-%Y') if date else '—'
+        display_date = date.strftime('%d-%m-%Y') if date else 'Desconocida'
         link = post.get('link', '')
         html_content += f'''
       <tr data-date="{row_date}" data-title="{title.lower()}">
-        <td><strong style='color:#000'>{title}</strong></td>
+        <td><strong>{title}</strong></td>
         <td>{source}</td>
         <td>{display_date}</td>
-        <td><a href="{link}" target="_blank" style="color:#007bff; text-decoration:none;">Abrir Enlace</a></td>
+        <td><a href="{link}" target="_blank">Ver Noticia</a></td>
       </tr>'''
 
     html_content += '''
@@ -573,15 +502,14 @@ def main(days=3):
       const daysFilter = parseInt(document.getElementById('daysFilter').value) || 0;
       const rows = document.querySelectorAll('#newsTable tbody tr');
       
-      // Calcular rango de fechas
       let filterStartDate = startDate;
       let filterEndDate = endDate;
       
       if (daysFilter > 0) {
         const today = new Date();
-        const cutoffDate = new Date(today);
-        cutoffDate.setDate(today.getDate() - (daysFilter - 1));
-        filterStartDate = cutoffDate.toISOString().split('T')[0];
+        const cutoff = new Date(today);
+        cutoff.setDate(today.getDate() - (daysFilter - 1));
+        filterStartDate = cutoff.toISOString().split('T')[0];
         filterEndDate = today.toISOString().split('T')[0];
       }
       
@@ -590,17 +518,9 @@ def main(days=3):
         const date = row.getAttribute('data-date');
         let show = true;
         
-        if (keyword && !title.includes(keyword)) {
-          show = false;
-        }
-        
-        if (filterStartDate && date !== '—' && date < filterStartDate) {
-          show = false;
-        }
-        
-        if (filterEndDate && date !== '—' && date > filterEndDate) {
-          show = false;
-        }
+        if (keyword && !title.includes(keyword)) show = false;
+        if (filterStartDate && date !== '—' && date < filterStartDate) show = false;
+        if (filterEndDate && date !== '—' && date > filterEndDate) show = false;
         
         row.style.display = show ? '' : 'none';
       });
@@ -611,54 +531,22 @@ def main(days=3):
 
     with open('visa_news.html', 'w', encoding='utf-8') as f:
         f.write(html_content)
-
-    print("Scraping complete. Output saved to visa_news.html")
-
-if __name__ == "__main__":
-    import sys
-    import json
     
-    # 1. 确定抓取天数
-    days = 30
-    if len(sys.argv) > 1:
-        try:
-            days = int(sys.argv[1])
-        except ValueError:
-            pass
-            
-    # 2. 执行抓取逻辑
-    print(f"开始抓取最近 {days} 天的新闻...")
-    all_posts = []
-    days_delta = max(days, 1)
-    cutoff = datetime.now() - timedelta(days=days_delta-1)
-    
-    for url in websites:
-        posts = scrape_website(url)
-        for post in posts:
-            date = post.get('date')
-            date = normalize_date(date) if isinstance(date, datetime) else date
-            post['date'] = date
-            # 只有符合日期条件的数据才加入列表
-            if date and isinstance(date, datetime) and date >= cutoff:
-                all_posts.append(post)
-            elif not date:
-                all_posts.append(post)
-
-    # 3. 对数据进行排序（按日期从新到旧）
-    all_posts.sort(key=lambda x: x.get('date') or datetime.min, reverse=True)
-
-    # 4. 【关键步骤】处理日期格式并保存为 JSON
-    # 因为 json 库不认识 Python 的 datetime 对象，我们要把它转成字符串
+    # --- ESPAÑOL: Guardado de JSON ---
     serializable_posts = []
     for post in all_posts:
         item = post.copy()
         if isinstance(item.get('date'), datetime):
-            item['date'] = item['date'].isoformat() # 转为 "2024-05-20T..." 这种格式
+            item['date'] = item['date'].isoformat()
         serializable_posts.append(item)
 
-    # 5. 写入文件（供 Actions 提交和 App 读取）
     with open('visa_data.json', 'w', encoding='utf-8') as f:
         json.dump(serializable_posts, f, ensure_ascii=False, indent=4)
 
-    print(f"✅ 抓取完成！共获得 {len(serializable_posts)} 条数据。")
-    print("文件 'visa_data.json' 已成功生成。")
+    print(f"✅ Extracción completada. Se han guardado {len(serializable_posts)} noticias.")
+    print("Los archivos 'visa_news.html' y 'visa_data.json' han sido generados con éxito.")
+
+if __name__ == "__main__":
+    import sys
+    # Se establece por defecto en 30 días para alimentar el sistema
+    main(30)
