@@ -624,6 +624,15 @@ if __name__ == "__main__":
             pass
     main(days)
 import json
+    # 处理日期，使 JSON 可以序列化
+    serializable_posts = []
+    for post in all_posts:
+        item = post.copy()
+        if item.get('date'):
+            item['date'] = item['date'].isoformat()
+        serializable_posts.append(item)
+        
     with open('visa_data.json', 'w', encoding='utf-8') as f:
-        json.dump(all_posts, f, ensure_ascii=False, indent=4)
-    print("visa_data.json 已生成")
+        json.dump(serializable_posts, f, ensure_ascii=False, indent=4)
+    
+    print(f"成功抓取 {len(serializable_posts)} 条数据并保存到 visa_data.json")
