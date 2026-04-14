@@ -623,3 +623,7 @@ if __name__ == "__main__":
         except ValueError:
             pass
     main(days)
+import json
+    with open('visa_data.json', 'w', encoding='utf-8') as f:
+        json.dump(all_posts, f, ensure_ascii=False, indent=4)
+    print("visa_data.json 已生成")
