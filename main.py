@@ -299,7 +299,14 @@ def parse_bal_sitemap(base_url, max_items=30):
     out = []
     try:
         sitemap_url = 'https://www.bal.com/sitemap-posttype-bal_news.xml'
-        response = requests.get(sitemap_url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=15)
+        response = requests.get(sitemap_url, headers={
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Referer": "https://www.google.com/"
+}, timeout=15)
         response.raise_for_status()
         sitemap = BeautifulSoup(response.text, 'xml')
         urls = sitemap.find_all('url')[:max_items]
@@ -317,7 +324,14 @@ def parse_bal_sitemap(base_url, max_items=30):
                 except Exception:
                     date = None
             try:
-                post_resp = requests.get(loc, headers={'User-Agent': 'Mozilla/5.0'}, timeout=15)
+                post_resp = requests.get(loc, headers={
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Referer": "https://www.google.com/"
+}, timeout=15)
                 post_resp.raise_for_status()
                 title = parse_bal_post_title(post_resp.text)
             except Exception:
