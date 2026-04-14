@@ -619,7 +619,7 @@ if __name__ == "__main__":
     import json
     
     # 1. 确定抓取天数
-    days = 7
+    days = 30
     if len(sys.argv) > 1:
         try:
             days = int(sys.argv[1])
