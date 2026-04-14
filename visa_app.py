@@ -100,7 +100,7 @@ if st.session_state.all_data:
         filter_start = st.date_input("Fecha inicio filtro", key="result_start", format="DD-MM-YYYY", value=None)
     with col_filter3:
         filter_end = st.date_input("Fecha fin filtro", key="result_end", format="DD-MM-YYYY", value=None)
-
+    
     filter_days_option = st.number_input("Últimos días (0 = usar rango de fechas, 1 = Hoy, 2 = Hoy+ayer)", min_value=0, max_value=365, value=0, key="result_days")
     
     # aplicar filtro de resultados
