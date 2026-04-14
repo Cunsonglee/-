@@ -69,7 +69,8 @@ def trigger_github_action():
         url = f"https://api.github.com/repos/{repo}/actions/workflows/daily_scrape.yml/dispatches"
         headers = {
             "Authorization": f"token {token}",
-@@ -73,38 +74,36 @@ def trigger_github_action():
+            "Accept": "application/vnd.github.v3+json"
+        }
         res = requests.post(url, headers=headers, json={"ref": "main"})
         return res.status_code
     except Exception as e:
@@ -113,7 +114,7 @@ st.session_state.all_data = load_saved_data()
 if st.session_state.all_data:
     df = pd.DataFrame(st.session_state.all_data).sort_values('date', ascending=False, na_position='last')
     df['Fecha'] = df['date'].dt.strftime('%d-%m-%Y').fillna('Desconocida')
-    
+
     # filtro de resultados
     st.subheader("Filtrado de resultados")
     col_filter1, col_filter2, col_filter3 = st.columns(3)
@@ -123,16 +124,16 @@ if st.session_state.all_data:
         filter_start = st.date_input("Fecha inicio filtro", key="result_start", format="DD-MM-YYYY", value=None)
     with col_filter3:
         filter_end = st.date_input("Fecha fin filtro", key="result_end", format="DD-MM-YYYY", value=None)
-    
+
     filter_days_option = st.number_input("Últimos días (0 = usar rango de fechas, 1 = Hoy, 2 = Hoy+ayer)", min_value=0, max_value=365, value=0, key="result_days")
-    
+
     # aplicar filtro de resultados
     filtered_df = df.copy()
-    
+
     # filtro por palabra clave
     if filter_keyword:
         filtered_df = filtered_df[filtered_df['title'].str.contains(filter_keyword, case=False, na=False)]
-    
+
     if filter_days_option > 0:
         today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
         cutoff_date = today - timedelta(days=filter_days_option - 1)
@@ -141,7 +142,7 @@ if st.session_state.all_data:
         start_dt = datetime.combine(filter_start, datetime.min.time()) if filter_start else datetime.min
         end_dt = datetime.combine(filter_end, datetime.max.time()) if filter_end else datetime.max
         filtered_df = filtered_df[(filtered_df['date'] >= start_dt) & (filtered_df['date'] <= end_dt)]
-    
+
     def render_results_html(df):
         html = '''<div>
   <style>
