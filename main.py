@@ -480,7 +480,7 @@ def parse_items_from_html(html, base_url):
 # Function to scrape a website
 def scrape_website(url):
     try:
-        response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
+        response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=15)
         response.raise_for_status()
         html = response.text
         posts = parse_items_from_html(html, url)
