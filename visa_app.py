@@ -1,3 +1,4 @@
+import cloudscraper
 import streamlit as st
 import requests
 from bs4 import BeautifulSoup
@@ -69,10 +70,18 @@ if st.sidebar.button("Ejecutar"):
     
     all_data = []
     
+scraper = cloudscraper.create_scraper()
+    
     progress = st.progress(0)
     for idx, url in enumerate(websites):
         try:
-            res = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=15)
+            # --- 替换开始 ---
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+            }
+            # 使用 scraper 代替 requests
+            res = scraper.get(url, headers=headers, timeout=20)
             res.raise_for_status()
             found = parse_content(res.text, url)
             # filtrar por fecha
