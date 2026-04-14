@@ -1,11 +1,11 @@
 name: Daily Visa Scraper
 
 on:
-schedule:
-    # 每天 UTC 时间 5:00 和 12:00 运行
-    # 对应西班牙时间 (CEST, UTC+2) 为 07:00 和 14:00
-    - cron: '0 5,12 * * *'
-  workflow_dispatch:      # 依然保留手动触发功能
+  schedule:
+    # 覆盖夏令时 (UTC+2) 和 冬令时 (UTC+1) 的 7:00 和 14:00
+    # 下面四个时间分别是 UTC 的 5:00, 6:00, 12:00, 13:00
+    - cron: '0 5,6,12,13 * * *'
+  workflow_dispatch:
 
 jobs:
   build:
