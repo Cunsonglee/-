@@ -6,6 +6,8 @@ import pandas as pd
 import re
 from urllib.parse import urlparse
 import main
+import json
+import time
 
 # --- 1. Configuración ---
 websites = [
@@ -58,33 +60,51 @@ with col2:
 keyword = st.sidebar.text_input("Buscar palabra clave")
 filter_days = st.sidebar.number_input("O seleccionar últimos días (opcional)", min_value=0, max_value=30, value=0, help="Si se rellena, sobrescribe el rango de fechas")
 
-if st.sidebar.button("Ejecutar"):
-    # determinar fechas de filtro
-    if filter_days > 0:
-        cutoff_start = datetime.now() - timedelta(days=max(filter_days - 1, 0))
-        cutoff_end = datetime.now()
-    else:
-        cutoff_start = datetime.combine(start_date, datetime.min.time())
-        cutoff_end = datetime.combine(end_date, datetime.max.time())
-    
-    all_data = []
-    
-    progress = st.progress(0)
-    for idx, url in enumerate(websites):
-        try:
-            res = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=15)
-            res.raise_for_status()
-            found = parse_content(res.text, url)
-            # filtrar por fecha
-            filtered = [p for p in found if not p['date'] or (p['date'] >= cutoff_start and p['date'] <= cutoff_end)]
-            all_data.extend(filtered)
-            if not found: st.sidebar.warning(f"No se encontró contenido en {urlparse(url).netloc}")
-        except:
-            st.sidebar.error(f"Error de acceso: {urlparse(url).netloc}")
-        progress.progress((idx + 1) / len(websites))
+# --- 定义远程触发函数 ---
+def trigger_github_action():
+    try:
+        token = st.secrets["GITHUB_TOKEN"]
+        repo = st.secrets["GITHUB_REPO"]
+        url = f"https://api.github.com/repos/{repo}/actions/workflows/daily_scrape.yml/dispatches"
+        headers = {
+            "Authorization": f"token {token}",
+            "Accept": "application/vnd.github.v3+json"
+        }
+        res = requests.post(url, headers=headers, json={"ref": "main"})
+        return res.status_code
+    except Exception as e:
+        st.error(f"Secret配置错误: {e}")
+        return 0
 
-    st.session_state.all_data = all_data
-    st.success(f"Extracción completa, se encontraron {len(all_data)} noticias")
+# --- 修改后的按钮执行逻辑 ---
+if st.sidebar.button("🚀 启动云端实时抓取"):
+    with st.spinner("正在远程唤醒 GitHub 引擎以绕过防火墙..."):
+        status = trigger_github_action()
+        if status == 204:
+            st.sidebar.success("✅ 指令已送达！")
+            st.sidebar.warning("GitHub 正在抓取（约需1分钟），请稍后刷新。")
+            # 进度条模拟
+            bar = st.progress(0)
+            for i in range(100):
+                time.sleep(0.5)
+                bar.progress(i + 1)
+            st.rerun()
+        else:
+            st.sidebar.error(f"启动失败，请检查Secrets配置。错误码: {status}")
+
+# --- 修改后的数据加载逻辑 (不再实时爬取，而是读JSON) ---
+def load_saved_data():
+    try:
+        with open('visa_data.json', 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            for p in data:
+                if p['date']: p['date'] = pd.to_datetime(p['date'])
+            return data
+    except:
+        return []
+
+# 自动从JSON加载数据
+st.session_state.all_data = load_saved_data()
 
 # mostrar resultados y filtros
 if st.session_state.all_data:
