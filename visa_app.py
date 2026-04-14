@@ -65,7 +65,6 @@ def trigger_github_action():
     try:
         token = st.secrets["GITHUB_TOKEN"]
         repo = st.secrets["GITHUB_REPO"]
-
         url = f"https://api.github.com/repos/{repo}/actions/workflows/daily_scrape.yml/dispatches"
         headers = {
             "Authorization": f"token {token}",
@@ -86,13 +85,10 @@ if st.sidebar.button("🚀 启动云端实时抓取"):
             st.sidebar.warning("GitHub 正在抓取（约需1分钟），请稍后刷新。")
             # 进度条模拟
             bar = st.progress(0)
-
             for i in range(100):
                 time.sleep(0.5)
                 bar.progress(i + 1)
             st.rerun()
-
-
         else:
             st.sidebar.error(f"启动失败，请检查Secrets配置。错误码: {status}")
 
