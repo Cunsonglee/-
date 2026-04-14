@@ -1,3 +1,4 @@
+import cloudscraper
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
@@ -479,13 +480,25 @@ def parse_items_from_html(html, base_url):
 
 # Function to scrape a website
 def scrape_website(url):
+    # 使用 cloudscraper 代替 requests 以绕过防火墙
+    scraper = cloudscraper.create_scraper()
     try:
-        response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
+        # 更加真实的浏览器伪装头部
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Referer': 'https://www.google.com/'
+        }
+        # 发起请求，增加 timeout 防止无限等待
+        response = scraper.get(url, headers=headers, timeout=30)
         response.raise_for_status()
+        
         html = response.text
         posts = parse_items_from_html(html, url)
         return posts
     except Exception as e:
+        # 打印详细错误，方便调试
         print(f"Error scraping {url}: {e}")
         return []
 
