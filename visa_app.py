@@ -60,50 +60,54 @@ with col2:
 keyword = st.sidebar.text_input("Buscar palabra clave")
 filter_days = st.sidebar.number_input("O seleccionar últimos días (opcional)", min_value=0, max_value=30, value=0, help="Si se rellena, sobrescribe el rango de fechas")
 
-# 1. 远程触发 GitHub Actions 的函数
+# --- 定义远程触发函数 ---
 def trigger_github_action():
     try:
         token = st.secrets["GITHUB_TOKEN"]
         repo = st.secrets["GITHUB_REPO"]
-        # 注意：这里的 daily_scrape.yml 必须和你 GitHub 里的文件名一致
+
         url = f"https://api.github.com/repos/{repo}/actions/workflows/daily_scrape.yml/dispatches"
         headers = {
             "Authorization": f"token {token}",
-            "Accept": "application/vnd.github.v3+json"
-        }
+@@ -73,38 +74,36 @@ def trigger_github_action():
         res = requests.post(url, headers=headers, json={"ref": "main"})
         return res.status_code
     except Exception as e:
-        return f"Error: {e}"
+        st.error(f"Secret配置错误: {e}")
+        return 0
 
-# 2. APP 界面上的按钮
-if st.sidebar.button("🚀 立即提取最新数据"):
-    with st.spinner("正在命令云端引擎抓取并更新 visa_data.json..."):
+# --- 修改后的按钮执行逻辑 ---
+if st.sidebar.button("🚀 启动云端实时抓取"):
+    with st.spinner("正在远程唤醒 GitHub 引擎以绕过防火墙..."):
         status = trigger_github_action()
         if status == 204:
-            st.sidebar.success("✅ 指令已送达 GitHub！")
-            st.sidebar.info("数据正在写入 JSON，请等待约 1 分钟...")
-            
-            # 进度条模拟等待 GitHub 运行时间
-            progress_bar = st.progress(0)
-            for i in range(100):
-                time.sleep(0.6) # 模拟大约 60 秒的运行时间
-                progress_bar.progress(i + 1)
-            
-            st.success("数据提取并存入 visa_data.json 成功！")
-            st.rerun() # 自动刷新页面显示新数据
-        else:
-            st.sidebar.error(f"指令发送失败，请检查 Secret 权限。代码: {status}")
+            st.sidebar.success("✅ 指令已送达！")
+            st.sidebar.warning("GitHub 正在抓取（约需1分钟），请稍后刷新。")
+            # 进度条模拟
+            bar = st.progress(0)
 
-# 3. 自动读取最新的本地 JSON 显示在网页上
-def load_data():
+            for i in range(100):
+                time.sleep(0.5)
+                bar.progress(i + 1)
+            st.rerun()
+
+
+        else:
+            st.sidebar.error(f"启动失败，请检查Secrets配置。错误码: {status}")
+
+# --- 修改后的数据加载逻辑 (不再实时爬取，而是读JSON) ---
+def load_saved_data():
     try:
         with open('visa_data.json', 'r', encoding='utf-8') as f:
-            return json.load(f)
+            data = json.load(f)
+            for p in data:
+                if p['date']: p['date'] = pd.to_datetime(p['date'])
+            return data
     except:
         return []
 
-st.session_state.all_data = load_data()
+# 自动从JSON加载数据
+st.session_state.all_data = load_saved_data()
 
 # mostrar resultados y filtros
 if st.session_state.all_data:
