@@ -1,8 +1,6 @@
 name: Daily Visa Scraper
 
 on:
-  schedule:
-    - cron: '0 0,12 * * *' # 每天北京时间 8点和20点自动运行
   workflow_dispatch:      # 允许手动触发执行
 
 jobs:
