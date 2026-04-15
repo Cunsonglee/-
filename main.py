@@ -231,7 +231,6 @@ def parse_vne(html, base_url):
         # --- B. 主页没日期（头条），进入内页 ---
         if not date:
             try:
-                # 【改动1】放弃 cloudscraper，使用更稳定的 requests 进入内页
                 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
                 import requests
                 inner_res = requests.get(link, headers=headers, timeout=15)
@@ -239,45 +238,43 @@ def parse_vne(html, base_url):
                 if inner_res.status_code == 200:
                     inner_soup = BeautifulSoup(inner_res.text, 'html.parser')
                     
-                    # 第一层防护：读取底层 Meta 标签
-                    meta_tags = [
-                        inner_soup.select_one('meta[name="pubdate"]'),
-                        inner_soup.select_one('meta[itemprop="datePublished"]'),
-                        inner_soup.select_one('meta[property="article:published_time"]')
-                    ]
+                    # 【优先级 1】优先找肉眼可见的 HTML 标签，保证和网页上写的时间一模一样
+                    target_el = (inner_soup.select_one('.author') or 
+                                 inner_soup.select_one('span.date') or 
+                                 inner_soup.select_one('.date') or 
+                                 inner_soup.select_one('.time-detail'))
                     
-                    for meta in meta_tags:
-                        if meta and meta.get('content'):
-                            iso_str = meta.get('content')
-                            try:
-                                date_part = iso_str.split('T')[0].split(' ')[0]
-                                date = datetime.fromisoformat(date_part)
-                                date_text = date.strftime('%B %d, %Y')
-                                break
-                            except: pass
+                    if target_el:
+                        full_text = target_el.get_text(separator=' ').strip()
+                        m_inner = re.search(r'([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})', full_text)
+                        if m_inner:
+                            date_text = f"{m_inner.group(1)} {m_inner.group(2)}, {m_inner.group(3)}"
+                            date = parse_month_day_year(date_text)
                             
-                    # 第二层防护：搜寻 author 和 date 等 HTML 标签
+                    # 【优先级 2】如果标签变了，直接在全文里搜索可见的日期格式
                     if not date:
-                        target_el = (inner_soup.select_one('.author') or 
-                                     inner_soup.select_one('span.date') or 
-                                     inner_soup.select_one('.date') or 
-                                     inner_soup.select_one('.time-detail'))
-                        
-                        if target_el:
-                            full_text = target_el.get_text(separator=' ').strip()
-                            m_inner = re.search(r'([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})', full_text)
-                            if m_inner:
-                                date_text = f"{m_inner.group(1)} {m_inner.group(2)}, {m_inner.group(3)}"
-                                date = parse_month_day_year(date_text)
-                                
-                    # 第三层防护（终极必杀）：无视任何标签，直接在全网页源码里“暴力”抓取时间！
-                    if not date:
-                        # 强行匹配类似 "April 11, 2026 | 11:24 pm" 的文字
                         m_global = re.search(r'([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})\s*\|\s*\d{1,2}:\d{2}', inner_res.text)
                         if m_global:
                             date_text = f"{m_global.group(1)} {m_global.group(2)}, {m_global.group(3)}"
                             date = parse_month_day_year(date_text)
                             
+                    # 【优先级 3 (最后兜底)】如果以上都不行，才读取隐藏的 Meta 标签（时区可能会导致差一天）
+                    if not date:
+                        meta_tags = [
+                            inner_soup.select_one('meta[name="pubdate"]'),
+                            inner_soup.select_one('meta[itemprop="datePublished"]'),
+                            inner_soup.select_one('meta[property="article:published_time"]')
+                        ]
+                        for meta in meta_tags:
+                            if meta and meta.get('content'):
+                                iso_str = meta.get('content')
+                                try:
+                                    date_part = iso_str.split('T')[0].split(' ')[0]
+                                    date = datetime.fromisoformat(date_part)
+                                    date_text = date.strftime('%B %d, %Y')
+                                    break
+                                except: pass
+                                
             except Exception as e:
                 print(f"无法访问内页 {link}: {e}")
         
@@ -290,7 +287,6 @@ def parse_vne(html, base_url):
                 'source': 'vnexpress'
             })
             
-    # 去重
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
