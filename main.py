@@ -149,81 +149,103 @@ def parse_bdv(html, base_url):
         out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text, 'source': 'buch-dein-visum'})
     return out
 
-def parse_vne(html, base_url):
+def parse_vn(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
-    items = soup.select('.item-news, .item_news')
+
     out = []
-    
-    for n in items:
-        a = n.select_one('h4.title_news_site a[href]')
+    seen = set()
+
+    def add_item(title, link, date, date_text=''):
+        if not title or not link:
+            return
+        key = link.strip()
+        if not key or key in seen:
+            return
+        seen.add(key)
+        out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text, 'source': 'visasnews'})
+
+    slides = soup.select('.n2-ss-showcase-slides .n2-ss-slide')
+    for slide in slides:
+        a = slide.select_one('a[href]')
+        href = a.get('href') if a else ''
+        link = absolute_url(href, base_url)
+        title = a.get_text().strip() if a else slide.get('data-title', '').strip()
+        b = slide.select_one('p b, .n2-ss-item-content b')
+        date_text = b.get_text().strip() if b else ''
+        date = parse_month_day_year(date_text)
+        add_item(title, link, date, date_text)
+
+    posts = soup.select('article.post')
+    for post in posts:
+        a = post.select_one('h2.entry-title a[href]')
         if not a:
             continue
-        
+
         title = a.get_text().strip()
         link = absolute_url(a.get('href'), base_url)
-        
-        # 1. 尝试从常规的文本中提取时间 (.timer_post)
-        t = n.select_one('.timer_post')
+
+
+
         date_text = ''
         date = None
-        if t:
-            raw = t.get_text().strip()
-            m = re.search(r'([A-Za-zÀ-ÿ\.]+\s+\d{1,2},\s*\d{4})', raw)
-            if m:
-                date_text = m.group(1)
-                date = parse_month_day_year(date_text)
-        
-        # 2. 【新增魔法技巧】如果没找到时间（比如置顶头条），尝试从图片链接里“偷”时间
-        if not date:
-            img = n.select_one('img')
-            img_src = ''
-            if img:
-                # 兼容懒加载图片
-                img_src = img.get('data-original') or img.get('src') or ''
-            
-            # 寻找类似 /2026/04/14/ 的格式
-            m_img = re.search(r'/(\d{4})/(\d{2})/(\d{2})/', img_src)
-            if m_img:
-                year, month, day = int(m_img.group(1)), int(m_img.group(2)), int(m_img.group(3))
+        time_el = post.select_one('time.entry-date.published') or post.select_one('time.entry-date') or post.select_one('time')
+        if time_el:
+            date_text = time_el.get_text().strip()
+            iso = time_el.get('datetime')
+            if iso:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 try:
-                    from datetime import datetime
-                    date = datetime(year, month, day)
-                    date_text = date.strftime('%B %d, %Y')
+                    date = normalize_date(datetime.fromisoformat(iso.replace('Z', '+00:00')))
+
+
                 except:
-                    pass
+                    date = parse_month_day_year(date_text) or parse_day_month(date_text)
             else:
-                # 如果连图片都没有，既然是置顶头条，大概率是今天或昨天的新闻，默认给今天
-                from datetime import datetime
-                date = datetime.now()
-                date_text = "Today"
-                
-        if title and link:
-            out.append({
-                'title': title, 
-                'link': link, 
-                'date': date, 
-                'date_text': date_text, 
-                'source': 'vnexpress'
-            })
-            
-    # 去重逻辑
-    seen = set()
-    return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
+                date = parse_month_day_year(date_text) or parse_day_month(date_text)
+        add_item(title, link, date, date_text)
+
+    return out
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def parse_vne(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
     # 【改动1】同时抓取顶部置顶新闻(.item-news) 和 下方列表新闻(.item_news)
     items = soup.select('.item-news, .item_news')
     out = []
-    
+
     for n in items:
         a = n.select_one('h4.title_news_site a[href]')
         if not a:
             continue
-        
+
         title = a.get_text().strip()
         link = absolute_url(a.get('href'), base_url)
-        
+
         # 提取时间（置顶新闻可能没有时间，如果没有，date 就保持为 None）
         t = n.select_one('.timer_post')
         date_text = ''
@@ -235,7 +257,7 @@ def parse_vne(html, base_url):
             if m:
                 date_text = m.group(1)
                 date = parse_month_day_year(date_text)
-                
+
         if title and link:
             out.append({
                 'title': title, 
@@ -244,7 +266,7 @@ def parse_vne(html, base_url):
                 'date_text': date_text, 
                 'source': 'vnexpress'
             })
-            
+
     # 【改动2】去重逻辑：防止新闻同时出现在置顶和列表中导致重复
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
@@ -300,13 +322,13 @@ def parse_bal_sitemap(base_url, max_items=30):
     try:
         # 在这里也创建一个隐身 scraper
         scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
-        
+
         sitemap_url = 'https://www.bal.com/sitemap-posttype-bal_news.xml'
         response = scraper.get(sitemap_url, timeout=15)  # <--- 使用 scraper 替换 requests
         response.raise_for_status()
         sitemap = BeautifulSoup(response.text, 'xml')
         urls = sitemap.find_all('url')[:max_items]
-        
+
         for url_tag in urls:
             loc = url_tag.find('loc').get_text(strip=True) if url_tag.find('loc') else ''
             if '/immigration-news/' not in loc:
@@ -462,18 +484,18 @@ def scrape_website(url):
                 'desktop': True
             }
         )
-        
+
         # 使用 scraper 代替普通的 requests
         response = scraper.get(url, timeout=20)
-        
+
         # 如果返回状态码不是 200 (成功)，会在这里报错跳到 except 块
         response.raise_for_status()
-        
+
         html = response.text
         # 这里继续执行你原来的解析逻辑
         posts = parse_items_from_html(html, url)
         return posts
-        
+
     except Exception as e:
         # 如果还是报错，我们会在这里看到具体原因
         print(f"Error al extraer {url}: {e}")
@@ -484,7 +506,7 @@ def main(days=30):
     print(f"Iniciando extracción de noticias de los últimos {days} días...")
     all_posts = []
     cutoff = datetime.now() - timedelta(days=days-1)
-    
+
     for url in websites:
         posts = scrape_website(url)
         for post in posts:
@@ -595,7 +617,7 @@ def main(days=30):
 
     with open('visa_news.html', 'w', encoding='utf-8') as f:
         f.write(html_content)
-    
+
     # --- ESPAÑOL: Guardado de JSON ---
     serializable_posts = []
     for post in all_posts:
