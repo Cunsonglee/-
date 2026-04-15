@@ -469,29 +469,31 @@ def parse_items_from_html(html, base_url):
 
 def scrape_website(url):
     try:
-        # 创建一个“隐身”请求器，模拟真实的 Chrome 浏览器
-        scraper = cloudscraper.create_scraper(
-            browser={
-                'browser': 'chrome',
-                'platform': 'windows',
-                'desktop': True
-            }
-        )
-
-        # 使用 scraper 代替普通的 requests
-        response = scraper.get(url, timeout=20)
-
-        # 如果返回状态码不是 200 (成功)，会在这里报错跳到 except 块
+        # 第一步：先用普通的 requests 尝试访问（速度最快，网络最稳）
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        }
+        response = requests.get(url, headers=headers, timeout=15)
+        
+        # 第二步：智能判断。如果被防火墙拦截 (403)，就自动切换到隐身武器 cloudscraper
+        if response.status_code == 403:
+            # print(f"[{url}] 遇到防火墙，正在启动隐身模式...")
+            scraper = cloudscraper.create_scraper(
+                browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True}
+            )
+            response = scraper.get(url, timeout=25)
+            
+        # 如果返回其他致命错误，触发异常
         response.raise_for_status()
-
+        
+        # 第三步：成功拿到网页，交给解析器处理
         html = response.text
-        # 这里继续执行你原来的解析逻辑
         posts = parse_items_from_html(html, url)
         return posts
-
+        
     except Exception as e:
-        # 如果还是报错，我们会在这里看到具体原因
-        print(f"Error al extraer {url}: {e}")
+        # 如果依然失败，打印错误，但不让程序崩溃
+        print(f"抓取失败 {url}: {e}")
         return []
 
 def main(days=30):
