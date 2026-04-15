@@ -423,10 +423,28 @@ def parse_items_from_html(html, base_url):
 
 def scrape_website(url):
     try:
-        response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=15)
+        # 创建一个“隐身”请求器，模拟真实的 Chrome 浏览器
+        scraper = cloudscraper.create_scraper(
+            browser={
+                'browser': 'chrome',
+                'platform': 'windows',
+                'desktop': True
+            }
+        )
+        
+        # 使用 scraper 代替普通的 requests
+        response = scraper.get(url, timeout=20)
+        
+        # 如果返回状态码不是 200 (成功)，会在这里报错跳到 except 块
         response.raise_for_status()
-        return parse_items_from_html(response.text, url)
+        
+        html = response.text
+        # 这里继续执行你原来的解析逻辑
+        posts = parse_items_from_html(html, url)
+        return posts
+        
     except Exception as e:
+        # 如果还是报错，我们会在这里看到具体原因
         print(f"Error al extraer {url}: {e}")
         return []
 
