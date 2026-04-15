@@ -183,9 +183,6 @@ def parse_vn(html, base_url):
 
         title = a.get_text().strip()
         link = absolute_url(a.get('href'), base_url)
-
-
-
         date_text = ''
         date = None
         time_el = post.select_one('time.entry-date.published') or post.select_one('time.entry-date') or post.select_one('time')
@@ -193,23 +190,8 @@ def parse_vn(html, base_url):
             date_text = time_el.get_text().strip()
             iso = time_el.get('datetime')
             if iso:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 try:
                     date = normalize_date(datetime.fromisoformat(iso.replace('Z', '+00:00')))
-
 
                 except:
                     date = parse_month_day_year(date_text) or parse_day_month(date_text)
@@ -220,44 +202,54 @@ def parse_vn(html, base_url):
     return out
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 def parse_vne(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
-    # 【改动1】同时抓取顶部置顶新闻(.item-news) 和 下方列表新闻(.item_news)
     items = soup.select('.item-news, .item_news')
     out = []
-
+    
     for n in items:
         a = n.select_one('h4.title_news_site a[href]')
         if not a:
             continue
-
+        
         title = a.get_text().strip()
         link = absolute_url(a.get('href'), base_url)
-
-        # 提取时间（置顶新闻可能没有时间，如果没有，date 就保持为 None）
+        
+        # 1. 尝试从常规的文本中提取时间 (.timer_post)
         t = n.select_one('.timer_post')
         date_text = ''
         date = None
         if t:
             raw = t.get_text().strip()
-            # 匹配例如 April 14, 2026
             m = re.search(r'([A-Za-zÀ-ÿ\.]+\s+\d{1,2},\s*\d{4})', raw)
             if m:
                 date_text = m.group(1)
                 date = parse_month_day_year(date_text)
-
+        
+        # 2. 【新增魔法技巧】如果没找到时间（比如置顶头条），尝试从图片链接里“偷”时间
+        if not date:
+            img = n.select_one('img')
+            img_src = ''
+            if img:
+                # 兼容懒加载图片
+                img_src = img.get('data-original') or img.get('src') or ''
+            
+            # 寻找类似 /2026/04/14/ 的格式
+            m_img = re.search(r'/(\d{4})/(\d{2})/(\d{2})/', img_src)
+            if m_img:
+                year, month, day = int(m_img.group(1)), int(m_img.group(2)), int(m_img.group(3))
+                try:
+                    from datetime import datetime
+                    date = datetime(year, month, day)
+                    date_text = date.strftime('%B %d, %Y')
+                except:
+                    pass
+            else:
+                # 如果连图片都没有，既然是置顶头条，大概率是今天或昨天的新闻，默认给今天
+                from datetime import datetime
+                date = datetime.now()
+                date_text = "Today"
+                
         if title and link:
             out.append({
                 'title': title, 
@@ -266,8 +258,8 @@ def parse_vne(html, base_url):
                 'date_text': date_text, 
                 'source': 'vnexpress'
             })
-
-    # 【改动2】去重逻辑：防止新闻同时出现在置顶和列表中导致重复
+            
+    # 去重逻辑
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
