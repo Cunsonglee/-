@@ -9,6 +9,28 @@ import main
 import json
 import time
 
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Referer': 'https://www.google.com/'
+}
+
+# --- 2. 修正后的抓取函数 ---
+def scrape_website_updated(url):
+    try:
+        # 使用更强的请求头
+        response = requests.get(url, headers=HEADERS, timeout=15)
+        response.raise_for_status()
+        html = response.text
+        
+        # 调用解析逻辑
+        # 注意：请确保你的 main.py 里的 parse_travelobiz 已经更新为使用 'article.entry-card'
+        found = main.parse_items_from_html(html, url)
+        return found
+    except Exception as e:
+        st.sidebar.error(f"抓取 {urlparse(url).netloc} 失败: {e}")
+        return []
+
 # --- 1. Configuración ---
 websites = [
     "https://www.buch-dein-visum.de/en/news",
