@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 import re
 from urllib.parse import urlparse
-import main.py
+import main
 import json
 import time
 
