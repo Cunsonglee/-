@@ -245,6 +245,13 @@
         "source": "visasnews"
     },
     {
+        "title": "Can I enter Thailand without carrying cash?",
+        "link": "https://e.vnexpress.net/news/travel/visa/can-i-enter-thailand-without-carrying-cash-5060442.html",
+        "date": "2026-04-09T00:00:00",
+        "date_text": "April 09, 2026",
+        "source": "vnexpress"
+    },
+    {
         "title": "Japan: Tightened Documentation Requirement and Introduction of Language Requirement for Certain Work Visas",
         "link": "https://www.fragomen.com/insights/japan-tightened-documentation-requirement-and-introduction-of-language-requirement-for-certain-work-visas.html",
         "date": "2026-04-09T00:00:00",
@@ -341,6 +348,20 @@
         "date": "2026-04-07T12:22:44",
         "date_text": "April 7, 2026",
         "source": "visasnews"
+    },
+    {
+        "title": "Tourist official reassures Vietnamese with poor English skills fearful of Australian immigration",
+        "link": "https://e.vnexpress.net/news/travel/visa/tourist-official-reassures-vietnamese-with-poor-english-skills-fearful-of-australian-immigration-5059154.html",
+        "date": "2026-04-07T00:00:00",
+        "date_text": "April 07, 2026",
+        "source": "vnexpress"
+    },
+    {
+        "title": "India issues advisory for citizens traveling to Phu Quoc under visa-free scheme",
+        "link": "https://e.vnexpress.net/news/travel/visa/india-issues-advisory-for-citizens-traveling-to-phu-quoc-under-visa-free-scheme-5059413.html",
+        "date": "2026-04-07T00:00:00",
+        "date_text": "April 07, 2026",
+        "source": "vnexpress"
     },
     {
         "title": "Ghana to Offer Free E-Visas to All African Citizens from May",
@@ -873,26 +894,5 @@
         "date": "2026-03-17T11:34:50",
         "date_text": "March 17, 2026",
         "source": "visasnews"
-    },
-    {
-        "title": "Can I enter Thailand without carrying cash?",
-        "link": "https://e.vnexpress.net/news/travel/visa/can-i-enter-thailand-without-carrying-cash-5060442.html",
-        "date": null,
-        "date_text": "",
-        "source": "vnexpress"
-    },
-    {
-        "title": "Tourist official reassures Vietnamese with poor English skills fearful of Australian immigration",
-        "link": "https://e.vnexpress.net/news/travel/visa/tourist-official-reassures-vietnamese-with-poor-english-skills-fearful-of-australian-immigration-5059154.html",
-        "date": null,
-        "date_text": "",
-        "source": "vnexpress"
-    },
-    {
-        "title": "India issues advisory for citizens traveling to Phu Quoc under visa-free scheme",
-        "link": "https://e.vnexpress.net/news/travel/visa/india-issues-advisory-for-citizens-traveling-to-phu-quoc-under-visa-free-scheme-5059413.html",
-        "date": null,
-        "date_text": "",
-        "source": "vnexpress"
     }
 ]
