@@ -204,8 +204,13 @@ def parse_vn(html, base_url):
 
 def parse_vne(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
+    # 抓取置顶新闻和列表新闻
     items = soup.select('.item-news, .item_news')
     out = []
+    
+    # 创建一个内部爬取器，用于点进文章看日期
+    import cloudscraper
+    inner_scraper = cloudscraper.create_scraper(browser={'browser': 'chrome','platform': 'windows','desktop': True})
     
     for n in items:
         a = n.select_one('h4.title_news_site a[href]')
@@ -215,10 +220,11 @@ def parse_vne(html, base_url):
         title = a.get_text().strip()
         link = absolute_url(a.get('href'), base_url)
         
-        # 1. 尝试从常规的文本中提取时间 (.timer_post)
+        # --- A. 先尝试在主页找日期 (.timer_post) ---
         t = n.select_one('.timer_post')
-        date_text = ''
         date = None
+        date_text = ''
+        
         if t:
             raw = t.get_text().strip()
             m = re.search(r'([A-Za-zÀ-ÿ\.]+\s+\d{1,2},\s*\d{4})', raw)
@@ -226,40 +232,35 @@ def parse_vne(html, base_url):
                 date_text = m.group(1)
                 date = parse_month_day_year(date_text)
         
-        # 2. 【新增魔法技巧】如果没找到时间（比如置顶头条），尝试从图片链接里“偷”时间
+        # --- B. 【核心修改】如果主页没日期（头条），就点进去抓取准确日期 ---
         if not date:
-            img = n.select_one('img')
-            img_src = ''
-            if img:
-                # 兼容懒加载图片
-                img_src = img.get('data-original') or img.get('src') or ''
-            
-            # 寻找类似 /2026/04/14/ 的格式
-            m_img = re.search(r'/(\d{4})/(\d{2})/(\d{2})/', img_src)
-            if m_img:
-                year, month, day = int(m_img.group(1)), int(m_img.group(2)), int(m_img.group(3))
-                try:
-                    from datetime import datetime
-                    date = datetime(year, month, day)
-                    date_text = date.strftime('%B %d, %Y')
-                except:
-                    pass
-            else:
-                # 如果连图片都没有，既然是置顶头条，大概率是今天或昨天的新闻，默认给今天
-                from datetime import datetime
-                date = datetime.now()
-                date_text = "Today"
-                
+            try:
+                # 访问文章内部链接
+                inner_res = inner_scraper.get(link, timeout=10)
+                if inner_res.status_code == 200:
+                    inner_soup = BeautifulSoup(inner_res.text, 'html.parser')
+                    # 寻找你提供的 <div class="author"> 标签
+                    author_div = inner_soup.select_one('.author')
+                    if author_div:
+                        full_text = author_div.get_text().strip()
+                        # 使用正则提取出类似 "April 11, 2026" 的部分
+                        m_inner = re.search(r'([A-Za-zÀ-ÿ\.]+\s+\d{1,2},\s*\d{4})', full_text)
+                        if m_inner:
+                            date_text = m_inner.group(1)
+                            date = parse_month_day_year(date_text)
+            except Exception as e:
+                print(f"无法进入链接提取日期 {link}: {e}")
+        
         if title and link:
             out.append({
                 'title': title, 
                 'link': link, 
                 'date': date, 
-                'date_text': date_text, 
+                'date_text': date_text or '—', 
                 'source': 'vnexpress'
             })
             
-    # 去重逻辑
+    # 去重
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
