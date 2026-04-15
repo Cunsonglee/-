@@ -205,11 +205,10 @@ def parse_vn(html, base_url):
 
 def parse_vne(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
-    # 抓取置顶新闻和列表新闻
+    # 抓取所有可能的新闻区块
     items = soup.select('.item-news, .item_news')
     out = []
     
-    # 创建一个内部爬取器，用于点进文章看日期
     import cloudscraper
     inner_scraper = cloudscraper.create_scraper(browser={'browser': 'chrome','platform': 'windows','desktop': True})
     
@@ -221,54 +220,59 @@ def parse_vne(html, base_url):
         title = a.get_text().strip()
         link = absolute_url(a.get('href'), base_url)
         
-        # --- A. 先尝试在主页找日期 (.timer_post) ---
+        # --- A. 尝试在主页抓取日期 ---
         t = n.select_one('.timer_post')
         date = None
         date_text = ''
         
         if t:
             raw = t.get_text().strip()
-            m = re.search(r'([A-Za-zÀ-ÿ\.]+\s+\d{1,2},\s*\d{4})', raw)
+            m = re.search(r'([A-Za-z]+\s+\d{1,2},\s*\d{4})', raw)
             if m:
                 date_text = m.group(1)
                 date = parse_month_day_year(date_text)
         
-        # --- B. 【核心修改】如果主页没日期（头条），就点进去抓取准确日期 ---
-# --- 步骤 B: 如果主页没日期（头条），点进去查找 ---
+        # --- B. 主页没日期（头条），进入内页使用“终极必杀技” ---
         if not date:
             try:
                 inner_res = inner_scraper.get(link, timeout=10)
                 if inner_res.status_code == 200:
                     inner_soup = BeautifulSoup(inner_res.text, 'html.parser')
                     
-                    # 寻找包含日期的标签
-                    target_el = (inner_soup.select_one('.author') or 
-                                 inner_soup.select_one('.time-detail') or 
-                                 inner_soup.select_one('.date-detail'))
+                    # 1. 优先读取底层 Meta 标签（不受排版影响，100% 准确）
+                    meta_tags = [
+                        inner_soup.select_one('meta[name="pubdate"]'),
+                        inner_soup.select_one('meta[itemprop="datePublished"]'),
+                        inner_soup.select_one('meta[property="article:published_time"]')
+                    ]
                     
-                    if target_el:
-                        # 强制用空格隔开所有的 HTML 标签，防止文字黏在一起
-                        full_text = target_el.get_text(separator=' ').strip()
-                        
-                        # 专门匹配这三种情况里的 "英文月份 + 日期 + 年份"
-                        m_inner = re.search(r'([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})', full_text)
-                        
-                        if m_inner:
-                            # 把抓到的碎片（比如 "April", "11", "2026"）重新拼装成干净的格式
-                            clean_date_str = f"{m_inner.group(1)} {m_inner.group(2)}, {m_inner.group(3)}"
-                            date_text = clean_date_str
-                            date = parse_month_day_year(date_text)
-                    
-                    # 步骤 C: 如果上面的标签全变了，用底层的 Meta 数据兜底
-                    if not date:
-                        meta_date = inner_soup.select_one('meta[property="article:published_time"]')
-                        if meta_date and meta_date.get('content'):
-                            iso_str = meta_date.get('content')
+                    for meta in meta_tags:
+                        if meta and meta.get('content'):
+                            iso_str = meta.get('content')
                             try:
-                                date = datetime.fromisoformat(iso_str.split('T')[0])
+                                # 提取时间戳中的日期部分，例如 2024-04-15
+                                date_part = iso_str.split('T')[0]
+                                date = datetime.fromisoformat(date_part)
                                 date_text = date.strftime('%B %d, %Y')
+                                break  # 找到了就立刻停止搜索
                             except: pass
                             
+                    # 2. 如果万一 Meta 也没写，用最全的文本标签兜底（包含了 span.date）
+                    if not date:
+                        target_el = (inner_soup.select_one('.author') or 
+                                     inner_soup.select_one('span.date') or 
+                                     inner_soup.select_one('.date') or 
+                                     inner_soup.select_one('.time-detail') or 
+                                     inner_soup.select_one('.date-detail'))
+                        
+                        if target_el:
+                            full_text = target_el.get_text(separator=' ').strip()
+                            m_inner = re.search(r'([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})', full_text)
+                            if m_inner:
+                                clean_date_str = f"{m_inner.group(1)} {m_inner.group(2)}, {m_inner.group(3)}"
+                                date_text = clean_date_str
+                                date = parse_month_day_year(date_text)
+                                
             except Exception as e:
                 print(f"无法访问内页 {link}: {e}")
         
