@@ -346,11 +346,13 @@ def parse_fragomen(html, base_url):
 
 def parse_travelobiz(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
-    items = soup.select('article.entry-card')
+    container = soup.select_one('div.entries') or soup
+    items = container.select('article.entry-card')
     out = []
     for it in items:
         a = it.select_one('h2.entry-title a')
-        if not a: continue
+        if not a:
+            continue
         title = a.get_text().strip()
         link = absolute_url(a.get('href'), base_url)
         t = it.select_one('time.ct-meta-element-date') or it.select_one('time')
@@ -359,9 +361,22 @@ def parse_travelobiz(html, base_url):
             dt = t.get('datetime')
             if dt:
                 try:
-                    date = normalize_date(datetime.fromisoformat(dt.replace('Z', '+00:00')))
-                except: pass
-        out.append({'title': title, 'link': link, 'date': date, 'date_text': t.get_text().strip() if t else '', 'source': 'travelobiz'})
+                    parsed = datetime.fromisoformat(dt.replace('Z', '+00:00'))
+                    date = normalize_date(parsed)
+                except:
+                    pass
+        if not date and t:
+            date_text = t.get_text().strip()
+            # Parse DD/MM/YYYY or YYYY-MM-DD
+            m = re.match(r'(\d{1,2})/(\d{1,2})/(\d{4})', date_text)
+            if m:
+                date = datetime(int(m.group(3)), int(m.group(2)), int(m.group(1)))
+            else:
+                m = re.match(r'(\d{4})-(\d{1,2})-(\d{1,2})', date_text)
+                if m:
+                    date = datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+        out.append({'title': title, 'link': link, 'date': normalize_date(date), 'date_text': t.get('datetime') or t.get_text().strip() if t else '', 'source': 'travelobiz'})
+    # Dedupe
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
