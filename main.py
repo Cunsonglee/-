@@ -205,12 +205,8 @@ def parse_vn(html, base_url):
 
 def parse_vne(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
-    # 抓取所有可能的新闻区块
     items = soup.select('.item-news, .item_news')
     out = []
-    
-    import cloudscraper
-    inner_scraper = cloudscraper.create_scraper(browser={'browser': 'chrome','platform': 'windows','desktop': True})
     
     for n in items:
         a = n.select_one('h4.title_news_site a[href]')
@@ -232,14 +228,18 @@ def parse_vne(html, base_url):
                 date_text = m.group(1)
                 date = parse_month_day_year(date_text)
         
-        # --- B. 主页没日期（头条），进入内页使用“终极必杀技” ---
+        # --- B. 主页没日期（头条），进入内页 ---
         if not date:
             try:
-                inner_res = inner_scraper.get(link, timeout=10)
+                # 【改动1】放弃 cloudscraper，使用更稳定的 requests 进入内页
+                headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+                import requests
+                inner_res = requests.get(link, headers=headers, timeout=15)
+                
                 if inner_res.status_code == 200:
                     inner_soup = BeautifulSoup(inner_res.text, 'html.parser')
                     
-                    # 1. 优先读取底层 Meta 标签（不受排版影响，100% 准确）
+                    # 第一层防护：读取底层 Meta 标签
                     meta_tags = [
                         inner_soup.select_one('meta[name="pubdate"]'),
                         inner_soup.select_one('meta[itemprop="datePublished"]'),
@@ -250,29 +250,34 @@ def parse_vne(html, base_url):
                         if meta and meta.get('content'):
                             iso_str = meta.get('content')
                             try:
-                                # 提取时间戳中的日期部分，例如 2024-04-15
-                                date_part = iso_str.split('T')[0]
+                                date_part = iso_str.split('T')[0].split(' ')[0]
                                 date = datetime.fromisoformat(date_part)
                                 date_text = date.strftime('%B %d, %Y')
-                                break  # 找到了就立刻停止搜索
+                                break
                             except: pass
                             
-                    # 2. 如果万一 Meta 也没写，用最全的文本标签兜底（包含了 span.date）
+                    # 第二层防护：搜寻 author 和 date 等 HTML 标签
                     if not date:
                         target_el = (inner_soup.select_one('.author') or 
                                      inner_soup.select_one('span.date') or 
                                      inner_soup.select_one('.date') or 
-                                     inner_soup.select_one('.time-detail') or 
-                                     inner_soup.select_one('.date-detail'))
+                                     inner_soup.select_one('.time-detail'))
                         
                         if target_el:
                             full_text = target_el.get_text(separator=' ').strip()
                             m_inner = re.search(r'([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})', full_text)
                             if m_inner:
-                                clean_date_str = f"{m_inner.group(1)} {m_inner.group(2)}, {m_inner.group(3)}"
-                                date_text = clean_date_str
+                                date_text = f"{m_inner.group(1)} {m_inner.group(2)}, {m_inner.group(3)}"
                                 date = parse_month_day_year(date_text)
                                 
+                    # 第三层防护（终极必杀）：无视任何标签，直接在全网页源码里“暴力”抓取时间！
+                    if not date:
+                        # 强行匹配类似 "April 11, 2026 | 11:24 pm" 的文字
+                        m_global = re.search(r'([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})\s*\|\s*\d{1,2}:\d{2}', inner_res.text)
+                        if m_global:
+                            date_text = f"{m_global.group(1)} {m_global.group(2)}, {m_global.group(3)}"
+                            date = parse_month_day_year(date_text)
+                            
             except Exception as e:
                 print(f"无法访问内页 {link}: {e}")
         
