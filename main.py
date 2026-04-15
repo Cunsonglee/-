@@ -200,26 +200,42 @@ def parse_vn(html, base_url):
 
 def parse_vne(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
-    items = soup.select('.list_news_folder .item_news')
+    # 【改动1】同时抓取顶部置顶新闻(.item-news) 和 下方列表新闻(.item_news)
+    items = soup.select('.item-news, .item_news')
     out = []
+    
     for n in items:
         a = n.select_one('h4.title_news_site a[href]')
         if not a:
             continue
+        
         title = a.get_text().strip()
         link = absolute_url(a.get('href'), base_url)
+        
+        # 提取时间（置顶新闻可能没有时间，如果没有，date 就保持为 None）
         t = n.select_one('.timer_post')
         date_text = ''
         date = None
         if t:
             raw = t.get_text().strip()
+            # 匹配例如 April 14, 2026
             m = re.search(r'([A-Za-zÀ-ÿ\.]+\s+\d{1,2},\s*\d{4})', raw)
             if m:
                 date_text = m.group(1)
                 date = parse_month_day_year(date_text)
+                
         if title and link:
-            out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text, 'source': 'vnexpress'})
-    return out
+            out.append({
+                'title': title, 
+                'link': link, 
+                'date': date, 
+                'date_text': date_text, 
+                'source': 'vnexpress'
+            })
+            
+    # 【改动2】去重逻辑：防止新闻同时出现在置顶和列表中导致重复
+    seen = set()
+    return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
 def parse_atta(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
@@ -270,11 +286,15 @@ def parse_visadone(html, base_url):
 def parse_bal_sitemap(base_url, max_items=30):
     out = []
     try:
+        # 在这里也创建一个隐身 scraper
+        scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
+        
         sitemap_url = 'https://www.bal.com/sitemap-posttype-bal_news.xml'
-        response = requests.get(sitemap_url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=15)
+        response = scraper.get(sitemap_url, timeout=15)  # <--- 使用 scraper 替换 requests
         response.raise_for_status()
         sitemap = BeautifulSoup(response.text, 'xml')
         urls = sitemap.find_all('url')[:max_items]
+        
         for url_tag in urls:
             loc = url_tag.find('loc').get_text(strip=True) if url_tag.find('loc') else ''
             if '/immigration-news/' not in loc:
@@ -289,18 +309,17 @@ def parse_bal_sitemap(base_url, max_items=30):
                 except Exception:
                     date = None
             try:
-                post_resp = requests.get(loc, headers={'User-Agent': 'Mozilla/5.0'}, timeout=15)
+                # 获取内页也使用 scraper
+                post_resp = scraper.get(loc, timeout=15)  # <--- 使用 scraper 替换 requests
                 post_resp.raise_for_status()
-                post_soup = BeautifulSoup(post_resp.text, 'html.parser')
-                title_el = post_soup.select_one('h1.line-under') or post_soup.select_one('title')
-                title = title_el.get_text(strip=True) if title_el else ''
+                title = parse_bal_post_title(post_resp.text)
             except Exception:
                 title = ''
             if not title:
                 title = loc.rstrip('/').split('/')[-1].replace('-', ' ').replace('_', ' ').title()
             out.append({'title': title, 'link': loc, 'date': date, 'date_text': date_text, 'source': 'bal'})
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"BAL Sitemap 解析出错: {e}")
     return out
 
 def parse_bal(html, base_url):
