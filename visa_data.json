@@ -126,6 +126,13 @@
         "source": "travelobiz"
     },
     {
+        "title": "Can I enter Thailand without carrying cash?",
+        "link": "https://e.vnexpress.net/news/travel/visa/can-i-enter-thailand-without-carrying-cash-5060442.html",
+        "date": "2026-04-12T00:00:00",
+        "date_text": "April 12, 2026",
+        "source": "vnexpress"
+    },
+    {
         "title": "Se ha puesto en marcha el visado electrónico para Venezuela: ¿cumple los requisitos?",
         "link": "https://www.visamundi.co/es/blog/se-lanza-el-visado-para-venezuela-es-usted-elegible/",
         "date": "2026-04-11T14:31:49",
@@ -355,6 +362,13 @@
         "date": "2026-04-07T12:22:44",
         "date_text": "April 7, 2026",
         "source": "visasnews"
+    },
+    {
+        "title": "India issues advisory for citizens traveling to Phu Quoc under visa-free scheme",
+        "link": "https://e.vnexpress.net/news/travel/visa/india-issues-advisory-for-citizens-traveling-to-phu-quoc-under-visa-free-scheme-5059413.html",
+        "date": "2026-04-07T00:00:00",
+        "date_text": "April 07, 2026",
+        "source": "vnexpress"
     },
     {
         "title": "Ghana to Offer Free E-Visas to All African Citizens from May",
@@ -887,19 +901,5 @@
         "date": "2026-03-17T11:34:50",
         "date_text": "March 17, 2026",
         "source": "visasnews"
-    },
-    {
-        "title": "Can I enter Thailand without carrying cash?",
-        "link": "https://e.vnexpress.net/news/travel/visa/can-i-enter-thailand-without-carrying-cash-5060442.html",
-        "date": null,
-        "date_text": "nbspApril 11, 2026",
-        "source": "vnexpress"
-    },
-    {
-        "title": "India issues advisory for citizens traveling to Phu Quoc under visa-free scheme",
-        "link": "https://e.vnexpress.net/news/travel/visa/india-issues-advisory-for-citizens-traveling-to-phu-quoc-under-visa-free-scheme-5059413.html",
-        "date": null,
-        "date_text": "nbspApril 6, 2026",
-        "source": "vnexpress"
     }
 ]
