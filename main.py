@@ -486,26 +486,35 @@ def parse_visamundi(html, base_url):
 # ==========================================
 def parse_business_standard(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
+    # 锁定每一条新闻的最外层大盒子
     items = soup.select('div.cardlist') 
     out = []
     
+    # 备用：如果以后需要进内页补全日期
     import cloudscraper
     inner_scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
     
     for n in items:
+        # 1. 提取标题和链接 (a.smallcard-title)
         a = n.select_one('a.smallcard-title')
-        if not a: continue
+        if not a:
+            continue
             
         title = a.get_text().strip()
         link = absolute_url(a.get('href'), base_url)
+        
         date = None
         date_text = ''
         
-        # 1. 尝试从首页直接拿
-        date_el = n.select_one('.updt-on')
+        # 2. 【核心改动】精准定位你提供的 Updated On 标签
+        # 查找类名包含 'listingstyle_updtText' 的 span
+        date_el = n.select_one('span[class*="listingstyle_updtText"]')
+        
         if date_el:
-            raw = date_el.get_text().strip()
-            m = re.search(r'(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})', raw)
+            # 拿到里面的文本，例如 "Updated On : 15 Apr 2026 | 2:41 PM IST"
+            raw_text = date_el.get_text().strip()
+            # 正则匹配：找到数字 + 月份 + 年份 (例如 15 Apr 2026)
+            m = re.search(r'(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})', raw_text)
             if m:
                 try:
                     day = int(m.group(1))
@@ -516,29 +525,21 @@ def parse_business_standard(html, base_url):
                         date_text = date.strftime('%B %d, %Y')
                 except: pass
 
-        # 2. 如果首页失败，进内页用“源码扫描法”
+        # 3. 补丁：如果 HTML 里确实没写日期，才点进内页补全（双重保险）
         if not date:
             try:
-                print(f"  -> 深度扫描 Business Standard 内页: {title[:30]}...")
+                # 打印提示，方便调试
+                print(f"  -> 首页未发现日期，进入内页提取: {title[:20]}...")
                 inner_res = inner_scraper.get(link, timeout=10)
                 if inner_res.status_code == 200:
-                    # --- 方案 A: 扫描 JSON-LD 数据 (最准) ---
+                    # 匹配内页源代码中的 datePublished 标签
                     m_json = re.search(r'"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})', inner_res.text)
                     if m_json:
                         date = datetime.fromisoformat(m_json.group(1))
                         date_text = date.strftime('%B %d, %Y')
-                    
-                    # --- 方案 B: 暴力扫描全文日期文本 ---
-                    if not date:
-                        # 找类似 "April 15, 2026" 或 "15 Apr 2026"
-                        m_txt = re.search(r'([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})', inner_res.text)
-                        if m_txt:
-                            date_text = f"{m_txt.group(1)} {m_txt.group(2)}, {m_txt.group(3)}"
-                            date = parse_month_day_year(date_text)
             except: pass
 
-        # --- 关键：如果有了日期，才加入列表 ---
-        # 如果经过补全还是没日期，说明可能是极其陈旧的内容，或者访问失败，就跳过
+        # 只要能提取到日期，就加入结果
         if title and link and date:
             out.append({
                 'title': title, 
@@ -548,6 +549,7 @@ def parse_business_standard(html, base_url):
                 'source': 'business-standard'
             })
             
+    # 去重
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
