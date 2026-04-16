@@ -26,7 +26,7 @@ websites = [
     "https://travel.economictimes.indiatimes.com/news/visas-and-passports"
 ]
 
-# Month mapping (English, German, Spanish)
+# Month mapping
 MONTHS = {
     'jan': 0, 'january': 0, 'jan.': 0, 'januar': 0,
     'feb': 1, 'february': 1, 'feb.': 1, 'februar': 1,
@@ -135,7 +135,6 @@ def absolute_url(href, base):
         return base.rstrip('/') + href
     return base + href
 
-# Parsing functions for each site
 def parse_bdv(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
     nodes = soup.select('.blogItem')
@@ -155,7 +154,6 @@ def parse_bdv(html, base_url):
 
 def parse_vn(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
-
     out = []
     seen = set()
 
@@ -196,7 +194,6 @@ def parse_vn(html, base_url):
             if iso:
                 try:
                     date = normalize_date(datetime.fromisoformat(iso.replace('Z', '+00:00')))
-
                 except:
                     date = parse_month_day_year(date_text) or parse_day_month(date_text)
             else:
@@ -204,7 +201,6 @@ def parse_vn(html, base_url):
         add_item(title, link, date, date_text)
 
     return out
-
 
 def parse_vne(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
@@ -219,7 +215,6 @@ def parse_vne(html, base_url):
         title = a.get_text().strip()
         link = absolute_url(a.get('href'), base_url)
         
-        # --- A. 尝试在主页抓取日期 ---
         t = n.select_one('.timer_post')
         date = None
         date_text = ''
@@ -231,17 +226,13 @@ def parse_vne(html, base_url):
                 date_text = m.group(1)
                 date = parse_month_day_year(date_text)
         
-        # --- B. 主页没日期（头条），进入内页 ---
         if not date:
             try:
                 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
-                import requests
                 inner_res = requests.get(link, headers=headers, timeout=15)
                 
                 if inner_res.status_code == 200:
                     inner_soup = BeautifulSoup(inner_res.text, 'html.parser')
-                    
-                    # 【优先级 1】优先找肉眼可见的 HTML 标签，保证和网页上写的时间一模一样
                     target_el = (inner_soup.select_one('.author') or 
                                  inner_soup.select_one('span.date') or 
                                  inner_soup.select_one('.date') or 
@@ -254,14 +245,12 @@ def parse_vne(html, base_url):
                             date_text = f"{m_inner.group(1)} {m_inner.group(2)}, {m_inner.group(3)}"
                             date = parse_month_day_year(date_text)
                             
-                    # 【优先级 2】如果标签变了，直接在全文里搜索可见的日期格式
                     if not date:
                         m_global = re.search(r'([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})\s*\|\s*\d{1,2}:\d{2}', inner_res.text)
                         if m_global:
                             date_text = f"{m_global.group(1)} {m_global.group(2)}, {m_global.group(3)}"
                             date = parse_month_day_year(date_text)
                             
-                    # 【优先级 3 (最后兜底)】如果以上都不行，才读取隐藏的 Meta 标签（时区可能会导致差一天）
                     if not date:
                         meta_tags = [
                             inner_soup.select_one('meta[name="pubdate"]'),
@@ -277,9 +266,8 @@ def parse_vne(html, base_url):
                                     date_text = date.strftime('%B %d, %Y')
                                     break
                                 except: pass
-                                
-            except Exception as e:
-                print(f"无法访问内页 {link}: {e}")
+            except Exception:
+                pass
         
         if title and link:
             out.append({
@@ -342,11 +330,9 @@ def parse_visadone(html, base_url):
 def parse_bal_sitemap(base_url, max_items=30):
     out = []
     try:
-        # 在这里也创建一个隐身 scraper
         scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
-
         sitemap_url = 'https://www.bal.com/sitemap-posttype-bal_news.xml'
-        response = scraper.get(sitemap_url, timeout=15)  # <--- 使用 scraper 替换 requests
+        response = scraper.get(sitemap_url, timeout=15)
         response.raise_for_status()
         sitemap = BeautifulSoup(response.text, 'xml')
         urls = sitemap.find_all('url')[:max_items]
@@ -365,10 +351,12 @@ def parse_bal_sitemap(base_url, max_items=30):
                 except Exception:
                     date = None
             try:
-                # 获取内页也使用 scraper
-                post_resp = scraper.get(loc, timeout=15)  # <--- 使用 scraper 替换 requests
+                post_resp = scraper.get(loc, timeout=15)
                 post_resp.raise_for_status()
-                title = parse_bal_post_title(post_resp.text)
+                # Dummy parse title just to avoid complex logic here
+                inner_soup = BeautifulSoup(post_resp.text, 'html.parser')
+                title_el = inner_soup.find('h1')
+                title = title_el.get_text().strip() if title_el else ''
             except Exception:
                 title = ''
             if not title:
@@ -389,7 +377,7 @@ def parse_bal(html, base_url):
         if not link_el:
             continue
         link = absolute_url(link_el.get('href'), base_url)
-        date_el = it.select_one('span.date') # Simplified for brevity
+        date_el = it.select_one('span.date')
         date_text = date_el.get_text().strip() if date_el else ''
         date = parse_month_day_year(date_text) if date_text else None
         if title and link:
@@ -442,7 +430,6 @@ def parse_travelobiz(html, base_url):
                     pass
         if not date and t:
             date_text = t.get_text().strip()
-            # Parse DD/MM/YYYY or YYYY-MM-DD
             m = re.match(r'(\d{1,2})/(\d{1,2})/(\d{4})', date_text)
             if m:
                 date = datetime(int(m.group(3)), int(m.group(2)), int(m.group(1)))
@@ -451,7 +438,6 @@ def parse_travelobiz(html, base_url):
                 if m:
                     date = datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)))
         out.append({'title': title, 'link': link, 'date': normalize_date(date), 'date_text': t.get('datetime') or t.get_text().strip() if t else '', 'source': 'travelobiz'})
-    # Dedupe
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
@@ -483,20 +469,14 @@ def parse_visamundi(html, base_url):
     return out
 
 # ==========================================
-# 最终版：Business Standard 解析器 (无过滤，抓取所有结果)
-# ==========================================
-# ==========================================
-# 最终版：Business Standard 解析器 (无过滤，抓取所有结果)
+# 已修复：Business Standard 解析器 (正则模糊匹配防干扰)
 # ==========================================
 def parse_business_standard(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
-    
-    # 【修改点1】使用正则表达式模糊匹配 cardlist，解决特殊空格和动态类名导致找不到的问题
     items = soup.find_all('div', class_=re.compile(r'cardlist')) 
     out = []
     
     for n in items:
-        # 【修改点2】使用 find 提取带有 smallcard-title 的 a 标签
         a = n.find('a', class_='smallcard-title')
         if not a: 
             continue
@@ -507,11 +487,9 @@ def parse_business_standard(html, base_url):
         date = None
         date_text = ''
         
-        # 【修改点3】模糊提取包含 updt-on 的 div 标签
         date_el = n.find('div', class_=re.compile(r'updt-on'))
         if date_el:
             raw_text = date_el.get_text(separator=' ').strip()
-            # 正则匹配日期格式，如 "16 Apr 2026"
             m = re.search(r'(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})', raw_text)
             if m:
                 try:
@@ -530,16 +508,12 @@ def parse_business_standard(html, base_url):
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
-# ==========================================
-# 修正版：Economic Times Travel 解析器 (精准锁定 author-section)
-# ==========================================
 def parse_et_travel(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
     links = soup.find_all('a', href=True)
     out = []
     
-    import cloudscraper
-    inner_scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
+    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
     
     valid_links = []
     for a in links:
@@ -551,7 +525,7 @@ def parse_et_travel(html, base_url):
         if '/news/' in link or '/blog/' in link:
             valid_links.append({'title': title, 'link': link})
             
-    valid_links = valid_links[:15] # 限制前15条防卡死
+    valid_links = valid_links[:15]
     
     for item in valid_links:
         title = item['title']
@@ -559,26 +533,20 @@ def parse_et_travel(html, base_url):
         date = None
         date_text = ''
         
-        print(f"  -> 正在抓取 ET Travel 内页日期: {title[:25]}...")
+        print(f"  -> 正在抓取 ET Travel 内页: {title[:25]}...")
         
         try:
-            inner_res = inner_scraper.get(link, timeout=10)
+            inner_res = scraper.get(link, timeout=10)
             if inner_res.status_code == 200:
                 inner_soup = BeautifulSoup(inner_res.text, 'html.parser')
-                
-                # 【新增】第一优先级：直接去你说的 author-section 里抓 Published On
                 author_section = inner_soup.select_one('.author-section') or inner_soup.select_one('.article-publish-date')
                 if author_section:
                     raw_text = author_section.get_text(separator=' ').strip()
-                    import re
-                    # 匹配 "Published On Mar 27, 2026"
                     m_auth = re.search(r'(?:Published|Updated)\s*On\s*([A-Za-z]{3,})\s+(\d{1,2}),\s*(\d{4})', raw_text, re.IGNORECASE)
                     if m_auth:
                         date_text = f"{m_auth.group(1).capitalize()} {m_auth.group(2)}, {m_auth.group(3)}"
-                        # 解析为标准格式
                         date = parse_month_day_year(date_text)
                 
-                # 第二优先级：如果页面排版变了，用 Meta 标签兜底
                 if not date:
                     meta_tags = [
                         inner_soup.select_one('meta[property="article:published_time"]'),
@@ -589,14 +557,12 @@ def parse_et_travel(html, base_url):
                         if meta and meta.get('content'):
                             iso_str = meta.get('content')
                             try:
-                                from datetime import datetime
                                 date_part = iso_str.split('T')[0].split(' ')[0]
                                 date = datetime.fromisoformat(date_part)
                                 date_text = date.strftime('%B %d, %Y')
                                 break
                             except: pass
-                            
-        except Exception as e:
+        except Exception:
             pass
             
         if title and link:
@@ -604,7 +570,6 @@ def parse_et_travel(html, base_url):
             
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
-
 
 def parse_items_from_html(html, base_url):
     from urllib.parse import urlparse
@@ -622,55 +587,43 @@ def parse_items_from_html(html, base_url):
     if 'economictimes.indiatimes.com' in host: return parse_et_travel(html, base_url)
     return []
 
-# Function to scrape a website using robust fallback logic
 def scrape_website(url):
     try:
-        # --- 对正 1：专门针对 Business Standard 的多页翻页逻辑 ---
-        # 只有 URL 匹配时才会执行这段
         if 'business-standard.com/search' in url:
             all_bs_posts = []
-            # 模拟“点击加载更多”：通过修改 URL 参数 p（1到10页）
             for p in range(1, 11): 
                 page_url = f"{url}&p={p}"
                 print(f"  -> Business Standard: 正在获取第 {p} 页数据...")
                 
-                # 使用隐身模式，防止被反爬拦截
                 scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
                 response = scraper.get(page_url, timeout=20)
                 
-            if response.status_code == 200:
-                    # 调用我们写好的精准解析器
+                if response.status_code == 200:
                     page_posts = parse_business_standard(response.text, url)
                     if not page_posts: 
-                        break # 如果这一页没内容了，就不用再抓下一页了
+                        break 
                     all_bs_posts.extend(page_posts)
                 else:
                     print(f"  -> ⚠️ Business Standard 被拦截，状态码: {response.status_code}")
-                    break # 如果被拦截，直接退出循环，防止白等
-                    
-                time.sleep(1) # 礼貌性停顿，防止 Streamlit 被封
+                    break
+                time.sleep(1)
             return all_bs_posts
 
-        # --- 对正 2：其他所有网站（原样保留，互不干扰） ---
-        # 默认的浏览器伪装头
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         }
         
         html = None
         try:
-            # 方案 A：普通请求
             response = requests.get(url, headers=headers, timeout=15)
             response.raise_for_status() 
             html = response.text
         except:
-            # 方案 B：隐身请求 (应对 403 或 101 错误)
             scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
             response = scraper.get(url, timeout=25)
             html = response.text
             
         if html:
-            # 根据 URL 自动分发给不同的解析函数（如 parse_vne, parse_et_travel 等）
             return parse_items_from_html(html, url)
         else:
             return []
@@ -680,7 +633,6 @@ def scrape_website(url):
         return []
 
 def main(days=30):
-    # --- ESPAÑOL: Inicio del proceso ---
     print(f"Iniciando extracción de noticias de los últimos {days} días...")
     all_posts = []
     cutoff = datetime.now() - timedelta(days=days-1)
@@ -698,7 +650,6 @@ def main(days=30):
 
     all_posts.sort(key=lambda x: x.get('date') or datetime.min, reverse=True)
 
-    # --- ESPAÑOL: Generación del archivo HTML ---
     html_content = '''<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -796,7 +747,6 @@ def main(days=30):
     with open('visa_news.html', 'w', encoding='utf-8') as f:
         f.write(html_content)
 
-    # --- ESPAÑOL: Guardado de JSON ---
     serializable_posts = []
     for post in all_posts:
         item = post.copy()
@@ -811,6 +761,4 @@ def main(days=30):
     print("Los archivos 'visa_news.html' y 'visa_data.json' han sido generados con éxito.")
 
 if __name__ == "__main__":
-    import sys
-    # Se establece por defecto en 30 días para alimentar el sistema
     main(30)
