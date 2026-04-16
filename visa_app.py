@@ -235,7 +235,7 @@ if st.session_state.all_data:
     st.markdown("### 📥 Descargar Resultados en HTML")
     
     # 选项：全选还是手动选择
-    select_all = st.checkbox("✅ Seleccionar todos los artículos (全选下载)", value=True)
+    select_all = st.checkbox("✅ Seleccionar todos los artículos", value=True)
     
     if select_all:
         download_df = filtered_df
@@ -248,7 +248,7 @@ if st.session_state.all_data:
         edited_df = st.data_editor(
             selection_df,
             column_config={
-                "Descargar": st.column_config.CheckboxColumn("Descargar (打勾下载)", default=False),
+                "Descargar": st.column_config.CheckboxColumn("Seleccionar ", default=False),
                 "title": "Título",
                 "source": "Fuente",
                 "Fecha": "Fecha"
