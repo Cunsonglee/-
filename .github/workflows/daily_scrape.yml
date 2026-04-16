@@ -24,7 +24,7 @@ jobs:
           pip install requests beautifulsoup4 cloudscraper lxml pandas
 
       - name: Run scraper
-        run: python app.py
+        run: python visa_app.py
 
       - name: Commit and push if changed
         run: |
