@@ -25,25 +25,58 @@ COUNTRY_LIST = [
 ]
 
 # ==========================================
-# 2. 国家别名/变体字典 (兼容不同叫法和语言)
+# 2. 增强版：国家别名/变体字典 (全方位兼容不同叫法、国籍、西语)
 # ==========================================
 COUNTRY_ALIASES = {
-    "South Korea": ["Korea", "Corea", "Corea del Sur", "ROK"],
-    "United Kingdom": ["UK", "U.K.", "Britain", "England", "Reino Unido"],
-    "USA": ["US", "U.S.", "United States", "America", "Estados Unidos", "EEUU", "EE.UU."],
-    "Ivory Coast": ["Cote d'Ivoire", "Côte d'Ivoire", "Costa de Marfil"],
-    "Saudi Arabia": ["Saudi", "Arabia Saudí", "Arabia Saudita"],
-    "Dominican Republic": ["Republica Dominicana", "República Dominicana"],
-    "New Zealand": ["Nueva Zelanda", "New Zealand's"],
-    "Turkey": ["Turkiye", "Türkiye", "Turquia", "Turquía"],
-    "Vietnam": ["Viet Nam", "Viet-nam"],
-    "Egypt": ["Egipto"],
-    "Thailand": ["Tailandia"],
-    "Singapore": ["Singapur"],
-    "Cambodia": ["Camboya"],
-    "Kenya": ["Kenia"],
-    "Bahrain": ["Baréin"],
-    "Azerbaijan": ["Azerbaiyán"]
+    # 亚洲 & 大洋洲
+    "South Korea": ["Korea", "Corea", "Corea del Sur", "ROK", "S. Korea", "South Korean", "Korean", "Surcoreano"],
+    "Vietnam": ["Viet Nam", "Viet-nam", "Vietnamese", "Vietnamita"],
+    "Thailand": ["Tailandia", "Thai", "Tailandés"],
+    "Singapore": ["Singapur", "Singaporean", "Singapurense"],
+    "Cambodia": ["Camboya", "Cambodian", "Camboyano"],
+    "Myanmar": ["Burma", "Birmania", "Burmese"],
+    "Indonesia": ["Indonesian", "Indonesio"],
+    "India": ["Indian", "Indio"],
+    "Sri Lanka": ["Sri Lankan", "Ceylon", "Ceylonese"],
+    "Nepal": ["Nepali", "Nepalese", "Nepalí"],
+    "Laos": ["Lao", "Laotian"],
+    "Australia": ["Australian", "Australiano", "Aussie"],
+    "New Zealand": ["Nueva Zelanda", "Nueva Zelandia", "New Zealand's", "NZ", "Kiwi", "New Zealander", "Neozelandés"],
+    "Papua New Guinea": ["Papúa Nueva Guinea", "PNG", "Papuan"],
+    
+    # 中东 & 欧亚交界
+    "Turkey": ["Turkiye", "Türkiye", "Turquia", "Turquía", "Turkish", "Turco"],
+    "Saudi Arabia": ["Saudi", "Arabia Saudí", "Arabia Saudita", "KSA", "Saudi Arabian", "Saudí"],
+    "Kuwait": ["Kuwaiti", "Kuwaití"],
+    "Oman": ["Omán", "Omani", "Omaní"],
+    "Bahrain": ["Baréin", "Bahrein", "Bahraini"],
+    "Armenia": ["Armenian", "Armenio"],
+    "Azerbaijan": ["Azerbaiyán", "Azerbaiyan", "Azerbaijani"],
+
+    # 美洲
+    "USA": ["US", "U.S.", "United States", "America", "Estados Unidos", "EEUU", "EE.UU.", "U.S.A.", "American", "Estadounidense"],
+    "Canada": ["Canadá", "Canadian", "Canadiense"],
+    "Mexico": ["México", "Mexican", "Mexicano"],
+    "Colombia": ["Colombian", "Colombiano"],
+    "Cuba": ["Cuban", "Cubano"],
+    "Dominican Republic": ["Republica Dominicana", "República Dominicana", "Dominican"],
+    "Puerto Rico": ["Puerto Rican", "Puertorriqueño", "Boricua"],
+    
+    # 非洲
+    "Egypt": ["Egipto", "Egyptian", "Egipcio"],
+    "Kenya": ["Kenia", "Kenyan", "Keniata"],
+    "Ivory Coast": ["Cote d'Ivoire", "Côte d'Ivoire", "Costa de Marfil", "Ivorian"],
+    "Djibouti": ["Yibuti", "Djiboutian"],
+    "Ethiopia": ["Etiopía", "Etiopia", "Ethiopian", "Etíope"],
+    "Madagascar": ["Malagasy", "Malgache"],
+    "Rwanda": ["Ruanda", "Rwandan", "Ruandés"],
+    "Tanzania": ["Tanzanian", "Tanzano"],
+    "Uganda": ["Ugandan", "Ugandés"],
+    "Zambia": ["Zambian", "Zambiano"],
+    "Zimbabwe": ["Zimbabue", "Zimbabwean", "Zimbabuense"],
+    "Angola": ["Angolan", "Angoleño"],
+    "Benin": ["Benín", "Beninese"],
+    "Guinea": ["Guinean", "Guineano"]
 }
 
 # --- 智能生成匹配词库 ---
