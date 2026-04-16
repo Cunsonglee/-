@@ -481,15 +481,6 @@ def parse_visamundi(html, base_url):
             out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text, 'source': 'visamundi'})
     return out
 
-# ==========================================
-# 新增：Business Standard 解析器
-# ==========================================
-# ==========================================
-# 修正版：Business Standard 解析器 (无视随机乱码 class)
-# ==========================================
-# ==========================================
-# 修正版：Business Standard 解析器 (增强匹配 + 内页保底)
-# ==========================================
 def parse_business_standard(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
     items = soup.select('div.cardlist') 
@@ -503,16 +494,20 @@ def parse_business_standard(html, base_url):
         if not a: continue
             
         title = a.get_text().strip()
-        link = absolute_url(a.get('href'), base_url)
         
+        # --- 新增：关键词过滤，防止抓到无关的考试成绩等新闻 ---
+        keywords = ['visa', 'passport', 'immigration', 'travel', 'border', 'entry']
+        if not any(k in title.lower() for k in keywords):
+            continue 
+            
+        link = absolute_url(a.get('href'), base_url)
         date = None
         date_text = ''
         
-        # 1. 尝试在列表页抓取 (优化正则：允许任意空格和冒号)
+        # 1. 尝试在列表页抓取
         date_el = n.select_one('.updt-on')
         if date_el:
             raw = date_el.get_text().strip()
-            # 匹配 "15 Apr 2026" 这种核心部分
             m = re.search(r'(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})', raw)
             if m:
                 day = int(m.group(1))
@@ -525,37 +520,25 @@ def parse_business_standard(html, base_url):
                         date_text = date.strftime('%B %d, %Y')
                     except: pass
         
-        # 2. 如果首页没抓到，进入内页抓取 (Meta 或 内页时间标签)
+        # 2. 如果首页没抓到日期，进入内页
         if not date:
             try:
-                # 打印一下，方便你知道它在努力工作
-                print(f"  -> Business Standard 首页日期匹配失败，正在进入内页: {title[:20]}...")
+                print(f"  -> 正在内页深度抓取 Business Standard 日期: {title[:30]}...")
                 inner_res = inner_scraper.get(link, timeout=10)
                 if inner_res.status_code == 200:
                     inner_soup = BeautifulSoup(inner_res.text, 'html.parser')
                     
-                    # 优先看 Meta 数据
-                    meta_tags = [
-                        inner_soup.select_one('meta[property="article:published_time"]'),
-                        inner_soup.select_one('meta[name="publish-date"]')
-                    ]
-                    for meta in meta_tags:
-                        if meta and meta.get('content'):
-                            try:
-                                dt = datetime.fromisoformat(meta.get('content').split('T')[0])
-                                date = dt
-                                date_text = date.strftime('%B %d, %Y')
-                                break
-                            except: pass
+                    # 尝试寻找内页特有的时间 meta 标签
+                    meta_published = inner_soup.find("meta", property="article:published_time") or \
+                                     inner_soup.find("meta", itemprop="datePublished")
                     
-                    # 其次看内页的 .published-on 标签
-                    if not date:
-                        inner_date_el = inner_soup.select_one('.published-on, .updt-on')
-                        if inner_date_el:
-                            m_inner = re.search(r'(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})', inner_date_el.get_text())
-                            if m_inner:
-                                date_text = f"{m_inner.group(1)} {m_inner.group(2)}, {m_inner.group(3)}"
-                                date = parse_month_day_year(date_text)
+                    if meta_published and meta_published.get('content'):
+                        try:
+                            # 提取 2026-04-15 这种格式
+                            dt_str = meta_published.get('content').split('T')[0]
+                            date = datetime.fromisoformat(dt_str)
+                            date_text = date.strftime('%B %d, %Y')
+                        except: pass
             except: pass
 
         if title and link:
