@@ -600,67 +600,66 @@ def parse_items_from_html(html, base_url):
     return []
 
 def scrape_website(url):
-    # --- 针对 Business Standard 的突破性抓取逻辑 ---
+    # --- 针对 Business Standard 的强力伪装逻辑 ---
     if 'business-standard.com/search' in url:
         all_bs_posts = []
-        try:
-            # 1. 创建一个具有持久指纹的 scraper
-            scraper = cloudscraper.create_scraper(
-                browser={
-                    'browser': 'chrome',
-                    'platform': 'windows',
-                    'desktop': True
-                }
-            )
-            
-            # 2. 设置极其真实的请求头（模拟真实用户从谷歌搜索点击进入）
-            headers = {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-                'Accept-Language': 'en-US,en;q=0.9',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Referer': 'https://www.google.com/',
-                'DNT': '1',
-                'Connection': 'keep-alive',
-                'Upgrade-Insecure-Requests': '1',
-                'Sec-Fetch-Dest': 'document',
-                'Sec-Fetch-Mode': 'navigate',
-                'Sec-Fetch-Site': 'cross-site',
-                'Pragma': 'no-cache',
-                'Cache-Control': 'no-cache',
-            }
+        # 创建 scraper
+        scraper = cloudscraper.create_scraper()
+        
+        # 伪装成 Googlebot 的请求头
+        # 很多大型网站对 Googlebot 的 IP 检查不严，这是最后的突破口
+        google_bot_headers = {
+            'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Connection': 'keep-alive',
+        }
 
-            for p in range(1, 11): 
-                page_url = f"{url}&p={p}"
-                print(f"  -> Business Standard: 正在尝试获取第 {p} 页数据...")
+        for p in range(1, 11): 
+            page_url = f"{url}&p={p}"
+            print(f"  -> Business Standard: 正在以搜索引擎身份请求第 {p} 页...")
+            
+            try:
+                # 稍微停顿，防止被频率检测
+                import time, random
+                time.sleep(random.uniform(2, 5))
                 
-                # 3. 增加随机延迟，防止被识别为固定频率机器人
-                import random
-                time.sleep(random.uniform(2.0, 4.0)) 
-                
-                response = scraper.get(page_url, headers=headers, timeout=30)
+                response = scraper.get(page_url, headers=google_bot_headers, timeout=30)
                 
                 if response.status_code == 200:
                     page_posts = parse_business_standard(response.text, url)
                     if not page_posts:
-                        print(f"  -> 第 {p} 页未发现内容。")
+                        print(f"  -> 第 {p} 页解析无结果，可能已到末尾。")
                         break
                     all_bs_posts.extend(page_posts)
-                    print(f"  -> 第 {p} 页获取成功，抓到 {len(page_posts)} 条。")
+                    print(f"  -> 第 {p} 页获取成功！")
                 elif response.status_code == 403:
-                    print(f"  -> ⚠️ 第 {p} 页被拦截 (403)。尝试强制切换指纹...")
-                    # 如果 403，重新生成一个 scraper 再试
-                    scraper = cloudscraper.create_scraper(browser={'browser': 'firefox', 'platform': 'windows'})
-                    continue
+                    print(f"  -> ⚠️ 第 {p} 页仍被 403 拦截。Streamlit IP 已被完全锁定。")
+                    break # 如果 403，后面的页码也不用试了
                 else:
                     print(f"  -> 状态异常: {response.status_code}")
                     break
-                    
-            return all_bs_posts
+            except Exception as e:
+                print(f"  -> 请求异常: {e}")
+                break
+        return all_bs_posts
 
-        except Exception as e:
-            print(f"  -> BS 抓取过程发生异常: {e}")
-            return []
+    # --- 其他网站逻辑保持原样 ---
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+        try:
+            res = requests.get(url, headers=headers, timeout=15)
+            res.raise_for_status()
+            html = res.text
+        except:
+            scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
+            res = scraper.get(url, timeout=25)
+            html = res.text
+        return parse_items_from_html(html, url)
+    except Exception as e:
+        print(f"抓取失败 {url}: {e}")
+        return []
 
     # --- 其他网站的抓取逻辑 (保持不变) ---
     try:
