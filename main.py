@@ -601,7 +601,7 @@ def parse_items_from_html(html, base_url):
 
 def scrape_website(url):
     try:
-        if 'business-standard.com/search?q=visa' in url:
+        if 'business-standard.com/search' in url:
             all_bs_posts = []
             scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
             for p in range(1, 11): 
