@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 import json
 import re
+import time
 
 # List of websites to scrape
 websites = [
