@@ -259,22 +259,22 @@ if st.session_state.all_data:
     
     st.write("") # 空出一行美化排版
 
+# ==========================================
+    # 移动到主界面：特定国家多选筛选器 (极简折中版)
     # ==========================================
-    # 移动到主界面：特定国家多选筛选器 (支持通过别名/缩写搜索)
-    # ==========================================
-    def format_country_search(country):
-        """格式化下拉框显示，将最常用的前 5 个别名附加在括号里，实现别名搜索功能"""
+    def format_country_search_minimal(country):
+        """只附加 1 到 2 个核心缩写，兼顾极简美观与强大的快捷搜索"""
         if country in COUNTRY_ALIASES and COUNTRY_ALIASES[country]:
-            # 取前 5 个最具代表性的别名（已在字典头部排好序）
-            aliases = COUNTRY_ALIASES[country][:5]
-            return f"{country} ({', '.join(aliases)})"
+            # 切片 [:2] 表示只拿字典里排在最前面的 2 个核心别名（比如 UK, US, NZ）
+            aliases = COUNTRY_ALIASES[country][:2]
+            return f"{country} [{', '.join(aliases)}]"
         return country
 
     st.subheader("🎯 Filtro de País Específico")
     selected_countries_filter = st.multiselect(
         "Selecciona uno o más países para buscar:", 
         options=sorted(COUNTRY_LIST),
-        format_func=format_country_search, # 核心：使用自定义显示函数以支持搜索
+        format_func=format_country_search_minimal, # 启用极简版显示
         help="Puedes buscar por siglas (ej. UK, US, NZ) o en español (ej. Reino Unido, Corea)."
     )
 
