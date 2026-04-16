@@ -46,7 +46,7 @@ websites = [
     "https://visadone.com/news/",
     "https://www.bal.com/immigration-news/",
     "https://www.fragomen.com/insights/index.html?nt=news",
-    "https://travelobiz.com/category/visas-passports/"
+    "https://travelobiz.com/category/visas-passports/"，
     "https://www.business-standard.com/search?q=visa",
     "https://travel.economictimes.indiatimes.com/news/visas-and-passports"
 ]
