@@ -603,22 +603,39 @@ def scrape_website(url):
     try:
         if 'business-standard.com/search' in url:
             all_bs_posts = []
-            scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
+            
+            # 【核心破解】伪装成 Google 官方的爬虫 (Googlebot)
+            # 新闻网站通常会给 Googlebot 开设防火墙白名单
+            bot_headers = {
+                'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                'Referer': 'https://www.google.com/'
+            }
+            
             for p in range(1, 11): 
                 page_url = f"{url}&p={p}"
                 print(f"  -> Business Standard: 正在获取第 {p} 页数据...")
-                response = scraper.get(page_url, timeout=20)
+                
+                # 第一步：用 requests 带着 Google 身份证去敲门
+                response = requests.get(page_url, headers=bot_headers, timeout=20)
+                
+                # 第二步：如果被严格的反爬墙识破了(403)，再让 cloudscraper 套上 Google 的外衣硬闯
+                if response.status_code in [403, 1020, 503]:
+                    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
+                    response = scraper.get(page_url, headers=bot_headers, timeout=25)
+                
                 if response.status_code == 200:
                     page_posts = parse_business_standard(response.text, url)
                     if not page_posts: 
                         break 
                     all_bs_posts.extend(page_posts)
                 else:
-                    print(f"  -> ⚠️ Business Standard 状态码: {response.status_code}")
+                    print(f"  -> ⚠️ Business Standard 依然被拦截，状态码: {response.status_code}")
                     break
-                time.sleep(1) 
+                time.sleep(2) # 停顿 2 秒，防止触发网站的访问频率限制
             return all_bs_posts
 
+        # --- 其他网站的抓取逻辑保持不变 ---
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         }
