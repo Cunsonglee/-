@@ -638,12 +638,16 @@ def scrape_website(url):
                 scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
                 response = scraper.get(page_url, timeout=20)
                 
-                if response.status_code == 200:
+            if response.status_code == 200:
                     # 调用我们写好的精准解析器
                     page_posts = parse_business_standard(response.text, url)
                     if not page_posts: 
                         break # 如果这一页没内容了，就不用再抓下一页了
                     all_bs_posts.extend(page_posts)
+                else:
+                    print(f"  -> ⚠️ Business Standard 被拦截，状态码: {response.status_code}")
+                    break # 如果被拦截，直接退出循环，防止白等
+                    
                 time.sleep(1) # 礼貌性停顿，防止 Streamlit 被封
             return all_bs_posts
 
