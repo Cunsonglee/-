@@ -235,15 +235,6 @@ with col2:
 
 filter_days = st.sidebar.number_input("O seleccionar últimos días", min_value=0, max_value=45, value=0)
 
-# --- 新增：特定国家多选筛选器 ---
-st.sidebar.markdown("---")
-st.sidebar.subheader("🎯 Filtro de País Específico")
-selected_countries_filter = st.sidebar.multiselect(
-    "Selecciona uno o más países para buscar:", 
-    options=sorted(COUNTRY_LIST),
-    help="Si seleccionas países aquí, la tabla solo mostrará noticias que mencionen esos países."
-)
-
 st.sidebar.markdown("---")
 if st.sidebar.button("🚀 Iniciar extracción en la nube", use_container_width=True):
     with st.spinner("Despertando GitHub Actions..."):
@@ -277,6 +268,18 @@ if st.session_state.all_data:
             sac.SegmentedItem(label='Pais pendiente', icon='question-circle'),
         ], align='center', use_container_width=True
     )
+    
+    st.write("") # 空出一行美化排版
+
+    # ==========================================
+    # 移动到主界面：特定国家多选筛选器
+    # ==========================================
+    st.subheader("🎯 Filtro de País Específico")
+    selected_countries_filter = st.multiselect(
+        "Selecciona uno o más países para buscar:", 
+        options=sorted(COUNTRY_LIST),
+        help="Si seleccionas países aquí, la tabla solo mostrará noticias que mencionen esos países."
+    )
 
     # ==========================================
     # 智能提取具体国家名称并判断分类
@@ -294,7 +297,7 @@ if st.session_state.all_data:
     # 如果识别出的国家列表长度 > 0，说明它是 Pais tenemos
     df['has_country'] = df['matched_countries'].apply(lambda x: len(x) > 0)
     
-    # 1. 根据顶部按钮过滤
+    # 1. 根据顶部三段按钮过滤
     if category == 'Total':
         filtered_df = df.copy()
     elif category == 'Pais tenemos':
@@ -302,7 +305,7 @@ if st.session_state.all_data:
     else:
         filtered_df = df[df['has_country'] == False].copy()
 
-    # 2. 根据侧边栏的【特定国家筛选器】进行二次过滤
+    # 2. 根据主界面的【特定国家筛选器】进行二次过滤
     if selected_countries_filter:
         filtered_df = filtered_df[filtered_df['matched_countries'].apply(lambda x: any(c in selected_countries_filter for c in x))]
 
