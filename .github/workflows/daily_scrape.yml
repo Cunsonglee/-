@@ -21,9 +21,7 @@ jobs:
           python-version: '3.9'
 
       - name: Install dependencies
-        run: |
-
-          pip install requests beautifulsoup4 cloudscraper lxml pandas
+        run: pip install requests beautifulsoup4 cloudscraper pandas deep-translator streamlit-antd-components
 
 
       - name: Run scraper
