@@ -117,7 +117,6 @@ COUNTRY_ALIASES = {
         "Wales", "Gales", "Welsh", "Welshmen", "Galés", "Galeses", "Galesa", "Galesas",
         "Northern Ireland", "Irlanda del Norte", "Northern Irish", "Norirlandés", "Norirlandeses",
         
-        # 皇家属地 (Crown Dependencies)
         # 皇家属地 (Crown Dependencies) - 包含全称与各性别单复数称呼
         "Isle of Man", "Isla de Man", "Mann", "Manx", "Manxman", "Manxmen", "Manxwoman", "Manxwomen", 
         "Manés", "Maneses", "Manesa", "Manesas",        
@@ -130,7 +129,6 @@ COUNTRY_ALIASES = {
         
         # 西班牙语相关形容词/称呼 (盎格鲁-诺曼底人，男女及单复数)
         "Anglonormando", "Anglonormandos", "Anglonormanda", "Anglonormandas",
-        
         
         # 主要海外领土及其人民
         "Bermuda", "Bermudas", "Bermudian", "Bermudians", "Bermudeño", "Bermudeños",
@@ -146,14 +144,17 @@ COUNTRY_ALIASES = {
     ]
 }
 
-# --- 智能生成匹配词库 ---
-ALL_MATCH_WORDS = []
-for c in COUNTRY_LIST:
-    ALL_MATCH_WORDS.append(re.sub(r'[^\w\s]', ' ', c.lower()).strip())
-    if c in COUNTRY_ALIASES:
-        for alias in COUNTRY_ALIASES[c]:
-            ALL_MATCH_WORDS.append(re.sub(r'[^\w\s]', ' ', alias.lower()).strip())
-ALL_MATCH_WORDS = list(set(ALL_MATCH_WORDS)) # 去重
+# ==========================================
+# 3. 生成反向映射表 (用于提取具体国家名)
+# ==========================================
+ALIAS_TO_STANDARD = {}
+for std_name in COUNTRY_LIST:
+    clean_std = f" {re.sub(r'[^\w\s]', ' ', std_name.lower()).strip()} "
+    ALIAS_TO_STANDARD[clean_std] = std_name
+    if std_name in COUNTRY_ALIASES:
+        for alias in COUNTRY_ALIASES[std_name]:
+            clean_alias = f" {re.sub(r'[^\w\s]', ' ', alias.lower()).strip()} "
+            ALIAS_TO_STANDARD[clean_alias] = std_name
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -225,7 +226,7 @@ if 'all_data' not in st.session_state:
     st.session_state.all_data = load_saved_data()
 
 # --- 侧边栏 ---
-st.sidebar.header("Parámetros de búsqueda")
+st.sidebar.header("⚙️ Parámetros de búsqueda")
 col1, col2 = st.sidebar.columns(2)
 with col1:
     start_date = st.date_input("Fecha inicio", value=datetime.now() - timedelta(days=2), format="DD-MM-YYYY")
@@ -234,7 +235,17 @@ with col2:
 
 filter_days = st.sidebar.number_input("O seleccionar últimos días", min_value=0, max_value=45, value=0)
 
-if st.sidebar.button("🚀 Iniciar extracción en la nube"):
+# --- 新增：特定国家多选筛选器 ---
+st.sidebar.markdown("---")
+st.sidebar.subheader("🎯 Filtro de País Específico")
+selected_countries_filter = st.sidebar.multiselect(
+    "Selecciona uno o más países para buscar:", 
+    options=sorted(COUNTRY_LIST),
+    help="Si seleccionas países aquí, la tabla solo mostrará noticias que mencionen esos países."
+)
+
+st.sidebar.markdown("---")
+if st.sidebar.button("🚀 Iniciar extracción en la nube", use_container_width=True):
     with st.spinner("Despertando GitHub Actions..."):
         status = trigger_github_action()
         if status == 204:
@@ -267,18 +278,23 @@ if st.session_state.all_data:
         ], align='center', use_container_width=True
     )
 
-    # 智能匹配逻辑
-    def check_country(title):
-        if not isinstance(title, str): return False
+    # ==========================================
+    # 智能提取具体国家名称并判断分类
+    # ==========================================
+    def extract_countries(title):
+        if not isinstance(title, str): return []
         clean_title = f" {re.sub(r'[^\w\s]', ' ', title.lower())} "
-        for keyword in ALL_MATCH_WORDS:
-            if f" {keyword} " in clean_title:
-                return True
-        return False
+        found = set()
+        for alias, std_name in ALIAS_TO_STANDARD.items():
+            if alias in clean_title:
+                found.add(std_name)
+        return list(found)
 
-    df['has_country'] = df['title'].apply(check_country)
+    df['matched_countries'] = df['title'].apply(extract_countries)
+    # 如果识别出的国家列表长度 > 0，说明它是 Pais tenemos
+    df['has_country'] = df['matched_countries'].apply(lambda x: len(x) > 0)
     
-    # 根据按钮选择过滤数据
+    # 1. 根据顶部按钮过滤
     if category == 'Total':
         filtered_df = df.copy()
     elif category == 'Pais tenemos':
@@ -286,7 +302,11 @@ if st.session_state.all_data:
     else:
         filtered_df = df[df['has_country'] == False].copy()
 
-    # 原有侧边栏过滤逻辑
+    # 2. 根据侧边栏的【特定国家筛选器】进行二次过滤
+    if selected_countries_filter:
+        filtered_df = filtered_df[filtered_df['matched_countries'].apply(lambda x: any(c in selected_countries_filter for c in x))]
+
+    # 3. 原有侧边栏过滤逻辑
     st.markdown("---")
     st.subheader(f"Resultados de Búsqueda ({len(filtered_df)} artículos en {category})")
     
@@ -313,7 +333,7 @@ if st.session_state.all_data:
         filtered_df = filtered_df[(filtered_df['date'] >= start_dt) & (filtered_df['date'] <= end_dt)]
 
     # ==========================================
-    # HTML 渲染风格 + 蓝色可点击 Fuente
+    # HTML 渲染风格 + 蓝色可点击 Fuente + 显示国家
     # ==========================================
     def render_results_html(df):
         html = '''<div>
@@ -329,6 +349,7 @@ if st.session_state.all_data:
     <thead>
       <tr>
         <th>Título</th>
+        <th>País Detectado</th>
         <th>Fuente (Link)</th>
         <th>Fecha</th>
       </tr>
@@ -339,10 +360,13 @@ if st.session_state.all_data:
             source = row['source']
             fecha = row['Fecha']
             link = row['link']
-            # 这里将 Fuente 设置为蓝色的链接，并点击新标签打开
+            # 将检测到的国家用逗号拼接，没有就显示 -
+            detected = ", ".join(row['matched_countries']) if row['matched_countries'] else "-"
+            
             html += f'''
       <tr>
         <td><strong>{title}</strong></td>
+        <td><span style="color: #d9534f; font-weight: bold;">{detected}</span></td>
         <td><a href="{link}" target="_blank">{source}</a></td>
         <td>{fecha}</td>
       </tr>'''
@@ -358,15 +382,16 @@ if st.session_state.all_data:
     st.markdown("---")
     st.markdown("### 📥 Descargar Resultados en HTML")
     
-    # 选项：全选还是手动选择
     select_all = st.checkbox("✅ Seleccionar todos los artículos", value=True)
     
     if select_all:
         download_df = filtered_df
     else:
         st.write("👉 Marca las casillas de las noticias que deseas descargar:")
-        # 创建一个带有打勾框的交互式表格供用户选择
-        selection_df = filtered_df[['title', 'source', 'Fecha']].copy()
+        
+        # 为复选框表格准备数据，并把列表转成字符串以便显示
+        selection_df = filtered_df[['title', 'matched_countries', 'source', 'Fecha']].copy()
+        selection_df['matched_countries'] = selection_df['matched_countries'].apply(lambda x: ", ".join(x) if x else "-")
         selection_df.insert(0, "Descargar", False)
         
         edited_df = st.data_editor(
@@ -374,6 +399,7 @@ if st.session_state.all_data:
             column_config={
                 "Descargar": st.column_config.CheckboxColumn("Seleccionar ", default=False),
                 "title": "Título",
+                "matched_countries": "País Detectado",
                 "source": "Fuente",
                 "Fecha": "Fecha"
             },
@@ -381,7 +407,6 @@ if st.session_state.all_data:
             use_container_width=True
         )
         
-        # 获取用户打勾了的行的原始数据
         selected_indices = edited_df[edited_df["Descargar"]].index
         download_df = filtered_df.loc[selected_indices]
 
@@ -404,14 +429,15 @@ if st.session_state.all_data:
   <h1>Noticias de Visado Filtradas</h1>
   <table id="newsTable">
     <thead>
-      <tr><th>Título</th><th>Fuente</th><th>Fecha</th></tr>
+      <tr><th>Título</th><th>País Detectado</th><th>Fuente</th><th>Fecha</th></tr>
     </thead>
     <tbody>'''
         for _, row in df.iterrows():
-            # 下载版本同样包含了蓝色的链接
+            detected = ", ".join(row['matched_countries']) if row['matched_countries'] else "-"
             html_content += f'''
       <tr>
         <td><strong>{row['title']}</strong></td>
+        <td>{detected}</td>
         <td><a href="{row['link']}" target="_blank">{row['source']}</a></td>
         <td>{row['Fecha']}</td>
       </tr>'''
