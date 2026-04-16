@@ -602,7 +602,7 @@ def parse_items_from_html(html, base_url):
 
 def scrape_website(url):
     try:
-        if 'business-standard.com/search' in url:
+        if 'business-standard.com/search?q=visa' in url:
             print("  -> Business Standard: 检测到防火墙拦截(403)，启用 Google News 接口免拦截抓取...")
             # 直接返回 Google 帮我们抓好的数据，不再傻等翻页
             return parse_business_standard_via_google()
