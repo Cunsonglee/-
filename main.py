@@ -21,6 +21,8 @@ websites = [
     "https://www.bal.com/immigration-news/",
     "https://www.fragomen.com/insights/index.html?nt=news",
     "https://travelobiz.com/category/visas-passports/"
+    "https://www.business-standard.com/search?q=visa",
+    "https://travel.economictimes.indiatimes.com/news/visas-and-passports"
 ]
 
 # Month mapping (English, German, Spanish)
@@ -479,6 +481,106 @@ def parse_visamundi(html, base_url):
             out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text, 'source': 'visamundi'})
     return out
 
+# ==========================================
+# 新增：Business Standard 解析器
+# ==========================================
+def parse_business_standard(html, base_url):
+    soup = BeautifulSoup(html, 'html.parser')
+    items = soup.select('.cardlist')
+    out = []
+    
+    for n in items:
+        # 找标题和链接 (h2 或 h3 里面的 a 标签)
+        a = n.select_one('.listingstyle_image_title__TE0P3 a')
+        if not a:
+            continue
+            
+        title = a.get_text().strip()
+        link = absolute_url(a.get('href'), base_url)
+        
+        # 提取日期 (例如 "Updated On : 15 Apr 2026")
+        date = None
+        date_text = ''
+        date_el = n.select_one('.listingstyle_timestmp__VSJNW')
+        if date_el:
+            raw = date_el.get_text().strip()
+            # 用正则精准抓取 日、月、年
+            m = re.search(r'(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})', raw)
+            if m:
+                day = int(m.group(1))
+                month_str = m.group(2).lower()[:3] # 取前三个字母比如 apr
+                year = int(m.group(3))
+                if month_str in MONTHS:
+                    month = MONTHS[month_str] + 1
+                    try:
+                        date = datetime(year, month, day)
+                        date_text = date.strftime('%B %d, %Y')
+                    except: pass
+                    
+        if title and link:
+            out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text or '—', 'source': 'business-standard'})
+            
+    seen = set()
+    return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
+
+# ==========================================
+# 新增：Economic Times Travel 解析器
+# ==========================================
+def parse_et_travel(html, base_url):
+    soup = BeautifulSoup(html, 'html.parser')
+    # ET Travel 的新闻通常是一个链接包着整个块
+    links = soup.find_all('a', href=True)
+    out = []
+    
+    import requests
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+    
+    for a in links:
+        # 只找里面包含 h2 或 h3 标题的链接
+        h = a.find(['h2', 'h3'])
+        if not h:
+            continue
+            
+        title = h.get_text().strip()
+        if len(title) < 15: # 过滤掉太短的无关链接
+            continue
+            
+        link = absolute_url(a['href'], base_url)
+        if '/news/' not in link and '/blog/' not in link:
+            continue # 确保是新闻或博客文章
+            
+        # 列表没有日期，进入内页找隐藏的 Meta 数据
+        date = None
+        date_text = ''
+        try:
+            inner_res = requests.get(link, headers=headers, timeout=10)
+            if inner_res.status_code == 200:
+                inner_soup = BeautifulSoup(inner_res.text, 'html.parser')
+                meta_tags = [
+                    inner_soup.select_one('meta[property="article:published_time"]'),
+                    inner_soup.select_one('meta[name="pubdate"]'),
+                    inner_soup.select_one('meta[itemprop="datePublished"]')
+                ]
+                for meta in meta_tags:
+                    if meta and meta.get('content'):
+                        iso_str = meta.get('content')
+                        try:
+                            # 提取 2026-04-15
+                            date_part = iso_str.split('T')[0].split(' ')[0]
+                            date = datetime.fromisoformat(date_part)
+                            date_text = date.strftime('%B %d, %Y')
+                            break
+                        except: pass
+        except Exception as e:
+            print(f"无法访问 ET Travel 内页 {link}: {e}")
+            
+        if title and link:
+            out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text or '—', 'source': 'et-travel'})
+            
+    seen = set()
+    return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
+
+
 def parse_items_from_html(html, base_url):
     from urllib.parse import urlparse
     host = urlparse(base_url).netloc
@@ -491,6 +593,8 @@ def parse_items_from_html(html, base_url):
     if 'bal.com' in host: return parse_bal(html, base_url)
     if 'fragomen.com' in host: return parse_fragomen(html, base_url)
     if 'travelobiz.com' in host: return parse_travelobiz(html, base_url)
+    if 'business-standard.com' in host: return parse_business_standard(html, base_url)
+    if 'economictimes.indiatimes.com' in host: return parse_et_travel(html, base_url)
     return []
 
 def scrape_website(url):
