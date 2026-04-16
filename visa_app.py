@@ -50,7 +50,7 @@ websites = [
     "https://www.business-standard.com/search?q=visa",
     "https://travel.economictimes.indiatimes.com/news/visas-and-passports"
 ]
-]
+
 
 MONTHS = {
     'jan': 0, 'january': 0, 'jan.': 0, 'januar': 0, 'feb': 1, 'february': 1, 'feb.': 1, 'mar': 2, 'march': 2, 'marz': 2,
