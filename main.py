@@ -485,15 +485,21 @@ def parse_visamundi(html, base_url):
 # ==========================================
 # 最终版：Business Standard 解析器 (无过滤，抓取所有结果)
 # ==========================================
+# ==========================================
+# 最终版：Business Standard 解析器 (无过滤，抓取所有结果)
+# ==========================================
 def parse_business_standard(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
-    # 锁定 cardlist 区块
-    items = soup.select('div.cardlist') 
+    
+    # 【修改点1】使用正则表达式模糊匹配 cardlist，解决特殊空格和动态类名导致找不到的问题
+    items = soup.find_all('div', class_=re.compile(r'cardlist')) 
     out = []
     
     for n in items:
-        a = n.select_one('a.smallcard-title')
-        if not a: continue
+        # 【修改点2】使用 find 提取带有 smallcard-title 的 a 标签
+        a = n.find('a', class_='smallcard-title')
+        if not a: 
+            continue
             
         title = a.get_text().strip()
         link = absolute_url(a.get('href'), base_url)
@@ -501,11 +507,11 @@ def parse_business_standard(html, base_url):
         date = None
         date_text = ''
         
-        # 精准提取你提供的 Updated On 标签内容
-        date_el = n.select_one('span[class*="listingstyle_updtText"]')
+        # 【修改点3】模糊提取包含 updt-on 的 div 标签
+        date_el = n.find('div', class_=re.compile(r'updt-on'))
         if date_el:
-            raw_text = date_el.get_text().strip()
-            # 正则匹配 16 Apr 2026
+            raw_text = date_el.get_text(separator=' ').strip()
+            # 正则匹配日期格式，如 "16 Apr 2026"
             m = re.search(r'(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})', raw_text)
             if m:
                 try:
@@ -515,7 +521,8 @@ def parse_business_standard(html, base_url):
                     if mon_str in MONTHS:
                         date = datetime(year, MONTHS[mon_str] + 1, day)
                         date_text = date.strftime('%B %d, %Y')
-                except: pass
+                except: 
+                    pass
 
         if title and link:
             out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text or '—', 'source': 'business-standard'})
