@@ -481,8 +481,12 @@ def parse_visamundi(html, base_url):
             out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text, 'source': 'visamundi'})
     return out
 
+# ==========================================
+# 最终版：Business Standard 解析器 (无过滤，抓取所有结果)
+# ==========================================
 def parse_business_standard(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
+    # 锁定每一条新闻的容器
     items = soup.select('div.cardlist') 
     out = []
     
@@ -490,24 +494,21 @@ def parse_business_standard(html, base_url):
     inner_scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
     
     for n in items:
+        # 获取标题标签
         a = n.select_one('a.smallcard-title')
         if not a: continue
             
         title = a.get_text().strip()
-        
-        # --- 新增：关键词过滤，防止抓到无关的考试成绩等新闻 ---
-        keywords = ['visa', 'passport', 'immigration', 'travel', 'border', 'entry']
-        if not any(k in title.lower() for k in keywords):
-            continue 
-            
         link = absolute_url(a.get('href'), base_url)
+        
         date = None
         date_text = ''
         
-        # 1. 尝试在列表页抓取
+        # 1. 尝试从列表页直接提取日期 (例如: 15 Apr 2026)
         date_el = n.select_one('.updt-on')
         if date_el:
             raw = date_el.get_text().strip()
+            # 这里的正则很宽容，只要有 "数字+月份+数字" 就会抓取
             m = re.search(r'(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})', raw)
             if m:
                 day = int(m.group(1))
@@ -520,30 +521,49 @@ def parse_business_standard(html, base_url):
                         date_text = date.strftime('%B %d, %Y')
                     except: pass
         
-        # 2. 如果首页没抓到日期，进入内页
+        # 2. 如果首页匹配日期失败，100% 进入内页补全日期
         if not date:
             try:
-                print(f"  -> 正在内页深度抓取 Business Standard 日期: {title[:30]}...")
+                # 提示信息，让你知道它在处理哪一条
+                print(f"  -> 正在进入内页抓取日期: {title[:30]}...")
                 inner_res = inner_scraper.get(link, timeout=10)
                 if inner_res.status_code == 200:
                     inner_soup = BeautifulSoup(inner_res.text, 'html.parser')
                     
-                    # 尝试寻找内页特有的时间 meta 标签
-                    meta_published = inner_soup.find("meta", property="article:published_time") or \
-                                     inner_soup.find("meta", itemprop="datePublished")
-                    
-                    if meta_published and meta_published.get('content'):
+                    # 优先从 Meta 标签获取标准时间 (搜索引擎用的时间)
+                    meta_p = inner_soup.find("meta", property="article:published_time") or \
+                             inner_soup.find("meta", itemprop="datePublished") or \
+                             inner_soup.find("meta", name="publish-date")
+                             
+                    if meta_p and meta_p.get('content'):
                         try:
-                            # 提取 2026-04-15 这种格式
-                            dt_str = meta_published.get('content').split('T')[0]
+                            # 提取 2026-04-15 格式
+                            dt_str = meta_p.get('content').split('T')[0]
                             date = datetime.fromisoformat(dt_str)
                             date_text = date.strftime('%B %d, %Y')
                         except: pass
-            except: pass
+                    
+                    # 如果 Meta 还是没拿到，最后尝试搜索内页的文字日期
+                    if not date:
+                        inner_raw = inner_soup.get_text()
+                        m_inner = re.search(r'(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})', inner_raw)
+                        if m_inner:
+                            date_text = f"{m_inner.group(1)} {m_inner.group(2)}, {m_inner.group(3)}"
+                            date = parse_month_day_year(date_text)
+            except:
+                pass
 
+        # 只要有标题和链接，就加入结果集（日期过滤由 main.py 统一处理）
         if title and link:
-            out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text or '—', 'source': 'business-standard'})
+            out.append({
+                'title': title, 
+                'link': link, 
+                'date': date, 
+                'date_text': date_text or '—', 
+                'source': 'business-standard'
+            })
             
+    # 去重
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
