@@ -25,84 +25,113 @@ COUNTRY_LIST = [
 ]
 
 # ==========================================
-# 2. 增强版：国家别名/变体字典 (全方位兼容不同叫法、国籍、西语)
+# 2. 终极版：国家别名/变体字典 (含单复数、男女称呼、国籍、历史名称)
 # ==========================================
 COUNTRY_ALIASES = {
     # 亚洲 & 大洋洲
-    "South Korea": ["Korea", "Corea", "Corea del Sur", "ROK", "S. Korea", "South Korean", "Korean", "Surcoreano"],
-    "Vietnam": ["Viet Nam", "Viet-nam", "Vietnamese", "Vietnamita"],
-    "Thailand": ["Tailandia", "Thai", "Tailandés"],
-    "Singapore": ["Singapur", "Singaporean", "Singapurense"],
-    "Cambodia": ["Camboya", "Cambodian", "Camboyano"],
-    "Myanmar": ["Burma", "Birmania", "Burmese"],
-    "Indonesia": ["Indonesian", "Indonesio"],
-    "India": ["Indian", "Indio"],
-    "Sri Lanka": ["Sri Lankan", "Ceylon", "Ceylonese"],
-    "Nepal": ["Nepali", "Nepalese", "Nepalí"],
-    "Laos": ["Lao", "Laotian"],
-    "Australia": ["Australian", "Australiano", "Aussie"],
-    "New Zealand": ["Nueva Zelanda", "Nueva Zelandia", "New Zealand's", "NZ", "Kiwi", "New Zealander", "Neozelandés"],
-    "Papua New Guinea": ["Papúa Nueva Guinea", "PNG", "Papuan"],
+    "South Korea": [
+        "Korea", "Corea", "Corea del Sur", "ROK", "S. Korea", 
+        "South Korean", "South Koreans", "Korean", "Koreans",
+        "Surcoreano", "Surcoreanos", "Surcoreana", "Surcoreanas", 
+        "Coreano", "Coreanos", "Coreana", "Coreanas"
+    ],
+    "Vietnam": ["Viet Nam", "Viet-nam", "Vietnamese", "Vietnamita", "Vietnamitas"],
+    "Thailand": ["Tailandia", "Thai", "Thais", "Tailandés", "Tailandeses", "Tailandesa", "Tailandesas"],
+    "Singapore": ["Singapur", "Singaporean", "Singaporeans", "Singapurense", "Singapurenses"],
+    "Cambodia": ["Camboya", "Cambodian", "Cambodians", "Camboyano", "Camboyanos", "Camboyana", "Camboyanas"],
+    "Myanmar": ["Burma", "Birmania", "Burmese", "Birmano", "Birmanos", "Birmana", "Birmanas"],
+    "Indonesia": ["Indonesian", "Indonesians", "Indonesio", "Indonesios", "Indonesia", "Indonesias"],
+    "India": ["Indian", "Indians", "Indio", "Indios", "India", "Indias"],
+    "Sri Lanka": ["Sri Lankan", "Sri Lankans", "Ceylon", "Ceilanés", "Ceilaneses", "Ceilanesa", "Ceilanesas"],
+    "Nepal": ["Nepali", "Nepalis", "Nepalese", "Nepalí", "Nepalíes", "Nepaleses"],
+    "Laos": ["Lao", "Laos", "Laotian", "Laotians", "Laosiano", "Laosianos", "Laosiana", "Laosianas"],
+    "Australia": [
+        "Australian", "Australians", "Aussie", "Aussies", 
+        "Australiano", "Australianos", "Australiana", "Australianas"
+    ],
+    "New Zealand": [
+        "Nueva Zelanda", "Nueva Zelandia", "New Zealand's", "NZ", 
+        "New Zealander", "New Zealanders", "Kiwi", "Kiwis", 
+        "Neozelandés", "Neozelandeses", "Neozelandesa", "Neozelandesas"
+    ],
+    "Papua New Guinea": ["Papúa Nueva Guinea", "PNG", "Papuan", "Papuans", "Papú", "Papúes"],
     
     # 中东 & 欧亚交界
-    "Turkey": ["Turkiye", "Türkiye", "Turquia", "Turquía", "Turkish", "Turco"],
-    "Saudi Arabia": ["Saudi", "Arabia Saudí", "Arabia Saudita", "KSA", "Saudi Arabian", "Saudí"],
-    "Kuwait": ["Kuwaiti", "Kuwaití"],
-    "Oman": ["Omán", "Omani", "Omaní"],
-    "Bahrain": ["Baréin", "Bahrein", "Bahraini"],
-    "Armenia": ["Armenian", "Armenio"],
-    "Azerbaijan": ["Azerbaiyán", "Azerbaiyan", "Azerbaijani"],
+    "Turkey": [
+        "Turkiye", "Türkiye", "Turquia", "Turquía", 
+        "Turkish", "Turk", "Turks", "Turco", "Turcos", "Turca", "Turcas"
+    ],
+    "Saudi Arabia": [
+        "Saudi", "Saudis", "Arabia Saudí", "Arabia Saudita", "KSA", 
+        "Saudi Arabian", "Saudi Arabians", "Saudí", "Saudíes", "Saudita", "Sauditas"
+    ],
+    "Kuwait": ["Kuwaiti", "Kuwaitis", "Kuwaití", "Kuwaitíes"],
+    "Oman": ["Omán", "Omani", "Omanis", "Omaní", "Omaníes"],
+    "Bahrain": ["Baréin", "Bahrein", "Bahraini", "Bahrainis", "Bahreiní", "Bahreiníes"],
+    "Armenia": ["Armenian", "Armenians", "Armenio", "Armenios", "Armenia", "Armenias"],
+    "Azerbaijan": ["Azerbaiyán", "Azerbaiyan", "Azerbaijani", "Azerbaijanis", "Azeri", "Azeris", "Azerbaiyano", "Azerbaiyanos"],
 
     # 美洲
-    "USA": ["US", "U.S.", "United States", "America", "Estados Unidos", "EEUU", "EE.UU.", "U.S.A.", "American", "Estadounidense"],
-    "Canada": ["Canadá", "Canadian", "Canadiense"],
-    "Mexico": ["México", "Mexican", "Mexicano"],
-    "Colombia": ["Colombian", "Colombiano"],
-    "Cuba": ["Cuban", "Cubano"],
-    "Dominican Republic": ["Republica Dominicana", "República Dominicana", "Dominican"],
-    "Puerto Rico": ["Puerto Rican", "Puertorriqueño", "Boricua"],
+    "USA": [
+        "US", "U.S.", "United States", "America", "Estados Unidos", "EEUU", "EE.UU.", "U.S.A.", 
+        "American", "Americans", "Estadounidense", "Estadounidenses", "Norteamericano", "Norteamericanos"
+    ],
+    "Canada": ["Canadá", "Canadian", "Canadians", "Canadiense", "Canadienses"],
+    "Mexico": ["México", "Mexican", "Mexicans", "Mexicano", "Mexicanos", "Mexicana", "Mexicanas"],
+    "Colombia": ["Colombian", "Colombians", "Colombiano", "Colombianos", "Colombiana", "Colombianas"],
+    "Cuba": ["Cuban", "Cubans", "Cubano", "Cubanos", "Cubana", "Cubanas"],
+    "Dominican Republic": [
+        "Republica Dominicana", "República Dominicana", 
+        "Dominican", "Dominicans", "Dominicano", "Dominicanos", "Dominicana", "Dominicanas"
+    ],
+    "Puerto Rico": [
+        "Puerto Rican", "Puerto Ricans", "Boricua", "Boricuas", 
+        "Puertorriqueño", "Puertorriqueños", "Puertorriqueña", "Puertorriqueñas"
+    ],
     
     # 非洲
-    "Egypt": ["Egipto", "Egyptian", "Egipcio"],
-    "Kenya": ["Kenia", "Kenyan", "Keniata"],
-    "Ivory Coast": ["Cote d'Ivoire", "Côte d'Ivoire", "Costa de Marfil", "Ivorian"],
-    "Djibouti": ["Yibuti", "Djiboutian"],
-    "Ethiopia": ["Etiopía", "Etiopia", "Ethiopian", "Etíope"],
-    "Madagascar": ["Malagasy", "Malgache"],
-    "Rwanda": ["Ruanda", "Rwandan", "Ruandés"],
-    "Tanzania": ["Tanzanian", "Tanzano"],
-    "Uganda": ["Ugandan", "Ugandés"],
-    "Zambia": ["Zambian", "Zambiano"],
-    "Zimbabwe": ["Zimbabue", "Zimbabwean", "Zimbabuense"],
-    "Angola": ["Angolan", "Angoleño"],
-    "Benin": ["Benín", "Beninese"],
-    "Guinea": ["Guinean", "Guineano"],
+    "Egypt": ["Egipto", "Egyptian", "Egyptians", "Egipcio", "Egipcios", "Egipcia", "Egipcias"],
+    "Kenya": ["Kenia", "Kenyan", "Kenyans", "Keniano", "Kenianos", "Keniana", "Kenianas", "Keniata", "Keniatas"],
+    "Ivory Coast": ["Cote d'Ivoire", "Côte d'Ivoire", "Costa de Marfil", "Ivorian", "Ivorians", "Marfileño", "Marfileños"],
+    "Djibouti": ["Yibuti", "Djiboutian", "Djiboutians", "Yibutiano", "Yibutianos"],
+    "Ethiopia": ["Etiopía", "Etiopia", "Ethiopian", "Ethiopians", "Etíope", "Etíopes"],
+    "Madagascar": ["Malagasy", "Malagasies", "Malgache", "Malgaches"],
+    "Rwanda": ["Ruanda", "Rwandan", "Rwandans", "Ruandés", "Ruandeses", "Ruandesa", "Ruandesas"],
+    "Tanzania": ["Tanzanian", "Tanzanians", "Tanzano", "Tanzanos", "Tanzana", "Tanzanas"],
+    "Uganda": ["Ugandan", "Ugandans", "Ugandés", "Ugandeses", "Ugandesa", "Ugandesas"],
+    "Zambia": ["Zambian", "Zambians", "Zambiano", "Zambianos", "Zambiana", "Zambianas"],
+    "Zimbabwe": ["Zimbabue", "Zimbabwean", "Zimbabweans", "Zimbabuense", "Zimbabuenses"],
+    "Angola": ["Angolan", "Angolans", "Angoleño", "Angoleños", "Angoleña", "Angoleñas"],
+    "Benin": ["Benín", "Beninese", "Beninés", "Benineses", "Beninesa", "Beninesas"],
+    "Guinea": ["Guinean", "Guineans", "Guineano", "Guineanos", "Guineana", "Guineanas"],
 
-"United Kingdom": [
-        # 核心称呼与国籍 (包含西语)
-        "UK", "U.K.", "Britain", "Great Britain", "British", "Reino Unido", "Británico", "Británica",
+    # 英国及其海外领地
+    "United Kingdom": [
+        # 核心称呼与国籍 (包含西语与单复数)
+        "UK", "U.K.", "Britain", "Great Britain", "British", "Briton", "Britons",
+        "Reino Unido", "Británico", "Británicos", "Británica", "Británicas",
         
-        # 四大构成国 (Constituent Countries)
-        "England", "Inglaterra", "English", "Inglés", 
-        "Scotland", "Escocia", "Scottish", "Escocés",
-        "Wales", "Gales", "Welsh", "Galés",
-        "Northern Ireland", "Irlanda del Norte",
+        # 四大构成国及其人民
+        "England", "Inglaterra", "English", "Englishmen", "Inglés", "Ingleses", "Inglesa", "Inglesas",
+        "Scotland", "Escocia", "Scottish", "Scot", "Scots", "Escocés", "Escoceses", "Escocesa", "Escocesas",
+        "Wales", "Gales", "Welsh", "Welshmen", "Galés", "Galeses", "Galesa", "Galesas",
+        "Northern Ireland", "Irlanda del Norte", "Northern Irish", "Norirlandés", "Norirlandeses",
         
         # 皇家属地 (Crown Dependencies)
-        "Isle of Man", "Isla de Man", "Jersey", "Guernsey",
+        "Isle of Man", "Isla de Man", "Manx", "Manés", "Maneses", "Jersey", "Guernsey",
         
-        # 主要海外领土 (Overseas Territories)
-        "Bermuda", "Bermudas", 
-        "Cayman Islands", "Islas Caimán", "Cayman",
-        "British Virgin Islands", "BVI", "Islas Vírgenes Británicas",
-        "Gibraltar", 
+        # 主要海外领土及其人民
+        "Bermuda", "Bermudas", "Bermudian", "Bermudians", "Bermudeño", "Bermudeños",
+        "Cayman Islands", "Islas Caimán", "Cayman", "Caymanian", "Caymanians", "Caimanés", "Caimaneses",
+        "British Virgin Islands", "BVI", "Islas Vírgenes Británicas", "Virgin Islander", "Virgin Islanders",
+        "Gibraltar", "Gibraltarian", "Gibraltarians", "Gibraltareño", "Gibraltareños",
         "Turks and Caicos", "Islas Turcas y Caicos",
-        "Falkland Islands", "Islas Malvinas", "Falklands",
-        "Anguilla", "Anguila",
-        "Montserrat",
+        "Falkland Islands", "Islas Malvinas", "Falklands", "Falklander", "Falklanders", "Malvinense", "Malvinenses",
+        "Anguilla", "Anguila", "Anguillan", "Anguillans", "Anguilano", "Anguilanos",
+        "Montserrat", "Montserratian", "Montserratians", "Montserratense", "Montserratenses",
         "Pitcairn", "Pitcairn Islands", "Islas Pitcairn",
-        "Saint Helena", "Santa Elena", "Ascension", "Tristan da Cunha"]
-    
+        "Saint Helena", "Santa Elena", "Ascension", "Tristan da Cunha"
+    ]
 }
 
 # --- 智能生成匹配词库 ---
