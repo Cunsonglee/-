@@ -667,7 +667,7 @@ def scrape_website(url):
         print(f"抓取失败 {url}: {e}")
         return []
 
-def main(days=30):
+def main(days=106):
     print(f"Iniciando extracción de noticias de los últimos {days} días...")
     all_posts = []
     cutoff = datetime.now() - timedelta(days=days-1)
