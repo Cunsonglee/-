@@ -517,7 +517,7 @@ def parse_et_travel(html, base_url):
                         if meta and meta.get('content'):
                             iso_str = meta.get('content')
                             try:
-                                date_part = iso_str.split('T')[0].split(' ')[0]
+                                date_only = re.split(r'[T\s]', iso_str)[0]
                                 date = datetime.fromisoformat(date_part)
                                 date_text = date.strftime('%B %d, %Y')
                                 break
