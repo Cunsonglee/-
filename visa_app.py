@@ -232,7 +232,7 @@ with col1:
 with col2:
     end_date = st.date_input("Fecha fin", value=datetime.now(), format="DD-MM-YYYY")
 
-filter_days = st.sidebar.number_input("O seleccionar últimos días", min_value=0, max_value=30, value=0)
+filter_days = st.sidebar.number_input("O seleccionar últimos días", min_value=0, max_value=45, value=0)
 
 if st.sidebar.button("🚀 Iniciar extracción en la nube"):
     with st.spinner("Despertando GitHub Actions..."):
