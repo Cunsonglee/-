@@ -22,7 +22,6 @@ websites = [
     "https://www.bal.com/immigration-news/",
     "https://www.fragomen.com/insights/index.html?nt=news",
     "https://travelobiz.com/category/visas-passports/",
-    "https://www.business-standard.com/search?q=visa",
     "https://travel.economictimes.indiatimes.com/news/visas-and-passports"
 ]
 
@@ -468,57 +467,6 @@ def parse_visamundi(html, base_url):
             out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text, 'source': 'visamundi'})
     return out
 
-# ==========================================
-# 精准版：Business Standard 解析器 (仅屏蔽侧边栏，无关键词过滤)
-# ==========================================
-def parse_business_standard(html, base_url):
-    from bs4 import BeautifulSoup
-    import re
-    from datetime import datetime
-    
-    soup = BeautifulSoup(html, 'html.parser')
-    
-    # 1. 【精准定位】只提取搜索结果的主体区域，过滤掉右侧边栏的"最新新闻"或"热门股票"
-    main_area = soup.find('div', role='tabpanel')
-    if not main_area:
-        main_area = soup  # 兜底：如果找不到 tabpanel，就在全文找
-        
-    # 2. 模糊匹配带有 cardlist 的块
-    items = main_area.find_all('div', class_=re.compile(r'cardlist')) 
-    out = []
-    
-    for n in items:
-        a = n.find('a', class_='smallcard-title')
-        if not a: 
-            continue
-            
-        title = a.get_text().strip()
-        link = absolute_url(a.get('href'), base_url)
-        
-        date = None
-        date_text = ''
-        
-        # 3. 提取日期
-        date_el = n.find('div', class_=re.compile(r'updt-on'))
-        if date_el:
-            raw_text = date_el.get_text(separator=' ').strip()
-            m = re.search(r'(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})', raw_text)
-            if m:
-                try:
-                    day = int(m.group(1))
-                    mon_str = m.group(2).lower()[:3]
-                    year = int(m.group(3))
-                    if mon_str in MONTHS:
-                        date = datetime(year, MONTHS[mon_str] + 1, day)
-                        date_text = date.strftime('%B %d, %Y')
-                except: 
-                    pass
-
-        if title and link:
-            out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text or '—', 'source': 'business-standard'})
-            
-    seen = set()
-    return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
 def parse_et_travel(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
@@ -595,7 +543,6 @@ def parse_items_from_html(html, base_url):
     if 'bal.com' in host: return parse_bal(html, base_url)
     if 'fragomen.com' in host: return parse_fragomen(html, base_url)
     if 'travelobiz.com' in host: return parse_travelobiz(html, base_url)
-    if 'business-standard.com' in host: return parse_business_standard(html, base_url)
     if 'economictimes.indiatimes.com' in host: return parse_et_travel(html, base_url)
     return []
 
