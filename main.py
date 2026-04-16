@@ -603,24 +603,9 @@ def parse_items_from_html(html, base_url):
 def scrape_website(url):
     try:
         if 'business-standard.com/search' in url:
-            all_bs_posts = []
-            for p in range(1, 11): 
-                page_url = f"{url}&p={p}"
-                print(f"  -> Business Standard: 正在获取第 {p} 页数据...")
-                
-                scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
-                response = scraper.get(page_url, timeout=20)
-                
-                if response.status_code == 200:
-                    page_posts = parse_business_standard(response.text, url)
-                    if not page_posts: 
-                        break 
-                    all_bs_posts.extend(page_posts)
-                else:
-                    print(f"  -> ⚠️ Business Standard 被拦截，状态码: {response.status_code}")
-                    break
-                time.sleep(1)
-            return all_bs_posts
+            print("  -> Business Standard: 检测到防火墙拦截(403)，启用 Google News 接口免拦截抓取...")
+            # 直接返回 Google 帮我们抓好的数据，不再傻等翻页
+            return parse_business_standard_via_google()
 
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
