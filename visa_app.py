@@ -118,7 +118,19 @@ COUNTRY_ALIASES = {
         "Northern Ireland", "Irlanda del Norte", "Northern Irish", "Norirlandés", "Norirlandeses",
         
         # 皇家属地 (Crown Dependencies)
-        "Isle of Man", "Isla de Man", "Manx", "Manés", "Maneses", "Jersey", "Guernsey",
+        # 皇家属地 (Crown Dependencies) - 包含全称与各性别单复数称呼
+        "Isle of Man", "Isla de Man", "Mann", "Manx", "Manxman", "Manxmen", "Manxwoman", "Manxwomen", 
+        "Manés", "Maneses", "Manesa", "Manesas",        
+        "Jersey", "Bailiwick of Jersey", "Bailiazgo de Jersey", "Jerseyman", "Jerseymen", "Jerseywoman", "Jerseywomen",
+        "Guernsey", "Guernesey", "Bailiwick of Guernsey", "Bailiazgo de Guernsey", "Guernseyman", "Guernseymen", "Guernseywoman", "Guernseywomen",
+        "Channel Islands", "Channel Island", "Islas del Canal", "Isla del Canal",
+        
+        # 人的称呼/居民 (英文单复数)
+        "Channel Islander", "Channel Islanders",
+        
+        # 西班牙语相关形容词/称呼 (盎格鲁-诺曼底人，男女及单复数)
+        "Anglonormando", "Anglonormandos", "Anglonormanda", "Anglonormandas",
+        
         
         # 主要海外领土及其人民
         "Bermuda", "Bermudas", "Bermudian", "Bermudians", "Bermudeño", "Bermudeños",
