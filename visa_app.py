@@ -3,11 +3,19 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 import pandas as pd
+from deep_translator import GoogleTranslator
+import streamlit_antd_components as sac
 import re
 from urllib.parse import urlparse
 import main
 import json
 import time
+
+# --- 0. 配置国家列表 (请在此处添加你需要匹配的国家名称) ---
+COUNTRY_LIST = [
+    "China", "India", "Thailand", "Vietnam", "Spain", "France", 
+    "USA", "United Kingdom", "Japan", "South Korea", "Italy", "Germany"
+]
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -18,13 +26,9 @@ HEADERS = {
 # --- 2. 修正后的抓取函数 ---
 def scrape_website_updated(url):
     try:
-        # 使用更强的请求头
         response = requests.get(url, headers=HEADERS, timeout=15)
         response.raise_for_status()
         html = response.text
-        
-        # 调用解析逻辑
-        # 注意：请确保你的 main.py 里的 parse_travelobiz 已经更新为使用 'article.entry-card'
         found = main.parse_items_from_html(html, url)
         return found
     except Exception as e:
@@ -49,7 +53,6 @@ websites = [
     "https://travelobiz.com/category/visas-passports/",
     "https://travel.economictimes.indiatimes.com/news/visas-and-passports"
 ]
-
 
 MONTHS = {
     'jan': 0, 'january': 0, 'jan.': 0, 'januar': 0, 'feb': 1, 'february': 1, 'feb.': 1, 'mar': 2, 'march': 2, 'marz': 2,
@@ -107,7 +110,6 @@ if st.sidebar.button("🚀 Iniciar extracción en la nube"):
             st.sidebar.success("✅ ¡Orden enviada con éxito!")
             st.sidebar.warning("GitHub está trabajando (aprox. 1 min). Refresque en un momento.")
             
-            # Simulación de barra de progreso
             bar = st.progress(0)
             for i in range(100):
                 time.sleep(0.5)
@@ -122,7 +124,7 @@ def load_saved_data():
         with open('visa_data.json', 'r', encoding='utf-8') as f:
             data = json.load(f)
             for p in data:
-                if p['date']: 
+                if p.get('date'): 
                     p['date'] = pd.to_datetime(p['date'])
             return data
     except Exception:
@@ -133,10 +135,59 @@ st.session_state.all_data = load_saved_data()
 
 # Mostrar resultados y filtros secundarios
 if st.session_state.all_data:
-    df = pd.DataFrame(st.session_state.all_data).sort_values('date', ascending=False, na_position='last')
-    df['Fecha'] = df['date'].dt.strftime('%d-%m-%Y').fillna('Desconocida')
+    # 不在这里转换成字符串，保留 datetime 格式，这样 dataframe 的点击排序功能才能正确识别时间先后
+    df = pd.DataFrame(st.session_state.all_data)
+    df['date'] = pd.to_datetime(df['date'], errors='coerce')
+    df = df.sort_values('date', ascending=False)
 
-    st.subheader("Filtrado de resultados")
+    # ========================================================
+    # 新增需求 1 & 4：国家筛选按钮与 Google 翻译
+    # ========================================================
+    top_col1, top_col2 = st.columns([2, 1])
+    
+    with top_col1:
+        st.write("**Filtro de País:**")
+        # 需求1：左右切换的国家分类按钮
+        category = sac.segmented(
+            items=[
+                sac.SegmentedItem(label='Pais tenemos', icon='check-circle'),
+                sac.SegmentedItem(label='Pais pendiente', icon='question-circle'),
+            ], align='start', variant='outline', use_container_width=True, color='blue'
+        )
+
+    with top_col2:
+        st.write("**Google Traductor:**")
+        # 需求4：翻译功能
+        lang_options = {"Original": None, "Spanish": "es", "English": "en", "Chinese": "zh-CN"}
+        target_lang_name = st.selectbox("Seleccionar Idioma", list(lang_options.keys()), label_visibility="collapsed")
+        
+        if target_lang_name != "Original":
+            if st.button("🔄 Traducir Títulos Ahora", use_container_width=True):
+                with st.spinner('Traduciendo con Google...'):
+                    target_code = lang_options[target_lang_name]
+                    df['title'] = df['title'].apply(
+                        lambda x: GoogleTranslator(source='auto', target=target_code).translate(str(x)) if pd.notna(x) else x
+                    )
+
+    # 逻辑处理：区分有无国家名称
+    def check_country(title):
+        if not isinstance(title, str): return False
+        return any(c.lower() in title.lower() for c in COUNTRY_LIST)
+
+    df['has_country'] = df['title'].apply(check_country)
+    
+    # 按照按钮选择过滤数据
+    if category == 'Pais tenemos':
+        filtered_df = df[df['has_country'] == True].copy()
+    else:
+        filtered_df = df[df['has_country'] == False].copy()
+
+    # ========================================================
+    # 应用你原有的侧边栏过滤逻辑 (日期、天数、关键词)
+    # ========================================================
+    st.markdown("---")
+    st.subheader(f"Resultados de Búsqueda ({len(filtered_df)} artículos)")
+    
     col_filter1, col_filter2, col_filter3 = st.columns(3)
     with col_filter1:
         filter_keyword = st.text_input("Filtrar por palabra clave en resultados", key="result_keyword")
@@ -146,9 +197,6 @@ if st.session_state.all_data:
         filter_end = st.date_input("Fecha fin filtro", key="result_end", format="DD-MM-YYYY", value=None)
 
     filter_days_option = st.number_input("Últimos días (0 = usar rango, 1 = Hoy, 2 = Hoy+Ayer)", min_value=0, max_value=365, value=0, key="result_days")
-
-    # Aplicar filtros
-    filtered_df = df.copy()
 
     if filter_keyword:
         filtered_df = filtered_df[filtered_df['title'].str.contains(filter_keyword, case=False, na=False)]
@@ -162,45 +210,40 @@ if st.session_state.all_data:
         end_dt = datetime.combine(filter_end, datetime.max.time()) if filter_end else datetime.max
         filtered_df = filtered_df[(filtered_df['date'] >= start_dt) & (filtered_df['date'] <= end_dt)]
 
-    # Función para renderizar la tabla con estilo
-    def render_results_html(df):
-        html = '''<div>
-  <style>
-    .visa-results-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    .visa-results-table th, .visa-results-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-    .visa-results-table th { background-color: #004a99; color: white; }
-    .visa-results-table tr:nth-child(even) { background-color: #f2f2f2; }
-    .visa-results-table a { color: #007bff; text-decoration: none; font-weight: bold; }
-    .visa-results-table a:hover { text-decoration: underline; }
-  </style>
-  <table class="visa-results-table">
-    <thead>
-      <tr>
-        <th>Título</th>
-        <th>Fuente</th>
-        <th>Fecha</th>
-        <th>Enlace</th>
-      </tr>
-    </thead>
-    <tbody>'''
-        for _, row in df.iterrows():
-            title = row['title']
-            source = row['source']
-            fecha = row['Fecha']
-            link = row['link']
-            html += f'''
-      <tr>
-        <td><strong>{title}</strong></td>
-        <td>{source}</td>
-        <td>{fecha}</td>
-        <td><a href="{link}" target="_blank">Abrir Enlace</a></td>
-      </tr>'''
-        html += '</tbody></table></div>'
-        return html
+    # ========================================================
+    # 新增需求 2 & 3：交互式表格（支持上下箭头排序、蓝色链接）
+    # ========================================================
+    # 将包含原网址的 link 列配置为蓝色的 LinkColumn。Streamlit 原生表格最稳定的做法是将具体跳转做成独立链接列。
+    
+    st.dataframe(
+        filtered_df[['title', 'source', 'date', 'link']],
+        column_config={
+            "title": st.column_config.TextColumn(
+                "Título (↕️ Clic para ordenar)", 
+                width="large"
+            ),
+            "source": st.column_config.TextColumn(
+                "Fuente (↕️)",
+                width="medium"
+            ),
+            "date": st.column_config.DatetimeColumn(
+                "Fecha (↕️)", 
+                format="DD-MM-YYYY",
+                width="small"
+            ),
+            "link": st.column_config.LinkColumn(
+                "Enlace de Noticia (Azul)", 
+                display_text="Abrir Enlace 🔗", 
+                help="Haz clic para abrir en una nueva pestaña"
+            )
+        },
+        hide_index=True,
+        use_container_width=True
+    )
 
-    st.markdown(render_results_html(filtered_df), unsafe_allow_html=True)
-
-    # Lógica para el archivo HTML descargable
+    # ========================================================
+    # 导出下载的 HTML 逻辑 (保持你的原有代码)
+    # ========================================================
     def generate_html(df):
         html_content = '''<!DOCTYPE html>
 <html lang="es">
@@ -224,11 +267,12 @@ if st.session_state.all_data:
     </thead>
     <tbody>'''
         for _, row in df.iterrows():
+            f_date = row['date'].strftime('%d-%m-%Y') if pd.notnull(row['date']) else 'Desconocida'
             html_content += f'''
       <tr>
         <td><strong>{row['title']}</strong></td>
         <td>{row['source']}</td>
-        <td>{row['Fecha']}</td>
+        <td>{f_date}</td>
         <td><a href="{row['link']}" target="_blank">Ver Noticia</a></td>
       </tr>'''
         html_content += '</tbody></table></body></html>'
