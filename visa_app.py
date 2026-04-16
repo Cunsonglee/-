@@ -152,7 +152,7 @@ if st.session_state.all_data:
             items=[
                 sac.SegmentedItem(label='Pais tenemos', icon='check-circle'),
                 sac.SegmentedItem(label='Pais pendiente', icon='question-circle'),
-            ], align='start', variant='outline', use_container_width=True, color='blue'
+            ], align='start', use_container_width=True,'
         )
 
     with top_col2:
