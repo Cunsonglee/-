@@ -600,40 +600,67 @@ def parse_items_from_html(html, base_url):
     return []
 
 def scrape_website(url):
-    try:
-        if 'business-standard.com/search' in url:
-            all_bs_posts = []
-            
-            # 【核心破解】伪装成 Google 官方的爬虫 (Googlebot)
-            # 新闻网站通常会给 Googlebot 开设防火墙白名单
-            bot_headers = {
-                'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                'Referer': 'https://www.google.com/'
+    # --- 针对 Business Standard 的深度伪装翻页逻辑 ---
+    if 'business-standard.com/search' in url:
+        all_bs_posts = []
+        # 创建一个持续的会话，模拟真实浏览器
+        scraper = cloudscraper.create_scraper(
+            browser={
+                'browser': 'chrome',
+                'platform': 'windows',
+                'desktop': True
             }
+        )
+        
+        for p in range(1, 11): 
+            page_url = f"{url}&p={p}"
+            print(f"  -> Business Standard: 正在获取第 {p} 页数据...")
             
-            for p in range(1, 11): 
-                page_url = f"{url}&p={p}"
-                print(f"  -> Business Standard: 正在获取第 {p} 页数据...")
+            try:
+                # 使用更像真实 Chrome 的请求头
+                headers = {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+                    'Accept-Language': 'en-US,en;q=0.9',
+                    'Referer': 'https://www.google.com/'
+                }
                 
-                # 第一步：用 requests 带着 Google 身份证去敲门
-                response = requests.get(page_url, headers=bot_headers, timeout=20)
-                
-                # 第二步：如果被严格的反爬墙识破了(403)，再让 cloudscraper 套上 Google 的外衣硬闯
-                if response.status_code in [403, 1020, 503]:
-                    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
-                    response = scraper.get(page_url, headers=bot_headers, timeout=25)
+                response = scraper.get(page_url, headers=headers, timeout=25)
                 
                 if response.status_code == 200:
                     page_posts = parse_business_standard(response.text, url)
-                    if not page_posts: 
-                        break 
+                    if not page_posts:
+                        print(f"  -> 第 {p} 页没有内容，停止抓取。")
+                        break
                     all_bs_posts.extend(page_posts)
                 else:
                     print(f"  -> ⚠️ Business Standard 依然被拦截，状态码: {response.status_code}")
-                    break
-                time.sleep(2) # 停顿 2 秒，防止触发网站的访问频率限制
-            return all_bs_posts
+                    # 如果被拦截，尝试停顿更久一点
+                    time.sleep(5)
+                    
+            except Exception as e:
+                print(f"  -> 请求第 {p} 页出错: {e}")
+                
+            time.sleep(2) # 增加延迟，防止触发频率限制
+        return all_bs_posts
+
+    # --- 其他网站的抓取逻辑 (保持不变) ---
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+        try:
+            res = requests.get(url, headers=headers, timeout=15)
+            res.raise_for_status()
+            html = res.text
+        except:
+            scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
+            res = scraper.get(url, timeout=25)
+            html = res.text
+            
+        return parse_items_from_html(html, url)
+        
+    except Exception as e:
+        print(f"抓取失败 {url}: {e}")
+        return []
 
         # --- 其他网站的抓取逻辑保持不变 ---
         headers = {
