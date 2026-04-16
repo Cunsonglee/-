@@ -3,7 +3,6 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 import pandas as pd
-from deep_translator import GoogleTranslator
 import streamlit_antd_components as sac
 import re
 from urllib.parse import urlparse
@@ -12,7 +11,7 @@ import json
 import time
 
 # ==========================================
-# 1. 配置国家列表 (请在这里添加你的所有国家)
+# 1. 基础国家列表 (标准名称)
 # ==========================================
 COUNTRY_LIST = [
     "Angola", "Armenia", "Australia", "Azerbaijan", "Benin", "Bahrain", 
@@ -24,6 +23,38 @@ COUNTRY_LIST = [
     "Thailand", "Turkey", "Tanzania", "Uganda", "USA", "Vietnam", 
     "Zambia", "Zimbabwe"
 ]
+
+# ==========================================
+# 2. 国家别名/变体字典 (兼容不同叫法和语言)
+# ==========================================
+COUNTRY_ALIASES = {
+    "South Korea": ["Korea", "Corea", "Corea del Sur", "ROK"],
+    "United Kingdom": ["UK", "U.K.", "Britain", "England", "Reino Unido"],
+    "USA": ["US", "U.S.", "United States", "America", "Estados Unidos", "EEUU", "EE.UU."],
+    "Ivory Coast": ["Cote d'Ivoire", "Côte d'Ivoire", "Costa de Marfil"],
+    "Saudi Arabia": ["Saudi", "Arabia Saudí", "Arabia Saudita"],
+    "Dominican Republic": ["Republica Dominicana", "República Dominicana"],
+    "New Zealand": ["Nueva Zelanda", "New Zealand's"],
+    "Turkey": ["Turkiye", "Türkiye", "Turquia", "Turquía"],
+    "Vietnam": ["Viet Nam", "Viet-nam"],
+    "Egypt": ["Egipto"],
+    "Thailand": ["Tailandia"],
+    "Singapore": ["Singapur"],
+    "Cambodia": ["Camboya"],
+    "Kenya": ["Kenia"],
+    "Bahrain": ["Baréin"],
+    "Azerbaijan": ["Azerbaiyán"]
+}
+
+# --- 智能生成匹配词库 ---
+ALL_MATCH_WORDS = []
+for c in COUNTRY_LIST:
+    ALL_MATCH_WORDS.append(re.sub(r'[^\w\s]', ' ', c.lower()).strip())
+    if c in COUNTRY_ALIASES:
+        for alias in COUNTRY_ALIASES[c]:
+            ALL_MATCH_WORDS.append(re.sub(r'[^\w\s]', ' ', alias.lower()).strip())
+ALL_MATCH_WORDS = list(set(ALL_MATCH_WORDS)) # 去重
+
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
     'Accept-Language': 'en-US,en;q=0.9',
@@ -124,47 +155,40 @@ if st.session_state.all_data:
     # 格式化显示的日期，处理 NaT 为 Desconocida
     df['Fecha'] = df['date'].dt.strftime('%d-%m-%Y').fillna('Desconocida')
 
-    # --- 顶部分类与翻译 ---
-    top_col1, top_col2 = st.columns([2, 1])
-    
-    with top_col1:
-        st.write("**Filtro de País:**")
-        # 修复了报错，去掉了不支持的 variant 和 color
-        category = sac.segmented(
-            items=[
-                sac.SegmentedItem(label='Pais tenemos', icon='check-circle'),
-                sac.SegmentedItem(label='Pais pendiente', icon='question-circle'),
-            ], align='start', use_container_width=True
-        )
+    # ==========================================
+    # 顶部：三段式分类按钮 (Total / Tenemos / Pendiente)
+    # ==========================================
+    st.write("**Filtro de País:**")
+    category = sac.segmented(
+        items=[
+            sac.SegmentedItem(label='Total', icon='globe'),
+            sac.SegmentedItem(label='Pais tenemos', icon='check-circle'),
+            sac.SegmentedItem(label='Pais pendiente', icon='question-circle'),
+        ], align='center', use_container_width=True
+    )
 
-    with top_col2:
-        st.write("**Google Traductor:**")
-        lang_options = {"Original": None, "Spanish": "es", "English": "en", "Chinese": "zh-CN"}
-        target_lang_name = st.selectbox("Seleccionar Idioma", list(lang_options.keys()), label_visibility="collapsed")
-        
-        if target_lang_name != "Original":
-            if st.button("🔄 Traducir Títulos Ahora", use_container_width=True):
-                with st.spinner('Traduciendo con Google...'):
-                    target_code = lang_options[target_lang_name]
-                    df['title'] = df['title'].apply(
-                        lambda x: GoogleTranslator(source='auto', target=target_code).translate(str(x)) if pd.notna(x) else x
-                    )
-
-    # 分类逻辑
+    # 智能匹配逻辑
     def check_country(title):
         if not isinstance(title, str): return False
-        return any(c.lower() in title.lower() for c in COUNTRY_LIST)
+        clean_title = f" {re.sub(r'[^\w\s]', ' ', title.lower())} "
+        for keyword in ALL_MATCH_WORDS:
+            if f" {keyword} " in clean_title:
+                return True
+        return False
 
     df['has_country'] = df['title'].apply(check_country)
     
-    if category == 'Pais tenemos':
+    # 根据按钮选择过滤数据
+    if category == 'Total':
+        filtered_df = df.copy()
+    elif category == 'Pais tenemos':
         filtered_df = df[df['has_country'] == True].copy()
     else:
         filtered_df = df[df['has_country'] == False].copy()
 
     # 原有侧边栏过滤逻辑
     st.markdown("---")
-    st.subheader(f"Resultados de Búsqueda ({len(filtered_df)} artículos)")
+    st.subheader(f"Resultados de Búsqueda ({len(filtered_df)} artículos en {category})")
     
     col_f1, col_f2, col_f3 = st.columns(3)
     with col_f1:
@@ -189,7 +213,7 @@ if st.session_state.all_data:
         filtered_df = filtered_df[(filtered_df['date'] >= start_dt) & (filtered_df['date'] <= end_dt)]
 
     # ==========================================
-    # 完美恢复：visa_app(5) 的 HTML 渲染风格 + 蓝色可点击 Fuente
+    # HTML 渲染风格 + 蓝色可点击 Fuente
     # ==========================================
     def render_results_html(df):
         html = '''<div>
@@ -300,7 +324,7 @@ if st.session_state.all_data:
         st.download_button(
             label=f"📥 Descargar {len(download_df)} resultados",
             data=html_data,
-            file_name="visa_news_filtradas.html",
+            file_name=f"visa_news_{category.lower().replace(' ', '_')}.html",
             mime="text/html",
             type="primary"
         )
