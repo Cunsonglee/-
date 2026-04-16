@@ -265,8 +265,8 @@ if st.session_state.all_data:
     def format_country_search_minimal(country):
         """只附加 1 到 2 个核心缩写，兼顾极简美观与强大的快捷搜索"""
         if country in COUNTRY_ALIASES and COUNTRY_ALIASES[country]:
-            # 切片 [:2] 表示只拿字典里排在最前面的 2 个核心别名（比如 UK, US, NZ）
-            aliases = COUNTRY_ALIASES[country][:2]
+            # 切片 [:2] 表示只拿字典里排在最前面的 1 个核心别名（比如 UK, US, NZ）
+            aliases = COUNTRY_ALIASES[country][:1]
             return f"{country} [{', '.join(aliases)}]"
         return country
 
