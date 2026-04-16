@@ -76,7 +76,33 @@ COUNTRY_ALIASES = {
     "Zimbabwe": ["Zimbabue", "Zimbabwean", "Zimbabuense"],
     "Angola": ["Angolan", "Angoleño"],
     "Benin": ["Benín", "Beninese"],
-    "Guinea": ["Guinean", "Guineano"]
+    "Guinea": ["Guinean", "Guineano"],
+
+"United Kingdom": [
+        # 核心称呼与国籍 (包含西语)
+        "UK", "U.K.", "Britain", "Great Britain", "British", "Reino Unido", "Británico", "Británica",
+        
+        # 四大构成国 (Constituent Countries)
+        "England", "Inglaterra", "English", "Inglés", 
+        "Scotland", "Escocia", "Scottish", "Escocés",
+        "Wales", "Gales", "Welsh", "Galés",
+        "Northern Ireland", "Irlanda del Norte",
+        
+        # 皇家属地 (Crown Dependencies)
+        "Isle of Man", "Isla de Man", "Jersey", "Guernsey",
+        
+        # 主要海外领土 (Overseas Territories)
+        "Bermuda", "Bermudas", 
+        "Cayman Islands", "Islas Caimán", "Cayman",
+        "British Virgin Islands", "BVI", "Islas Vírgenes Británicas",
+        "Gibraltar", 
+        "Turks and Caicos", "Islas Turcas y Caicos",
+        "Falkland Islands", "Islas Malvinas", "Falklands",
+        "Anguilla", "Anguila",
+        "Montserrat",
+        "Pitcairn", "Pitcairn Islands", "Islas Pitcairn",
+        "Saint Helena", "Santa Elena", "Ascension", "Tristan da Cunha"]
+    
 }
 
 # --- 智能生成匹配词库 ---
