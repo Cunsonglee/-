@@ -524,38 +524,39 @@ def parse_business_standard(html, base_url):
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
 # ==========================================
-# 新增：Economic Times Travel 解析器
+# 更新版：Economic Times Travel 解析器 (隐身+暴力搜索)
 # ==========================================
 def parse_et_travel(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
-    # ET Travel 的新闻通常是一个链接包着整个块
     links = soup.find_all('a', href=True)
     out = []
     
-    import requests
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+    # 【核心改动】在内页也启用隐身武器 cloudscraper
+    import cloudscraper
+    inner_scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
     
     for a in links:
-        # 只找里面包含 h2 或 h3 标题的链接
         h = a.find(['h2', 'h3'])
         if not h:
             continue
             
         title = h.get_text().strip()
-        if len(title) < 15: # 过滤掉太短的无关链接
+        if len(title) < 15: 
             continue
             
         link = absolute_url(a['href'], base_url)
         if '/news/' not in link and '/blog/' not in link:
-            continue # 确保是新闻或博客文章
+            continue
             
-        # 列表没有日期，进入内页找隐藏的 Meta 数据
         date = None
         date_text = ''
         try:
-            inner_res = requests.get(link, headers=headers, timeout=10)
+            # 使用隐身模式访问内页
+            inner_res = inner_scraper.get(link, timeout=10)
             if inner_res.status_code == 200:
                 inner_soup = BeautifulSoup(inner_res.text, 'html.parser')
+                
+                # 第一层：优先找底层的 Meta 时间
                 meta_tags = [
                     inner_soup.select_one('meta[property="article:published_time"]'),
                     inner_soup.select_one('meta[name="pubdate"]'),
@@ -565,14 +566,21 @@ def parse_et_travel(html, base_url):
                     if meta and meta.get('content'):
                         iso_str = meta.get('content')
                         try:
-                            # 提取 2026-04-15
                             date_part = iso_str.split('T')[0].split(' ')[0]
                             date = datetime.fromisoformat(date_part)
                             date_text = date.strftime('%B %d, %Y')
                             break
                         except: pass
+                
+                # 第二层：如果 Meta 没写，就在整个网页文字里暴力提取 "Apr 14, 2026"
+                if not date:
+                    m_text = re.search(r'([A-Za-z]{3,})\s+(\d{1,2}),\s*(\d{4})', inner_res.text)
+                    if m_text:
+                        date_text = f"{m_text.group(1)} {m_text.group(2)}, {m_text.group(3)}"
+                        date = parse_month_day_year(date_text)
+                        
         except Exception as e:
-            print(f"无法访问 ET Travel 内页 {link}: {e}")
+            pass # 即使失败也不报错，继续抓取下一条
             
         if title and link:
             out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text or '—', 'source': 'et-travel'})
@@ -597,32 +605,46 @@ def parse_items_from_html(html, base_url):
     if 'economictimes.indiatimes.com' in host: return parse_et_travel(html, base_url)
     return []
 
+# Function to scrape a website using robust fallback logic
 def scrape_website(url):
     try:
-        # 第一步：先用普通的 requests 尝试访问（速度最快，网络最稳）
+        import requests
+        # 【白金级升级】完美模拟最新版 Chrome 浏览器的所有请求头
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9,es;q=0.8',
+            'Sec-Ch-Ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+            'Sec-Ch-Ua-Mobile': '?0',
+            'Sec-Ch-Ua-Platform': '"Windows"',
+            'Upgrade-Insecure-Requests': '1',
+            'Cache-Control': 'max-age=0'
         }
-        response = requests.get(url, headers=headers, timeout=15)
         
-        # 第二步：智能判断。如果被防火墙拦截 (403)，就自动切换到隐身武器 cloudscraper
-        if response.status_code == 403:
-            # print(f"[{url}] 遇到防火墙，正在启动隐身模式...")
+        html = None
+        try:
+            # 优先用带完美伪装头的 requests 访问（这对付 Business Standard 很有用）
+            response = requests.get(url, headers=headers, timeout=15)
+            response.raise_for_status() 
+            html = response.text
+            
+        except Exception as e:
+            # 如果依然失败，启动隐身武器 cloudscraper 作为最终防线
+            import cloudscraper
             scraper = cloudscraper.create_scraper(
                 browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True}
             )
             response = scraper.get(url, timeout=25)
+            response.raise_for_status()
+            html = response.text
             
-        # 如果返回其他致命错误，触发异常
-        response.raise_for_status()
-        
-        # 第三步：成功拿到网页，交给解析器处理
-        html = response.text
-        posts = parse_items_from_html(html, url)
-        return posts
+        if html:
+            posts = parse_items_from_html(html, url)
+            return posts
+        else:
+            return []
         
     except Exception as e:
-        # 如果依然失败，打印错误，但不让程序崩溃
         print(f"抓取失败 {url}: {e}")
         return []
 
