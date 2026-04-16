@@ -486,19 +486,13 @@ def parse_visamundi(html, base_url):
 # ==========================================
 def parse_business_standard(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
-    # 锁定每一条新闻的最外层大盒子
+    # 锁定 cardlist 区块
     items = soup.select('div.cardlist') 
     out = []
     
-    # 备用：如果以后需要进内页补全日期
-    import cloudscraper
-    inner_scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
-    
     for n in items:
-        # 1. 提取标题和链接 (a.smallcard-title)
         a = n.select_one('a.smallcard-title')
-        if not a:
-            continue
+        if not a: continue
             
         title = a.get_text().strip()
         link = absolute_url(a.get('href'), base_url)
@@ -506,50 +500,25 @@ def parse_business_standard(html, base_url):
         date = None
         date_text = ''
         
-        # 2. 【核心改动】精准定位你提供的 Updated On 标签
-        # 查找类名包含 'listingstyle_updtText' 的 span
+        # 精准提取你提供的 Updated On 标签内容
         date_el = n.select_one('span[class*="listingstyle_updtText"]')
-        
         if date_el:
-            # 拿到里面的文本，例如 "Updated On : 15 Apr 2026 | 2:41 PM IST"
             raw_text = date_el.get_text().strip()
-            # 正则匹配：找到数字 + 月份 + 年份 (例如 15 Apr 2026)
+            # 正则匹配 16 Apr 2026
             m = re.search(r'(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})', raw_text)
             if m:
                 try:
                     day = int(m.group(1))
-                    month_str = m.group(2).lower()[:3]
+                    mon_str = m.group(2).lower()[:3]
                     year = int(m.group(3))
-                    if month_str in MONTHS:
-                        date = datetime(year, MONTHS[month_str] + 1, day)
+                    if mon_str in MONTHS:
+                        date = datetime(year, MONTHS[mon_str] + 1, day)
                         date_text = date.strftime('%B %d, %Y')
                 except: pass
 
-        # 3. 补丁：如果 HTML 里确实没写日期，才点进内页补全（双重保险）
-        if not date:
-            try:
-                # 打印提示，方便调试
-                print(f"  -> 首页未发现日期，进入内页提取: {title[:20]}...")
-                inner_res = inner_scraper.get(link, timeout=10)
-                if inner_res.status_code == 200:
-                    # 匹配内页源代码中的 datePublished 标签
-                    m_json = re.search(r'"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})', inner_res.text)
-                    if m_json:
-                        date = datetime.fromisoformat(m_json.group(1))
-                        date_text = date.strftime('%B %d, %Y')
-            except: pass
-
-        # 只要能提取到日期，就加入结果
-        if title and link and date:
-            out.append({
-                'title': title, 
-                'link': link, 
-                'date': date, 
-                'date_text': date_text, 
-                'source': 'business-standard'
-            })
+        if title and link:
+            out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text or '—', 'source': 'business-standard'})
             
-    # 去重
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
@@ -648,39 +617,49 @@ def parse_items_from_html(html, base_url):
 # Function to scrape a website using robust fallback logic
 def scrape_website(url):
     try:
-        import requests
-        # 【白金级升级】完美模拟最新版 Chrome 浏览器的所有请求头
+        # --- 对正 1：专门针对 Business Standard 的多页翻页逻辑 ---
+        # 只有 URL 匹配时才会执行这段
+        if 'business-standard.com/search' in url:
+            all_bs_posts = []
+            # 模拟“点击加载更多”：通过修改 URL 参数 p（1到10页）
+            for p in range(1, 11): 
+                page_url = f"{url}&p={p}"
+                print(f"  -> Business Standard: 正在获取第 {p} 页数据...")
+                
+                # 使用隐身模式，防止被反爬拦截
+                scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
+                response = scraper.get(page_url, timeout=20)
+                
+                if response.status_code == 200:
+                    # 调用我们写好的精准解析器
+                    page_posts = parse_business_standard(response.text, url)
+                    if not page_posts: 
+                        break # 如果这一页没内容了，就不用再抓下一页了
+                    all_bs_posts.extend(page_posts)
+                time.sleep(1) # 礼貌性停顿，防止 Streamlit 被封
+            return all_bs_posts
+
+        # --- 对正 2：其他所有网站（原样保留，互不干扰） ---
+        # 默认的浏览器伪装头
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.9,es;q=0.8',
-            'Sec-Ch-Ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
-            'Sec-Ch-Ua-Mobile': '?0',
-            'Sec-Ch-Ua-Platform': '"Windows"',
-            'Upgrade-Insecure-Requests': '1',
-            'Cache-Control': 'max-age=0'
         }
         
         html = None
         try:
-            # 优先用带完美伪装头的 requests 访问（这对付 Business Standard 很有用）
+            # 方案 A：普通请求
             response = requests.get(url, headers=headers, timeout=15)
             response.raise_for_status() 
             html = response.text
-            
-        except Exception as e:
-            # 如果依然失败，启动隐身武器 cloudscraper 作为最终防线
-            import cloudscraper
-            scraper = cloudscraper.create_scraper(
-                browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True}
-            )
+        except:
+            # 方案 B：隐身请求 (应对 403 或 101 错误)
+            scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
             response = scraper.get(url, timeout=25)
-            response.raise_for_status()
             html = response.text
             
         if html:
-            posts = parse_items_from_html(html, url)
-            return posts
+            # 根据 URL 自动分发给不同的解析函数（如 parse_vne, parse_et_travel 等）
+            return parse_items_from_html(html, url)
         else:
             return []
         
