@@ -15,15 +15,15 @@ import time
 # 1. 配置国家列表 (请在这里添加你的所有国家)
 # ==========================================
 COUNTRY_LIST = [
-    "China", "India", "Thailand", "Vietnam", "Spain", "France", 
-    "USA", "United Kingdom", "Japan", "South Korea", "Italy", "Germany",
-    "Colombia", "Mexico", "Brazil", "Argentina", "Chile", "Peru",
-    "Ecuador", "Venezuela", "Uruguay", "Paraguay", "Bolivia",
-    "Morocco", "Egypt", "South Africa", "Nigeria", "Kenya",
-    "Australia", "New Zealand", "Canada"
-    # 你可以继续在下面加引号和逗号来添加更多国家...
+    "Angola", "Armenia", "Australia", "Azerbaijan", "Benin", "Bahrain", 
+    "Canada", "Ivory Coast", "Colombia", "Cuba", "Djibouti", "Dominican Republic", 
+    "Egypt", "Ethiopia", "United Kingdom", "Guinea", "Indonesia", "India", 
+    "Kenya", "Cambodia", "South Korea", "Kuwait", "Laos", "Sri Lanka", 
+    "Madagascar", "Mexico", "Myanmar", "Nepal", "New Zealand", "Oman", 
+    "Papua New Guinea", "Puerto Rico", "Rwanda", "Saudi Arabia", "Singapore", 
+    "Thailand", "Turkey", "Tanzania", "Uganda", "USA", "Vietnam", 
+    "Zambia", "Zimbabwe"
 ]
-
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
     'Accept-Language': 'en-US,en;q=0.9',
