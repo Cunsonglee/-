@@ -486,7 +486,6 @@ def parse_visamundi(html, base_url):
 # ==========================================
 def parse_business_standard(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
-    # 锁定每一条新闻的容器
     items = soup.select('div.cardlist') 
     out = []
     
@@ -494,76 +493,61 @@ def parse_business_standard(html, base_url):
     inner_scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
     
     for n in items:
-        # 获取标题标签
         a = n.select_one('a.smallcard-title')
         if not a: continue
             
         title = a.get_text().strip()
         link = absolute_url(a.get('href'), base_url)
-        
         date = None
         date_text = ''
         
-        # 1. 尝试从列表页直接提取日期 (例如: 15 Apr 2026)
+        # 1. 尝试从首页直接拿
         date_el = n.select_one('.updt-on')
         if date_el:
             raw = date_el.get_text().strip()
-            # 这里的正则很宽容，只要有 "数字+月份+数字" 就会抓取
             m = re.search(r'(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})', raw)
             if m:
-                day = int(m.group(1))
-                month_str = m.group(2).lower()[:3]
-                year = int(m.group(3))
-                if month_str in MONTHS:
-                    month = MONTHS[month_str] + 1
-                    try:
-                        date = datetime(year, month, day)
+                try:
+                    day = int(m.group(1))
+                    month_str = m.group(2).lower()[:3]
+                    year = int(m.group(3))
+                    if month_str in MONTHS:
+                        date = datetime(year, MONTHS[month_str] + 1, day)
                         date_text = date.strftime('%B %d, %Y')
-                    except: pass
-        
-        # 2. 如果首页匹配日期失败，100% 进入内页补全日期
+                except: pass
+
+        # 2. 如果首页失败，进内页用“源码扫描法”
         if not date:
             try:
-                # 提示信息，让你知道它在处理哪一条
-                print(f"  -> 正在进入内页抓取日期: {title[:30]}...")
+                print(f"  -> 深度扫描 Business Standard 内页: {title[:30]}...")
                 inner_res = inner_scraper.get(link, timeout=10)
                 if inner_res.status_code == 200:
-                    inner_soup = BeautifulSoup(inner_res.text, 'html.parser')
+                    # --- 方案 A: 扫描 JSON-LD 数据 (最准) ---
+                    m_json = re.search(r'"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})', inner_res.text)
+                    if m_json:
+                        date = datetime.fromisoformat(m_json.group(1))
+                        date_text = date.strftime('%B %d, %Y')
                     
-                    # 优先从 Meta 标签获取标准时间 (搜索引擎用的时间)
-                    meta_p = inner_soup.find("meta", property="article:published_time") or \
-                             inner_soup.find("meta", itemprop="datePublished") or \
-                             inner_soup.find("meta", name="publish-date")
-                             
-                    if meta_p and meta_p.get('content'):
-                        try:
-                            # 提取 2026-04-15 格式
-                            dt_str = meta_p.get('content').split('T')[0]
-                            date = datetime.fromisoformat(dt_str)
-                            date_text = date.strftime('%B %d, %Y')
-                        except: pass
-                    
-                    # 如果 Meta 还是没拿到，最后尝试搜索内页的文字日期
+                    # --- 方案 B: 暴力扫描全文日期文本 ---
                     if not date:
-                        inner_raw = inner_soup.get_text()
-                        m_inner = re.search(r'(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})', inner_raw)
-                        if m_inner:
-                            date_text = f"{m_inner.group(1)} {m_inner.group(2)}, {m_inner.group(3)}"
+                        # 找类似 "April 15, 2026" 或 "15 Apr 2026"
+                        m_txt = re.search(r'([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})', inner_res.text)
+                        if m_txt:
+                            date_text = f"{m_txt.group(1)} {m_txt.group(2)}, {m_txt.group(3)}"
                             date = parse_month_day_year(date_text)
-            except:
-                pass
+            except: pass
 
-        # 只要有标题和链接，就加入结果集（日期过滤由 main.py 统一处理）
-        if title and link:
+        # --- 关键：如果有了日期，才加入列表 ---
+        # 如果经过补全还是没日期，说明可能是极其陈旧的内容，或者访问失败，就跳过
+        if title and link and date:
             out.append({
                 'title': title, 
                 'link': link, 
                 'date': date, 
-                'date_text': date_text or '—', 
+                'date_text': date_text, 
                 'source': 'business-standard'
             })
             
-    # 去重
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
