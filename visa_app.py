@@ -40,7 +40,7 @@ websites = [
     "https://visasnews.com/en/europe-news/",
     "https://visasnews.com/en/oceania-news/",
     "https://visasnews.com/en/travel-news/",
-    "https://www.visamundi.co/es/blog/seccion/noticias/",
+    "https://www.visamundi.co/en/blog/",
     "https://e.vnexpress.net/news/travel/visa",
     "https://atta.travel/news.html?sortBy=recent&topic_categories=visa",
     "https://visadone.com/news/",
