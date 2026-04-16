@@ -469,57 +469,56 @@ def parse_visamundi(html, base_url):
     return out
 
 # ==========================================
-# 已修复：Business Standard 解析器 (正则模糊匹配防干扰)
+# 精准版：Business Standard 解析器 (仅屏蔽侧边栏，无关键词过滤)
 # ==========================================
-# ==========================================
-# 终极版：Business Standard (通过 Google News 绕过 403 防火墙)
-# ==========================================
-def parse_business_standard_via_google():
-    # 借助 Google News 搜索特定网站的 Visa 新闻，完美绕过屏蔽
-    url = "https://news.google.com/rss/search?q=site:business-standard.com+visa&hl=en-IN&gl=IN&ceid=IN:en"
-    out = []
-    try:
-        # Google 不会拦截云服务器，直接用普通 requests 即可
-        res = requests.get(url, timeout=15)
-        if res.status_code == 200:
-            # Google RSS 是 XML 格式
-            soup = BeautifulSoup(res.content, 'xml') 
-            items = soup.find_all('item')
-            for item in items:
-                title = item.title.text if item.title else ""
-                # 清除标题自带的后缀
-                title = title.replace(" - Business Standard", "").strip()
-                
-                link = item.link.text if item.link else ""
-                pubDate = item.pubDate.text if item.pubDate else ""
-                
-                date_obj = None
-                date_text = pubDate
-                if pubDate:
-                    # Google 的时间格式通常为: "Thu, 16 Apr 2026 10:26:00 GMT"
-                    m = re.search(r'(\d{1,2})\s+([A-Za-z]{3})\s+(\d{4})', pubDate)
-                    if m:
-                        try:
-                            day = int(m.group(1))
-                            mon_str = m.group(2).lower()
-                            year = int(m.group(3))
-                            if mon_str in MONTHS:
-                                date_obj = datetime(year, MONTHS[mon_str]+1, day)
-                                date_text = date_obj.strftime('%B %d, %Y')
-                        except:
-                            pass
-                
-                out.append({
-                    'title': title,
-                    'link': link,
-                    'date': date_obj,
-                    'date_text': date_text,
-                    'source': 'business-standard'
-                })
-    except Exception as e:
-        print(f"  -> Business Standard (Google RSS) 解析失败: {e}")
+def parse_business_standard(html, base_url):
+    from bs4 import BeautifulSoup
+    import re
+    from datetime import datetime
+    
+    soup = BeautifulSoup(html, 'html.parser')
+    
+    # 1. 【精准定位】只提取搜索结果的主体区域，过滤掉右侧边栏的"最新新闻"或"热门股票"
+    main_area = soup.find('div', role='tabpanel')
+    if not main_area:
+        main_area = soup  # 兜底：如果找不到 tabpanel，就在全文找
         
-    return out
+    # 2. 模糊匹配带有 cardlist 的块
+    items = main_area.find_all('div', class_=re.compile(r'cardlist')) 
+    out = []
+    
+    for n in items:
+        a = n.find('a', class_='smallcard-title')
+        if not a: 
+            continue
+            
+        title = a.get_text().strip()
+        link = absolute_url(a.get('href'), base_url)
+        
+        date = None
+        date_text = ''
+        
+        # 3. 提取日期
+        date_el = n.find('div', class_=re.compile(r'updt-on'))
+        if date_el:
+            raw_text = date_el.get_text(separator=' ').strip()
+            m = re.search(r'(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})', raw_text)
+            if m:
+                try:
+                    day = int(m.group(1))
+                    mon_str = m.group(2).lower()[:3]
+                    year = int(m.group(3))
+                    if mon_str in MONTHS:
+                        date = datetime(year, MONTHS[mon_str] + 1, day)
+                        date_text = date.strftime('%B %d, %Y')
+                except: 
+                    pass
+
+        if title and link:
+            out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text or '—', 'source': 'business-standard'})
+            
+    seen = set()
+    return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
 def parse_et_travel(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
@@ -603,9 +602,22 @@ def parse_items_from_html(html, base_url):
 def scrape_website(url):
     try:
         if 'business-standard.com/search?q=visa' in url:
-            print("  -> Business Standard: 检测到防火墙拦截(403)，启用 Google News 接口免拦截抓取...")
-            # 直接返回 Google 帮我们抓好的数据，不再傻等翻页
-            return parse_business_standard_via_google()
+            all_bs_posts = []
+            scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
+            for p in range(1, 11): 
+                page_url = f"{url}&p={p}"
+                print(f"  -> Business Standard: 正在获取第 {p} 页数据...")
+                response = scraper.get(page_url, timeout=20)
+                if response.status_code == 200:
+                    page_posts = parse_business_standard(response.text, url)
+                    if not page_posts: 
+                        break 
+                    all_bs_posts.extend(page_posts)
+                else:
+                    print(f"  -> ⚠️ Business Standard 状态码: {response.status_code}")
+                    break
+                time.sleep(1) 
+            return all_bs_posts
 
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
