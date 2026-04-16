@@ -526,37 +526,45 @@ def parse_business_standard(html, base_url):
 # ==========================================
 # 更新版：Economic Times Travel 解析器 (隐身+暴力搜索)
 # ==========================================
+# ==========================================
+# 更新版：Economic Times Travel 解析器 (带进度提示 + 速度限制)
+# ==========================================
 def parse_et_travel(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
     links = soup.find_all('a', href=True)
     out = []
     
-    # 【核心改动】在内页也启用隐身武器 cloudscraper
     import cloudscraper
     inner_scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
     
+    # 1. 先把符合条件的有效链接找出来
+    valid_links = []
     for a in links:
         h = a.find(['h2', 'h3'])
-        if not h:
-            continue
-            
+        if not h: continue
         title = h.get_text().strip()
-        if len(title) < 15: 
-            continue
-            
+        if len(title) < 15: continue
         link = absolute_url(a['href'], base_url)
-        if '/news/' not in link and '/blog/' not in link:
-            continue
+        if '/news/' in link or '/blog/' in link:
+            valid_links.append({'title': title, 'link': link})
             
+    # 2. 【核心优化】为了防止卡死，只抓取页面上最新的前 15 篇文章
+    valid_links = valid_links[:15]
+    
+    for item in valid_links:
+        title = item['title']
+        link = item['link']
         date = None
         date_text = ''
+        
+        # 3. 【进度提示】在黑窗口里打印它正在干嘛，你就知道它没卡住了！
+        print(f"  -> 正在抓取 ET Travel 内页日期: {title[:25]}...")
+        
         try:
-            # 使用隐身模式访问内页
             inner_res = inner_scraper.get(link, timeout=10)
             if inner_res.status_code == 200:
                 inner_soup = BeautifulSoup(inner_res.text, 'html.parser')
                 
-                # 第一层：优先找底层的 Meta 时间
                 meta_tags = [
                     inner_soup.select_one('meta[property="article:published_time"]'),
                     inner_soup.select_one('meta[name="pubdate"]'),
@@ -566,21 +574,25 @@ def parse_et_travel(html, base_url):
                     if meta and meta.get('content'):
                         iso_str = meta.get('content')
                         try:
+                            from datetime import datetime
                             date_part = iso_str.split('T')[0].split(' ')[0]
                             date = datetime.fromisoformat(date_part)
                             date_text = date.strftime('%B %d, %Y')
                             break
                         except: pass
                 
-                # 第二层：如果 Meta 没写，就在整个网页文字里暴力提取 "Apr 14, 2026"
                 if not date:
+                    import re
                     m_text = re.search(r'([A-Za-z]{3,})\s+(\d{1,2}),\s*(\d{4})', inner_res.text)
                     if m_text:
                         date_text = f"{m_text.group(1)} {m_text.group(2)}, {m_text.group(3)}"
-                        date = parse_month_day_year(date_text)
+                        # 如果你有 parse_month_day_year 函数的话
+                        try:
+                            date = parse_month_day_year(date_text)
+                        except: pass
                         
         except Exception as e:
-            pass # 即使失败也不报错，继续抓取下一条
+            pass # 即使某条失败了也不报错，跳过继续下一条
             
         if title and link:
             out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text or '—', 'source': 'et-travel'})
