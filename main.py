@@ -484,31 +484,35 @@ def parse_visamundi(html, base_url):
 # ==========================================
 # 新增：Business Standard 解析器
 # ==========================================
+# ==========================================
+# 修正版：Business Standard 解析器 (无视随机乱码 class)
+# ==========================================
 def parse_business_standard(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
-    items = soup.select('.cardlist')
+    # 找 class 里包含 cardlist 的大区块
+    items = soup.select('div.cardlist') 
     out = []
     
     for n in items:
-        # 找标题和链接 (h2 或 h3 里面的 a 标签)
-        a = n.select_one('.listingstyle_image_title__TE0P3 a')
+        # 【修改】无视乱码，直接找稳定的 a.smallcard-title 标签
+        a = n.select_one('a.smallcard-title')
         if not a:
             continue
             
         title = a.get_text().strip()
         link = absolute_url(a.get('href'), base_url)
         
-        # 提取日期 (例如 "Updated On : 15 Apr 2026")
         date = None
         date_text = ''
-        date_el = n.select_one('.listingstyle_timestmp__VSJNW')
+        # 【修改】无视乱码，找稳定的 .updt-on 日期标签
+        date_el = n.select_one('.updt-on')
         if date_el:
             raw = date_el.get_text().strip()
-            # 用正则精准抓取 日、月、年
+            # 提取例如 "Updated On : 15 Apr 2026"
             m = re.search(r'(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})', raw)
             if m:
                 day = int(m.group(1))
-                month_str = m.group(2).lower()[:3] # 取前三个字母比如 apr
+                month_str = m.group(2).lower()[:3]
                 year = int(m.group(3))
                 if month_str in MONTHS:
                     month = MONTHS[month_str] + 1
@@ -523,11 +527,9 @@ def parse_business_standard(html, base_url):
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
+
 # ==========================================
-# 更新版：Economic Times Travel 解析器 (隐身+暴力搜索)
-# ==========================================
-# ==========================================
-# 更新版：Economic Times Travel 解析器 (带进度提示 + 速度限制)
+# 修正版：Economic Times Travel 解析器 (精准锁定 author-section)
 # ==========================================
 def parse_et_travel(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
@@ -537,7 +539,6 @@ def parse_et_travel(html, base_url):
     import cloudscraper
     inner_scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
     
-    # 1. 先把符合条件的有效链接找出来
     valid_links = []
     for a in links:
         h = a.find(['h2', 'h3'])
@@ -548,8 +549,7 @@ def parse_et_travel(html, base_url):
         if '/news/' in link or '/blog/' in link:
             valid_links.append({'title': title, 'link': link})
             
-    # 2. 【核心优化】为了防止卡死，只抓取页面上最新的前 15 篇文章
-    valid_links = valid_links[:15]
+    valid_links = valid_links[:15] # 限制前15条防卡死
     
     for item in valid_links:
         title = item['title']
@@ -557,7 +557,6 @@ def parse_et_travel(html, base_url):
         date = None
         date_text = ''
         
-        # 3. 【进度提示】在黑窗口里打印它正在干嘛，你就知道它没卡住了！
         print(f"  -> 正在抓取 ET Travel 内页日期: {title[:25]}...")
         
         try:
@@ -565,34 +564,38 @@ def parse_et_travel(html, base_url):
             if inner_res.status_code == 200:
                 inner_soup = BeautifulSoup(inner_res.text, 'html.parser')
                 
-                meta_tags = [
-                    inner_soup.select_one('meta[property="article:published_time"]'),
-                    inner_soup.select_one('meta[name="pubdate"]'),
-                    inner_soup.select_one('meta[itemprop="datePublished"]')
-                ]
-                for meta in meta_tags:
-                    if meta and meta.get('content'):
-                        iso_str = meta.get('content')
-                        try:
-                            from datetime import datetime
-                            date_part = iso_str.split('T')[0].split(' ')[0]
-                            date = datetime.fromisoformat(date_part)
-                            date_text = date.strftime('%B %d, %Y')
-                            break
-                        except: pass
-                
-                if not date:
+                # 【新增】第一优先级：直接去你说的 author-section 里抓 Published On
+                author_section = inner_soup.select_one('.author-section') or inner_soup.select_one('.article-publish-date')
+                if author_section:
+                    raw_text = author_section.get_text(separator=' ').strip()
                     import re
-                    m_text = re.search(r'([A-Za-z]{3,})\s+(\d{1,2}),\s*(\d{4})', inner_res.text)
-                    if m_text:
-                        date_text = f"{m_text.group(1)} {m_text.group(2)}, {m_text.group(3)}"
-                        # 如果你有 parse_month_day_year 函数的话
-                        try:
-                            date = parse_month_day_year(date_text)
-                        except: pass
-                        
+                    # 匹配 "Published On Mar 27, 2026"
+                    m_auth = re.search(r'(?:Published|Updated)\s*On\s*([A-Za-z]{3,})\s+(\d{1,2}),\s*(\d{4})', raw_text, re.IGNORECASE)
+                    if m_auth:
+                        date_text = f"{m_auth.group(1).capitalize()} {m_auth.group(2)}, {m_auth.group(3)}"
+                        # 解析为标准格式
+                        date = parse_month_day_year(date_text)
+                
+                # 第二优先级：如果页面排版变了，用 Meta 标签兜底
+                if not date:
+                    meta_tags = [
+                        inner_soup.select_one('meta[property="article:published_time"]'),
+                        inner_soup.select_one('meta[name="pubdate"]'),
+                        inner_soup.select_one('meta[itemprop="datePublished"]')
+                    ]
+                    for meta in meta_tags:
+                        if meta and meta.get('content'):
+                            iso_str = meta.get('content')
+                            try:
+                                from datetime import datetime
+                                date_part = iso_str.split('T')[0].split(' ')[0]
+                                date = datetime.fromisoformat(date_part)
+                                date_text = date.strftime('%B %d, %Y')
+                                break
+                            except: pass
+                            
         except Exception as e:
-            pass # 即使某条失败了也不报错，跳过继续下一条
+            pass
             
         if title and link:
             out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text or '—', 'source': 'et-travel'})
