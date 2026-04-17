@@ -205,8 +205,8 @@ def load_saved_data():
             return data
     except Exception:
         return []
-def get_github_file_update_time():
-    """通过 GitHub API 获取 visa_data.json 的最后提交时间"""
+def get_last_action_run_time():
+    """通过 GitHub API 获取最后一次 Action 成功运行结束的时间"""
     try:
         token = st.secrets.get("GITHUB_TOKEN")
         repo = st.secrets.get("GITHUB_REPO")
@@ -214,7 +214,8 @@ def get_github_file_update_time():
         if not repo:
             return "Desconocida (Repo no configurado)"
             
-        url = f"https://api.github.com/repos/{repo}/commits?path=visa_data.json&page=1&per_page=1"
+        # 抓取最近一次处于 'completed'（已完成）状态的工作流记录
+        url = f"https://api.github.com/repos/{repo}/actions/runs?status=completed&per_page=1"
         headers = {"Accept": "application/vnd.github.v3+json"}
         if token:
             headers["Authorization"] = f"token {token}"
@@ -222,13 +223,16 @@ def get_github_file_update_time():
         res = requests.get(url, headers=headers, timeout=5)
         if res.status_code == 200:
             data = res.json()
-            if data:
-                # 获取的是 UTC 时间 (ISO 8601 格式)
-                commit_date_str = data[0]['commit']['committer']['date']
-                dt_utc = datetime.strptime(commit_date_str, "%Y-%m-%dT%H:%M:%SZ")
-                # 你的截图显示你是 GMT+2 时区，这里自动加上两小时以便与你的本地时间一致
-                dt_local = dt_utc + timedelta(hours=2) 
-                return dt_local.strftime('%d-%m-%Y %H:%M:%S (GMT+2)')
+            if data and "workflow_runs" in data and len(data["workflow_runs"]) > 0:
+                last_run = data["workflow_runs"][0]
+                # updated_at 代表该工作流跑完（状态变更为 completed）的时间
+                finished_at_str = last_run.get('updated_at')
+                
+                if finished_at_str:
+                    dt_utc = datetime.strptime(finished_at_str, "%Y-%m-%dT%H:%M:%SZ")
+                    # 加上 2 小时适配你的 GMT+2 时区
+                    dt_local = dt_utc + timedelta(hours=2) 
+                    return dt_local.strftime('%d-%m-%Y %H:%M:%S (GMT+2)')
         return "Desconocida"
     except Exception as e:
         return "Desconocida"
@@ -239,8 +243,8 @@ st.set_page_config(page_title="Asistente de Visados Pro", layout="wide")
 st.title("🌍 Extracción de noticias de visado")
 
 # [新增]：在标题正下方显示 GitHub 上数据的最后更新时间
-last_update_time = get_github_file_update_time()
-st.markdown(f"<p style='color: #666; font-size: 14px; margin-top: -15px;'>🕒 Última actualización de datos (GitHub): <b>{last_update_time}</b></p>", unsafe_allow_html=True)
+last_run_time = get_last_action_run_time()
+st.markdown(f"<p style='color: #666; font-size: 14px; margin-top: -15px;'>🕒 Última ejecución del Scraper: <b>{last_run_time}</b></p>", unsafe_allow_html=True)
 
 if 'all_data' not in st.session_state:
     st.session_state.all_data = load_saved_data()
