@@ -728,4 +728,4 @@ def main(days=45):
     print("Los archivos 'visa_news.html' y 'visa_data.json' han sido generados con éxito.")
 
 if __name__ == "__main__":
-    main(3)
+    main(45)
