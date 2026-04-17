@@ -227,4 +227,4 @@ def main(days=3):
     print(f"✅ 完成！总记录数: {len(final_posts)}")
 
 if __name__ == "__main__":
-    main(3)
+    main(30)
