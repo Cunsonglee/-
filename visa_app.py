@@ -344,6 +344,19 @@ if st.session_state.all_data:
     .visa-results-table tr:nth-child(even) { background-color: #f2f2f2; }
     .visa-results-table a { color: #007bff; text-decoration: none; font-weight: bold; }
     .visa-results-table a:hover { text-decoration: underline; }
+
+/* 核心修改：强制日期列不换行并设置最小宽度 */
+    .col-fecha { 
+        white-space: nowrap; 
+        min-width: 110px; 
+        text-align: center !important;
+    }
+    /* 限制国家列宽度，防止挤压日期 */
+    .col-pais {
+        min-width: 130px;
+    }
+
+    
   </style>
   <table class="visa-results-table">
     <thead>
@@ -366,9 +379,10 @@ if st.session_state.all_data:
             html += f'''
       <tr>
         <td><strong>{title}</strong></td>
+        <td class="col-pais"><span style="color: #d9534f; font-weight: bold;">{detected}</span></td>
         <td><span style="color: #d9534f; font-weight: bold;">{detected}</span></td>
         <td><a href="{link}" target="_blank">{source}</a></td>
-        <td>{fecha}</td>
+        <td class="col-fecha">{fecha}</td>
       </tr>'''
         html += '</tbody></table></div>'
         return html
