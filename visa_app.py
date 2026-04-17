@@ -335,17 +335,20 @@ if st.session_state.all_data:
     # ==========================================
     # HTML 渲染风格 + 蓝色可点击 Fuente + 显示国家
     # ==========================================
+# ==========================================
+    # HTML 渲染风格 + 蓝色可点击 Fuente + 显示国家
+    # ==========================================
     def render_results_html(df):
         html = '''<div>
   <style>
-    .visa-results-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    .visa-results-table { width: 100%; border-collapse: collapse; margin-top: 10px; table-layout: auto; }
     .visa-results-table th, .visa-results-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
     .visa-results-table th { background-color: #004a99; color: white; }
     .visa-results-table tr:nth-child(even) { background-color: #f2f2f2; }
     .visa-results-table a { color: #007bff; text-decoration: none; font-weight: bold; }
     .visa-results-table a:hover { text-decoration: underline; }
-
-/* 核心修改：强制日期列不换行并设置最小宽度 */
+    
+    /* 核心修改：强制日期列不换行并设置最小宽度 */
     .col-fecha { 
         white-space: nowrap; 
         min-width: 110px; 
@@ -355,16 +358,14 @@ if st.session_state.all_data:
     .col-pais {
         min-width: 130px;
     }
-
-    
   </style>
   <table class="visa-results-table">
     <thead>
       <tr>
         <th>Título</th>
-        <th>País Detectado</th>
+        <th class="col-pais">País Detectado</th>
         <th>Fuente (Link)</th>
-        <th>Fecha</th>
+        <th class="col-fecha">Fecha</th>
       </tr>
     </thead>
     <tbody>'''
