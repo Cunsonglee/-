@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 import json
 import re
 import time
+import os
 
 # List of websites to scrape
 websites = [
@@ -789,11 +790,42 @@ def main(days=45):
             item['date'] = item['date'].isoformat()
         serializable_posts.append(item)
 
-    with open('visa_data.json', 'w', encoding='utf-8') as f:
-        json.dump(serializable_posts, f, ensure_ascii=False, indent=4)
+# ------------------ 合并旧数据并去重 ------------------
+    existing_posts = []
+    if os.path.exists('visa_data.json'):
+        try:
+            with open('visa_data.json', 'r', encoding='utf-8') as f:
+                existing_posts = json.load(f)
+        except Exception as e:
+            print(f"读取旧数据失败 (Ignorando archivo anterior): {e}")
 
-    print(f"✅ Extracción completada. Se han guardado {len(serializable_posts)} noticias.")
+    # 使用字典来去重，以新闻的 link 作为唯一标识符 (Key)
+    merged_dict = {}
+    
+    # 先把旧数据放进字典
+    for post in existing_posts:
+        if 'link' in post:
+            merged_dict[post['link']] = post
+            
+    # 再把新抓取的数据放进字典 (如果有重复链接，新数据会覆盖旧数据)
+    for post in serializable_posts:
+        if 'link' in post:
+            merged_dict[post['link']] = post
+
+    # 将合并后的字典转回列表
+    final_posts = list(merged_dict.values())
+
+    # 按照日期重新降序排序 (最新的在最前)
+    final_posts.sort(key=lambda x: x.get('date') or "", reverse=True)
+
+    # ------------------ 保存最终数据 ------------------
+    with open('visa_data.json', 'w', encoding='utf-8') as f:
+        json.dump(final_posts, f, ensure_ascii=False, indent=4)
+
+    print(f"✅ Extracción completada.")
+    print(f"   - Noticias nuevas/actualizadas hoy: {len(serializable_posts)}")
+    print(f"   - Total histórico guardado en JSON: {len(final_posts)}")
     print("Los archivos 'visa_news.html' y 'visa_data.json' han sido generados con éxito.")
 
 if __name__ == "__main__":
-    main(30)
+    main(3)
