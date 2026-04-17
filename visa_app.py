@@ -195,6 +195,43 @@ def trigger_github_action():
         st.error(f"Error en la configuración de Secrets: {e}")
         return 0
 
+# --- [添加位置：trigger_github_action 函数下方] ---
+
+def get_last_action_run_time():
+    """获取最后一次 Scraper 运行成功的时间"""
+    try:
+        token = st.secrets.get("GITHUB_TOKEN")
+        repo = st.secrets.get("GITHUB_REPO")
+        url = f"https://api.github.com/repos/{repo}/actions/runs?status=completed&per_page=1"
+        headers = {"Authorization": f"token {token}", "Accept": "application/vnd.github.v3+json"}
+        res = requests.get(url, headers=headers, timeout=5)
+        if res.status_code == 200:
+            data = res.json()
+            if data.get("workflow_runs"):
+                # 获取完成时间并转为本地时区 (GMT+2)
+                finish_time = data["workflow_runs"][0]['updated_at']
+                dt_utc = datetime.strptime(finish_time, "%Y-%m-%dT%H:%M:%SZ")
+                return (dt_utc + timedelta(hours=2)).strftime('%d-%m-%Y %H:%M:%S (GMT+2)')
+    except: pass
+    return "Desconocida"
+
+def get_latest_run_status():
+    """检查当前 Action 是在跑还是跑完了"""
+    try:
+        token = st.secrets.get("GITHUB_TOKEN")
+        repo = st.secrets.get("GITHUB_REPO")
+        url = f"https://api.github.com/repos/{repo}/actions/runs?per_page=1"
+        headers = {"Authorization": f"token {token}", "Accept": "application/vnd.github.v3+json"}
+        res = requests.get(url, headers=headers, timeout=5)
+        if res.status_code == 200:
+            data = res.json()
+            if data.get("workflow_runs"):
+                run = data["workflow_runs"][0]
+                return run.get('status'), run.get('conclusion')
+    except: pass
+    return None, None
+
+
 def load_saved_data():
     try:
         with open('visa_data.json', 'r', encoding='utf-8') as f:
@@ -242,7 +279,7 @@ def get_last_action_run_time():
 st.set_page_config(page_title="Asistente de Visados Pro", layout="wide")
 st.title("🌍 Extracción de noticias de visado")
 
-# [新增]：在标题正下方显示 GitHub 上数据的最后更新时间
+# [新增：显示最后运行时间]
 last_run_time = get_last_action_run_time()
 st.markdown(f"<p style='color: #666; font-size: 14px; margin-top: -15px;'>🕒 Última ejecución del Scraper: <b>{last_run_time}</b></p>", unsafe_allow_html=True)
 
@@ -261,22 +298,38 @@ filter_days = st.sidebar.number_input("O seleccionar últimos días", min_value=
 
 st.sidebar.markdown("---")
 if st.sidebar.button("🚀 Iniciar extracción en la nube", use_container_width=True):
-    with st.spinner("Despertando GitHub Actions..."):
-        status = trigger_github_action()
-        if status == 204:
-            st.sidebar.success("✅ ¡Orden enviada! Actualizando en ~2 minutos.")
-            # 这里的进度条是为了给 GitHub Action 留出运行的时间 (大约跑120秒)
-            bar = st.progress(0)
-            for i in range(100):
-                time.sleep(1.65) # 每次停顿1.65秒，总共约2分45秒
-                bar.progress(i + 1)
+    status_code = trigger_github_action()
+    if status_code == 204:
+        st.sidebar.success("✅ ¡Orden enviada! Monitoreando estado...")
+        status_text = st.sidebar.empty()
+        
+        # 设定总等待时间为 165 秒 (2分45秒)
+        timeout_limit = 165 
+        start_wait_time = time.time()
+        
+        # 循环检查 GitHub 状态
+        while (time.time() - start_wait_time) < timeout_limit:
+            current_status, conclusion = get_latest_run_status()
             
-            # 进度条跑完后，清空内存数据并强制刷新网页！
-            if 'all_data' in st.session_state:
-                del st.session_state['all_data']
-            st.rerun() 
-        else:
-            st.sidebar.error(f"Fallo al iniciar. Código: {status}")
+            # 检查是否打勾 (completed)
+            if current_status == 'completed':
+                if conclusion == 'success':
+                    status_text.success("🎉 ¡Scraper completado con éxito!")
+                else:
+                    status_text.error(f"❌ Terminado con aviso: {conclusion}")
+                break
+            
+            # 显示实时运行秒数
+            elapsed = int(time.time() - start_wait_time)
+            status_text.info(f"⏳ Scraper en progreso... ({elapsed}s / 165s)")
+            time.sleep(8) # 每8秒查一次状态
+        
+        # 强制刷新数据并重启网页
+        if 'all_data' in st.session_state:
+            del st.session_state['all_data']
+        st.rerun()
+    else:
+        st.sidebar.error(f"Error al iniciar: {status_code}")
 
 # --- 主逻辑 ---
 if st.session_state.all_data:
