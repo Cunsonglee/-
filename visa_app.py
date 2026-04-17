@@ -205,10 +205,42 @@ def load_saved_data():
             return data
     except Exception:
         return []
+def get_github_file_update_time():
+    """通过 GitHub API 获取 visa_data.json 的最后提交时间"""
+    try:
+        token = st.secrets.get("GITHUB_TOKEN")
+        repo = st.secrets.get("GITHUB_REPO")
+        
+        if not repo:
+            return "Desconocida (Repo no configurado)"
+            
+        url = f"https://api.github.com/repos/{repo}/commits?path=visa_data.json&page=1&per_page=1"
+        headers = {"Accept": "application/vnd.github.v3+json"}
+        if token:
+            headers["Authorization"] = f"token {token}"
+            
+        res = requests.get(url, headers=headers, timeout=5)
+        if res.status_code == 200:
+            data = res.json()
+            if data:
+                # 获取的是 UTC 时间 (ISO 8601 格式)
+                commit_date_str = data[0]['commit']['committer']['date']
+                dt_utc = datetime.strptime(commit_date_str, "%Y-%m-%dT%H:%M:%SZ")
+                # 你的截图显示你是 GMT+2 时区，这里自动加上两小时以便与你的本地时间一致
+                dt_local = dt_utc + timedelta(hours=2) 
+                return dt_local.strftime('%d-%m-%Y %H:%M:%S (GMT+2)')
+        return "Desconocida"
+    except Exception as e:
+        return "Desconocida"
+
 
 # --- 界面配置 ---
 st.set_page_config(page_title="Asistente de Visados Pro", layout="wide")
 st.title("🌍 Extracción de noticias de visado")
+
+# [新增]：在标题正下方显示 GitHub 上数据的最后更新时间
+last_update_time = get_github_file_update_time()
+st.markdown(f"<p style='color: #666; font-size: 14px; margin-top: -15px;'>🕒 Última actualización de datos (GitHub): <b>{last_update_time}</b></p>", unsafe_allow_html=True)
 
 if 'all_data' not in st.session_state:
     st.session_state.all_data = load_saved_data()
@@ -228,12 +260,17 @@ if st.sidebar.button("🚀 Iniciar extracción en la nube", use_container_width=
     with st.spinner("Despertando GitHub Actions..."):
         status = trigger_github_action()
         if status == 204:
-            st.sidebar.success("✅ ¡Orden enviada con éxito!")
+            st.sidebar.success("✅ ¡Orden enviada! Actualizando en ~2 minutos.")
+            # 这里的进度条是为了给 GitHub Action 留出运行的时间 (大约跑120秒)
             bar = st.progress(0)
             for i in range(100):
-                time.sleep(0.5)
+                time.sleep(1.65) # 每次停顿1.65秒，总共约2分45秒
                 bar.progress(i + 1)
-            st.rerun()
+            
+            # 进度条跑完后，清空内存数据并强制刷新网页！
+            if 'all_data' in st.session_state:
+                del st.session_state['all_data']
+            st.rerun() 
         else:
             st.sidebar.error(f"Fallo al iniciar. Código: {status}")
 
