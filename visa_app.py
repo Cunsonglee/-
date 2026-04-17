@@ -380,7 +380,6 @@ if st.session_state.all_data:
       <tr>
         <td><strong>{title}</strong></td>
         <td class="col-pais"><span style="color: #d9534f; font-weight: bold;">{detected}</span></td>
-        <td><span style="color: #d9534f; font-weight: bold;">{detected}</span></td>
         <td><a href="{link}" target="_blank">{source}</a></td>
         <td class="col-fecha">{fecha}</td>
       </tr>'''
