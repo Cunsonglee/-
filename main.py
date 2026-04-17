@@ -548,101 +548,25 @@ def parse_items_from_html(html, base_url):
     return []
 
 def scrape_website(url):
-    # --- 针对 Business Standard 的强力伪装逻辑 ---
-    if 'business-standard.com/search' in url:
-        all_bs_posts = []
-        # 创建 scraper
-        scraper = cloudscraper.create_scraper()
-        
-        # 伪装成 Googlebot 的请求头
-        # 很多大型网站对 Googlebot 的 IP 检查不严，这是最后的突破口
-        google_bot_headers = {
-            'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Connection': 'keep-alive',
-        }
-
-        for p in range(1, 11): 
-            page_url = f"{url}&p={p}"
-            print(f"  -> Business Standard: 正在以搜索引擎身份请求第 {p} 页...")
-            
-            try:
-                # 稍微停顿，防止被频率检测
-                import time, random
-                time.sleep(random.uniform(2, 5))
-                
-                response = scraper.get(page_url, headers=google_bot_headers, timeout=30)
-                
-                if response.status_code == 200:
-                    page_posts = parse_business_standard(response.text, url)
-                    if not page_posts:
-                        print(f"  -> 第 {p} 页解析无结果，可能已到末尾。")
-                        break
-                    all_bs_posts.extend(page_posts)
-                    print(f"  -> 第 {p} 页获取成功！")
-                elif response.status_code == 403:
-                    print(f"  -> ⚠️ 第 {p} 页仍被 403 拦截。Streamlit IP 已被完全锁定。")
-                    break # 如果 403，后面的页码也不用试了
-                else:
-                    print(f"  -> 状态异常: {response.status_code}")
-                    break
-            except Exception as e:
-                print(f"  -> 请求异常: {e}")
-                break
-        return all_bs_posts
-
-    # --- 其他网站逻辑保持原样 ---
+    print(f"  -> 正在爬取: {url}")
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+    
     try:
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+        # 第一层尝试：普通请求
+        res = requests.get(url, headers=headers, timeout=15)
+        res.raise_for_status()
+        html = res.text
+        return parse_items_from_html(html, url)
+    except:
+        # 第二层尝试：Cloudscraper 绕过防火墙
         try:
-            res = requests.get(url, headers=headers, timeout=15)
-            res.raise_for_status()
-            html = res.text
-        except:
             scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
             res = scraper.get(url, timeout=25)
             html = res.text
-        return parse_items_from_html(html, url)
-    except Exception as e:
-        print(f"抓取失败 {url}: {e}")
-        return []
-
-    # --- 其他网站的抓取逻辑 (保持不变) ---
-    try:
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
-        try:
-            res = requests.get(url, headers=headers, timeout=15)
-            res.raise_for_status()
-            html = res.text
-        except:
-            scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
-            res = scraper.get(url, timeout=25)
-            html = res.text
-            
-        return parse_items_from_html(html, url)
-    except Exception as e:
-        print(f"抓取失败 {url}: {e}")
-        return []
-
-    # --- 其他网站的抓取逻辑 (保持不变) ---
-    try:
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
-        try:
-            res = requests.get(url, headers=headers, timeout=15)
-            res.raise_for_status()
-            html = res.text
-        except:
-            scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
-            res = scraper.get(url, timeout=25)
-            html = res.text
-            
-        return parse_items_from_html(html, url)
-        
-    except Exception as e:
-        print(f"抓取失败 {url}: {e}")
-        return []
+            return parse_items_from_html(html, url)
+        except Exception as e:
+            print(f"抓取失败 {url}: {e}")
+            return []
 
         # --- 其他网站的抓取逻辑保持不变 ---
         headers = {
