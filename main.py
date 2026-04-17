@@ -125,7 +125,7 @@ def parse_et_travel(html, base_url):
         if '/news/' in link or '/blog/' in link:
             valid_links.append({'title': title, 'link': link})
     
-    for item in valid_links[:8]: # 限制内页抓取数量防止超时
+    for item in valid_links[:30]: # 限制内页抓取数量防止超时
         link = item['link']
         date = None
         try:
