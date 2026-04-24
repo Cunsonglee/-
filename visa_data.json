@@ -1,5 +1,12 @@
 [
     {
+        "title": "Japan Moves Ahead With JESTA Travel Authorisation, Launch Target Set for 2028",
+        "link": "https://travelobiz.com/japan-moves-ahead-with-jesta-travel-authorisation-launch-target-set-for-2028/",
+        "date": "2026-04-24T03:40:47",
+        "date_text": "2026-04-24T09:10:47+05:30",
+        "source": "travelobiz"
+    },
+    {
         "title": "United States | ICE updates website on Form I-9 inspection process with revised fact sheet",
         "link": "https://www.bal.com/immigration-news/united-states-ice-updates-website-on-form-i-9-inspection-process-with-revised-fact-sheet/",
         "date": "2026-04-23T18:52:38",
@@ -61,20 +68,6 @@
         "date": "2026-04-22T08:56:36",
         "date_text": "22 April 2026",
         "source": "visamundi"
-    },
-    {
-        "title": "India to issue tourist visas for Chinese nationals 5 yrs after Galwan clash",
-        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/news/visas-and-passports/india-to-issue-tourist-visas-for-chinese-nationals-5-yrs-after-galwan-clash/130436749?utm_source=latest_news&utm_medium=home",
-        "date": "2026-04-22T00:00:00",
-        "date_text": "Apr 22, 2026",
-        "source": "et-travel"
-    },
-    {
-        "title": "Thailand to revise visa, consular fees for Indian applicants from April 27",
-        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/news/visas-and-passports/thailand-updates-visa-and-consular-fees-for-indian-applicants-starting-april-27-2026/130437493?utm_source=latest_news&utm_medium=home",
-        "date": "2026-04-22T00:00:00",
-        "date_text": "Apr 22, 2026",
-        "source": "et-travel"
     },
     {
         "title": "European Union/Schengen Area: Internal Schengen Border Checks Situation",
@@ -145,13 +138,6 @@
         "date": "2026-04-21T00:00:00",
         "date_text": "April 21, 2026",
         "source": "fragomen"
-    },
-    {
-        "title": "Rishikesh becomes a magnet for wellness and adventure tourism",
-        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/news/destination/states/explore-the-thrill-and-tranquility-of-rishikesh-a-wellness-and-adventure-paradise/130418204",
-        "date": "2026-04-21T00:00:00",
-        "date_text": "Apr 21, 2026",
-        "source": "et-travel"
     },
     {
         "title": "Mumbai airport to remain closed for 6 hours on May 7 for runway maintenance",
@@ -798,13 +784,6 @@
         "source": "vnexpress"
     },
     {
-        "title": "VFS Global opens visa application centre in Bhubaneswar, expands eastern India footprint",
-        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/news/visas-and-passports/vfs-global-expands-with-new-visa-application-centre-in-bhubaneswar-odisha/130034304?utm_source=latest_news&utm_medium=home",
-        "date": "2026-04-05T00:00:00",
-        "date_text": "Apr 5, 2026",
-        "source": "et-travel"
-    },
-    {
         "title": "South Africa | New MEETS visa scheme to accelerate high-volume visa processing for events hosted in South Africa",
         "link": "https://www.bal.com/immigration-news/south-africa-new-meets-visa-scheme-to-accelerate-high-volume-visa-processing-for-events-hosted-in-south-africa/",
         "date": "2026-04-03T20:04:25",
@@ -1097,13 +1076,6 @@
         "date": "2026-03-24T00:00:00",
         "date_text": "March 24, 2026",
         "source": "vnexpress"
-    },
-    {
-        "title": "India, China bear brunt of Trump's tougher visa policies: report",
-        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/news/visas-and-passports/trumps-visa-policies-cause-dramatic-drop-in-immigration-from-india-and-china/129774028?utm_source=latest_news&utm_medium=home",
-        "date": "2026-03-24T00:00:00",
-        "date_text": "Mar 24, 2026",
-        "source": "et-travel"
     },
     {
         "title": "United States | H-2B visa cap reached for second half FY 2026",
@@ -1463,6 +1435,41 @@
         "source": "visamundi"
     },
     {
+        "title": "India to issue tourist visas for Chinese nationals 5 yrs after Galwan clash",
+        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/news/visas-and-passports/india-to-issue-tourist-visas-for-chinese-nationals-5-yrs-after-galwan-clash/130436749?utm_source=latest_news&utm_medium=home",
+        "date": null,
+        "date_text": "—",
+        "source": "et-travel"
+    },
+    {
+        "title": "Thailand to revise visa, consular fees for Indian applicants from April 27",
+        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/news/visas-and-passports/thailand-updates-visa-and-consular-fees-for-indian-applicants-starting-april-27-2026/130437493?utm_source=latest_news&utm_medium=home",
+        "date": null,
+        "date_text": "—",
+        "source": "et-travel"
+    },
+    {
+        "title": "Rishikesh becomes a magnet for wellness and adventure tourism",
+        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/news/destination/states/explore-the-thrill-and-tranquility-of-rishikesh-a-wellness-and-adventure-paradise/130418204",
+        "date": null,
+        "date_text": "—",
+        "source": "et-travel"
+    },
+    {
+        "title": "VFS Global opens visa application centre in Bhubaneswar, expands eastern India footprint",
+        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/news/visas-and-passports/vfs-global-expands-with-new-visa-application-centre-in-bhubaneswar-odisha/130034304?utm_source=latest_news&utm_medium=home",
+        "date": null,
+        "date_text": "—",
+        "source": "et-travel"
+    },
+    {
+        "title": "India, China bear brunt of Trump's tougher visa policies: report",
+        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/news/visas-and-passports/trumps-visa-policies-cause-dramatic-drop-in-immigration-from-india-and-china/129774028?utm_source=latest_news&utm_medium=home",
+        "date": null,
+        "date_text": "—",
+        "source": "et-travel"
+    },
+    {
         "title": "Travel-tech startup Teleport introduces assisted visa service for elderly",
         "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/news/visas-and-passports/elderly-friendly-visa-assistance-launched-by-teleport-for-hassle-free-travel/130123606?utm_source=latest_news&utm_medium=home",
         "date": null,
@@ -1475,5 +1482,12 @@
         "date": null,
         "date_text": "—",
         "source": "vnexpress"
+    },
+    {
+        "title": "Air India expects to complete retrofit of 7 more Boeing 787-8 planes this year",
+        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/news/aviation/domestic/air-india-to-retrofit-7-boeing-787-8-planes-in-2023-as-transformation-plan-gathers-momentum/130385042",
+        "date": null,
+        "date_text": "—",
+        "source": "et-travel"
     }
 ]
