@@ -385,13 +385,6 @@
         "source": "travelobiz"
     },
     {
-        "title": "Japan suspends issuing new visas for foreign restaurant workers",
-        "link": "https://e.vnexpress.net/news/travel/visa/japan-suspends-issuing-new-visas-for-foreign-restaurant-workers-5062481.html",
-        "date": "2026-04-16T00:00:00",
-        "date_text": "April 16, 2026",
-        "source": "vnexpress"
-    },
-    {
         "title": "EB-5 Investors: May Visa Bulletin Advances EB-5 Dates for Chinese Investors, Cautions Retrogression for India",
         "link": "https://www.fragomen.com/insights/eb5-investors-may-visa-bulletin-advances-eb-5-dates-for-chinese-investors-cautions-retrogression-for-india.html",
         "date": "2026-04-16T00:00:00",
@@ -1496,6 +1489,13 @@
         "date": "2026-03-04T09:10:07",
         "date_text": "March 4, 2026",
         "source": "visamundi"
+    },
+    {
+        "title": "Japan suspends issuing new visas for foreign restaurant workers",
+        "link": "https://e.vnexpress.net/news/travel/visa/japan-suspends-issuing-new-visas-for-foreign-restaurant-workers-5062481.html",
+        "date": null,
+        "date_text": "—",
+        "source": "vnexpress"
     },
     {
         "title": "India to issue tourist visas for Chinese nationals 5 yrs after Galwan clash",
