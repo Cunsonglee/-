@@ -21,6 +21,27 @@
         "source": "visasnews"
     },
     {
+        "title": "Minimum Salary Changes Announced",
+        "link": "https://www.fragomen.com/insights/minimum-salary-changes-announced.html",
+        "date": "2026-06-17T00:00:00",
+        "date_text": "June 17, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "Ireland: Stricter Family Sponsorship Requirements",
+        "link": "https://www.fragomen.com/insights/ireland-stricter-family-sponsorship-requirements.html",
+        "date": "2026-06-17T00:00:00",
+        "date_text": "June 17, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "Qatar: Reduced Grace Period Following Residence Permit Cancellation or Expiry",
+        "link": "https://www.fragomen.com/insights/qatar-reduced-grace-period-following-residence-permit-cancellation-or-expiry.html",
+        "date": "2026-06-17T00:00:00",
+        "date_text": "June 17, 2026",
+        "source": "fragomen"
+    },
+    {
         "title": "Abu Dhabi and Etihad to offer medical insurance to international visitors",
         "link": "https://visasnews.com/en/abu-dhabi-and-etihad-to-offer-medical-insurance-to-international-visitors/",
         "date": "2026-06-16T13:59:28",
@@ -84,7 +105,7 @@
         "source": "fragomen"
     },
     {
-        "title": "The ABC: Switzerland is set to vote on a population cap. Here's why it's divided the nation",
+        "title": "The ABC: Switzerland is Set to Vote on a Population Cap. Here's Why it's Divided the Nation",
         "link": "https://www.fragomen.com/insights/the-abc-switzerland-is-set-to-vote-on-a-population-cap-heres-why-its-divided-the-nation.html",
         "date": "2026-06-16T00:00:00",
         "date_text": "June 16, 2026",
@@ -408,13 +429,6 @@
     {
         "title": "South Africa: New Law Would Increase Locals in Labor Market",
         "link": "https://www.fragomen.com/insights/south-africa-new-law-would-increase-locals-in-labor-market.html",
-        "date": "2026-06-10T00:00:00",
-        "date_text": "June 10, 2026",
-        "source": "fragomen"
-    },
-    {
-        "title": "Minimum Salary Changes Announced",
-        "link": "https://www.fragomen.com/insights/minimum-salary-changes-announced.html",
         "date": "2026-06-10T00:00:00",
         "date_text": "June 10, 2026",
         "source": "fragomen"
@@ -4533,6 +4547,13 @@
         "link": "https://www.buch-dein-visum.de/en/news/en/news/neuseeland/neuseeland-erweitert-nutzung-der-nzeta-fuer-reisende-ca8e45",
         "date": null,
         "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "",
+        "link": "https://www.buch-dein-visum.de/en/news/en/3451",
+        "date": null,
+        "date_text": "Today",
         "source": "buch-dein-visum"
     }
 ]
