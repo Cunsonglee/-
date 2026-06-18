@@ -56,6 +56,13 @@
         "source": "fragomen"
     },
     {
+        "title": "Michigan Law’s Law Quadrangle: Christopher Wendt, ’98: At the Intersection of Immigration and Health Care Workers",
+        "link": "https://www.fragomen.com/insights/michigan-laws-law-quadrangle-christopher-wendt-98-at-the-intersection-of-immigration-and-health-care-workers.html",
+        "date": "2026-06-17T00:00:00",
+        "date_text": "June 17, 2026",
+        "source": "fragomen"
+    },
+    {
         "title": "Abu Dhabi and Etihad to offer medical insurance to international visitors",
         "link": "https://visasnews.com/en/abu-dhabi-and-etihad-to-offer-medical-insurance-to-international-visitors/",
         "date": "2026-06-16T13:59:28",
@@ -89,13 +96,6 @@
         "date": "2026-06-16T07:08:10",
         "date_text": "2026-06-16T12:38:10+05:30",
         "source": "travelobiz"
-    },
-    {
-        "title": "Cambodia joins Malaysia, Singapore in offering visa-free entry to Chinese tourists",
-        "link": "https://e.vnexpress.net/news/travel/visa/cambodia-joins-malaysia-singapore-in-offering-visa-free-entry-to-chinese-tourists-5086294.html",
-        "date": "2026-06-16T00:00:00",
-        "date_text": "June 16, 2026",
-        "source": "vnexpress"
     },
     {
         "title": "Fragomen Welcomes Christopher Wendt as Counsel",
@@ -485,13 +485,6 @@
     {
         "title": "World's largest economy to offer expedited visa interviews at select embassies for $750",
         "link": "https://e.vnexpress.net/news/travel/visa/world-s-largest-economy-to-offer-expedited-visa-interviews-at-select-embassies-for-750-5083802.html",
-        "date": "2026-06-10T00:00:00",
-        "date_text": "June 10, 2026",
-        "source": "vnexpress"
-    },
-    {
-        "title": "Southeast Asia's second most powerful passport drops one place in Henley ranking, still ahead of US",
-        "link": "https://e.vnexpress.net/news/travel/visa/southeast-asia-s-second-most-powerful-passport-drops-one-place-in-henley-ranking-still-ahead-of-us-5084012.html",
         "date": "2026-06-10T00:00:00",
         "date_text": "June 10, 2026",
         "source": "vnexpress"
@@ -4471,6 +4464,20 @@
         "date": "2026-03-04T09:10:07",
         "date_text": "March 4, 2026",
         "source": "visamundi"
+    },
+    {
+        "title": "Cambodia joins Malaysia, Singapore in offering visa-free entry to Chinese tourists",
+        "link": "https://e.vnexpress.net/news/travel/visa/cambodia-joins-malaysia-singapore-in-offering-visa-free-entry-to-chinese-tourists-5086294.html",
+        "date": null,
+        "date_text": "—",
+        "source": "vnexpress"
+    },
+    {
+        "title": "Southeast Asia's second most powerful passport drops one place in Henley ranking, still ahead of US",
+        "link": "https://e.vnexpress.net/news/travel/visa/southeast-asia-s-second-most-powerful-passport-drops-one-place-in-henley-ranking-still-ahead-of-us-5084012.html",
+        "date": null,
+        "date_text": "—",
+        "source": "vnexpress"
     },
     {
         "title": "Hajj 2026: Saudi Arabia halts Makkah entry, suspends Umrah visas and sets strict rules for pilgrims",
