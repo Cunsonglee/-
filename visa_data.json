@@ -14,6 +14,27 @@
         "source": "travelobiz"
     },
     {
+        "title": "Minimum Salary Changes Announced",
+        "link": "https://www.fragomen.com/insights/minimum-salary-changes-announced.html",
+        "date": "2026-06-19T00:00:00",
+        "date_text": "June 19, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "Kuwait: Commercial Visit Visa Issuance Temporarily Suspended",
+        "link": "https://www.fragomen.com/insights/kuwait-commercial-visit-visa-issuance-temporarily-suspended.html",
+        "date": "2026-06-19T00:00:00",
+        "date_text": "June 19, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "SADC UniVisa moves closer to implementation as Southern Africa pushes for regional connectivity",
+        "link": "https://atta.travel/resource/sadc-univisa-moves-closer-to-implementation-as-southern-africa-pushes-for-regional-connectivity.html",
+        "date": "2026-06-19T00:00:00",
+        "date_text": "19 Jun 2026",
+        "source": "atta"
+    },
+    {
         "title": "United States | July 2026 Visa Bulletin: Most employment-based categories advance, with exceptions for India’s Final Action Dates",
         "link": "https://www.bal.com/immigration-news/united-states-july-2026-visa-bulletin-most-employment-based-categories-advance-with-exceptions-for-indias-final-action-dates/",
         "date": "2026-06-18T20:53:51",
@@ -103,13 +124,6 @@
         "date": "2026-06-17T09:18:35",
         "date_text": "June 17, 2026",
         "source": "visasnews"
-    },
-    {
-        "title": "Minimum Salary Changes Announced",
-        "link": "https://www.fragomen.com/insights/minimum-salary-changes-announced.html",
-        "date": "2026-06-17T00:00:00",
-        "date_text": "June 17, 2026",
-        "source": "fragomen"
     },
     {
         "title": "Ireland: Stricter Family Sponsorship Requirements",
@@ -583,13 +597,6 @@
     {
         "title": "Estonia: Significant Immigration Reforms Increase Foreign Worker Employment Flexibility",
         "link": "https://www.fragomen.com/insights/estonia-significant-immigration-reforms-increase-foreign-worker-employment-flexibility.html",
-        "date": "2026-06-10T00:00:00",
-        "date_text": "June 10, 2026",
-        "source": "fragomen"
-    },
-    {
-        "title": "Kuwait: Commercial Visit Visa Issuance Temporarily Suspended",
-        "link": "https://www.fragomen.com/insights/kuwait-commercial-visit-visa-issuance-temporarily-suspended.html",
         "date": "2026-06-10T00:00:00",
         "date_text": "June 10, 2026",
         "source": "fragomen"
@@ -4734,6 +4741,41 @@
     {
         "title": "Current Travel and Safety Information for Vietnam",
         "link": "https://www.buch-dein-visum.de/en/news/en/3469",
+        "date": null,
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Current Travel and Safety Information for Panama",
+        "link": "https://www.buch-dein-visum.de/en/news/en/3473",
+        "date": null,
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Travel and Safety Advice for Belarus: Important Information for Travelers",
+        "link": "https://www.buch-dein-visum.de/en/news/en/3472",
+        "date": null,
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Japan to Drastically Increase Visa Fees Starting July 1, 2026",
+        "link": "https://www.buch-dein-visum.de/en/news/en/3471",
+        "date": null,
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Travel Advisory for Sudan: Current Security Situation and Recommendations",
+        "link": "https://www.buch-dein-visum.de/en/news/en/news/allgemein/reisewarnung-fuer-sudan-aktuelle-sicherheitslage-und-empfehlungen-150818",
+        "date": null,
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Current Travel and Safety Information for Vietnam",
+        "link": "https://www.buch-dein-visum.de/en/news/en/news/vietnam/aktuelle-reise-und-sicherheitshinweise-fuer-vietnam-ce210f",
         "date": null,
         "date_text": "Today",
         "source": "buch-dein-visum"
