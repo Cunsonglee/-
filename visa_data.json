@@ -1,5 +1,19 @@
 [
     {
+        "title": "Visas, ETAs and biometrics: AI is already changing travel formalities",
+        "link": "https://visasnews.com/en/visas-etas-and-biometrics-ai-is-already-changing-travel-formalities/",
+        "date": "2026-06-22T15:24:12",
+        "date_text": "June 22, 2026",
+        "source": "visasnews"
+    },
+    {
+        "title": "Mauritius: Future e-Visa/ETA system takes shape in 2026-2027 budget",
+        "link": "https://visasnews.com/en/mauritius-future-e-visa-eta-system-takes-shape-in-2026-2027-budget/",
+        "date": "2026-06-22T10:50:13",
+        "date_text": "June 22, 2026",
+        "source": "visasnews"
+    },
+    {
         "title": "Vietnam expands Pre-Arrival Information system to Cam Ranh airport",
         "link": "https://visasnews.com/en/vietnam-expands-pre-arrival-information-system-to-cam-ranh-airport/",
         "date": "2026-06-22T09:07:29",
@@ -26,6 +40,20 @@
         "date": "2026-06-22T00:00:00",
         "date_text": "Jun 22, 2026",
         "source": "et-travel"
+    },
+    {
+        "title": "Worldwide: Temporary Ebola-Related Entry Restrictions Introduced",
+        "link": "https://www.fragomen.com/insights/middle-eastafrica-temporary-ebola-related-entry-restrictions-introduced.html",
+        "date": "2026-06-22T00:00:00",
+        "date_text": "June 22, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "South Korea: Top-Tier Visa Expanded",
+        "link": "https://www.fragomen.com/insights/south-korea-top-tier-visa-expanded.html",
+        "date": "2026-06-22T00:00:00",
+        "date_text": "June 22, 2026",
+        "source": "fragomen"
     },
     {
         "title": "Ireland Raises Family Reunification Income Requirements, Adds Housing Checks",
@@ -296,13 +324,6 @@
     {
         "title": "Qatar: Reduced Grace Period Following Residence Permit Cancellation or Expiry",
         "link": "https://www.fragomen.com/insights/qatar-reduced-grace-period-following-residence-permit-cancellation-or-expiry.html",
-        "date": "2026-06-17T00:00:00",
-        "date_text": "June 17, 2026",
-        "source": "fragomen"
-    },
-    {
-        "title": "Worldwide: Temporary Ebola-Related Entry Restrictions Introduced",
-        "link": "https://www.fragomen.com/insights/middle-eastafrica-temporary-ebola-related-entry-restrictions-introduced.html",
         "date": "2026-06-17T00:00:00",
         "date_text": "June 17, 2026",
         "source": "fragomen"
@@ -4876,6 +4897,20 @@
         "link": "https://www.buch-dein-visum.de/en/news/en/3471",
         "date": null,
         "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Vietnam Expands Pre-Arrival Information System to Cam Ranh Airport",
+        "link": "https://www.buch-dein-visum.de/en/news/en/news/vietnam/vietnam-erweitert-pre-arrival-informationssystem-auf-cam-ranh-flughafen-57e467",
+        "date": null,
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Mauritius Plans to Introduce an e-Visa/ETA System by 2027",
+        "link": "https://www.buch-dein-visum.de/en/news/en/news/mauritius/mauritius-plant-einfuehrung-eines-e-visa-eta-systems-bis-2027-9223c9",
+        "date": null,
+        "date_text": "Today",
         "source": "buch-dein-visum"
     }
 ]
