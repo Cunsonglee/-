@@ -70,6 +70,13 @@
         "source": "fragomen"
     },
     {
+        "title": "United States: CDC Extends Entry Ban to July 21 For Foreign Nationals Recently in DR Congo, Uganda, or South Sudan",
+        "link": "https://www.fragomen.com/insights/united-states-cdc-extends-entry-ban-to-july-21-for-foreign-nationals-recently-in-dr-congo-uganda-or-south-sudan.html",
+        "date": "2026-06-25T00:00:00",
+        "date_text": "June 25, 2026",
+        "source": "fragomen"
+    },
+    {
         "title": "United States | USCIS issues guidance on H-2A eligibility for dairy operations",
         "link": "https://www.bal.com/immigration-news/united-states-uscis-issues-guidance-on-h-2a-eligibility-for-dairy-operations/",
         "date": "2026-06-24T20:06:58",
@@ -117,6 +124,20 @@
         "date": "2026-06-24T00:00:00",
         "date_text": "June 24, 2026",
         "source": "fragomen"
+    },
+    {
+        "title": "Current Travel and Safety Information for Oman",
+        "link": "https://www.buch-dein-visum.de/en/news/en/news/oman/aktuelle-reise-und-sicherheitshinweise-fuer-oman-d97738",
+        "date": "2026-06-24T00:00:00",
+        "date_text": "24 Jun",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Current Travel and Safety Information for Djibouti",
+        "link": "https://www.buch-dein-visum.de/en/news/en/news/allgemein/aktuelle-reise-und-sicherheitshinweise-fuer-dschibuti-156dbc",
+        "date": "2026-06-24T00:00:00",
+        "date_text": "24 Jun",
+        "source": "buch-dein-visum"
     },
     {
         "title": "Japan: Visa Issuance Fees to Increase Effective July 2026",
@@ -5103,45 +5124,31 @@
         "source": "buch-dein-visum"
     },
     {
-        "title": "Current Travel and Safety Information for Oman",
-        "link": "https://www.buch-dein-visum.de/en/news/en/news/oman/aktuelle-reise-und-sicherheitshinweise-fuer-oman-d97738",
-        "date": null,
-        "date_text": "Yesterday",
-        "source": "buch-dein-visum"
-    },
-    {
-        "title": "Current Travel and Safety Information for Djibouti",
-        "link": "https://www.buch-dein-visum.de/en/news/en/news/allgemein/aktuelle-reise-und-sicherheitshinweise-fuer-dschibuti-156dbc",
-        "date": null,
-        "date_text": "Yesterday",
-        "source": "buch-dein-visum"
-    },
-    {
         "title": "Current Travel and Safety Information for Switzerland",
         "link": "https://www.buch-dein-visum.de/en/news/en/news/allgemein/aktuelle-reise-und-sicherheitshinweise-fuer-die-schweiz-ab5b34",
         "date": null,
-        "date_text": "Today",
+        "date_text": "Yesterday",
         "source": "buch-dein-visum"
     },
     {
         "title": "Current Security Situation in Israel: Advice for Travelers",
         "link": "https://www.buch-dein-visum.de/en/news/en/news/israel/aktuelle-sicherheitslage-in-israel-hinweise-fuer-reisende-b84a41",
         "date": null,
-        "date_text": "Today",
+        "date_text": "Yesterday",
         "source": "buch-dein-visum"
     },
     {
         "title": "Current Security Situation in the Palestinian Territories",
         "link": "https://www.buch-dein-visum.de/en/news/en/news/allgemein/aktuelle-sicherheitslage-in-den-palaestinensischen-gebieten-a56fb2",
         "date": null,
-        "date_text": "Today",
+        "date_text": "Yesterday",
         "source": "buch-dein-visum"
     },
     {
         "title": "Current Travel and Safety Information for Venezuela",
         "link": "https://www.buch-dein-visum.de/en/news/en/news/allgemein/aktuelle-reise-und-sicherheitshinweise-fuer-venezuela-325aeb",
         "date": null,
-        "date_text": "Today",
+        "date_text": "Yesterday",
         "source": "buch-dein-visum"
     }
 ]
