@@ -5710,5 +5710,12 @@
         "date": null,
         "date_text": "Yesterday",
         "source": "buch-dein-visum"
+    },
+    {
+        "title": "Current Travel and Safety Information for Spain",
+        "link": "https://www.buch-dein-visum.de/en/news/en/news/allgemein/aktuelle-reise-und-sicherheitshinweise-fuer-spanien-7503c0",
+        "date": null,
+        "date_text": "Today",
+        "source": "buch-dein-visum"
     }
 ]
