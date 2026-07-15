@@ -138,12 +138,12 @@ def infer_year(day, month_idx):
         assumed = safe_datetime(now.year - 1, month_idx + 1, day)
     return assumed.year if assumed else now.year
 
+from urllib.parse import urljoin
+
 def absolute_url(href, base):
-    if href.startswith('http'):
+    if not href:
         return href
-    if base.endswith('/') and href.startswith('/'):
-        return base.rstrip('/') + href
-    return base + href
+    return urljoin(base, href)
 
 def parse_bdv(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
@@ -493,10 +493,10 @@ def parse_et_travel(html, base_url):
         title = h.get_text().strip()
         if len(title) < 15: continue
         link = absolute_url(a['href'], base_url)
-        if '/news/' in link or '/blog/' in link:
+        if '/news/visas-and-passports/' in link:
             valid_links.append({'title': title, 'link': link})
             
-    valid_links = valid_links[:15]
+    valid_links = valid_links[:20]
     
     for item in valid_links:
         title = item['title']
