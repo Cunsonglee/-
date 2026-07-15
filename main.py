@@ -484,7 +484,8 @@ def parse_et_travel(html, base_url):
     links = soup.find_all('a', href=True)
     out = []
     
-    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+    scraper = None  # cloudscraper 实例延迟创建，只在普通 requests 失败时才用
     
     valid_links = []
     for a in links:
@@ -498,17 +499,44 @@ def parse_et_travel(html, base_url):
             
     valid_links = valid_links[:20]
     
-    for item in valid_links:
+    for idx, item in enumerate(valid_links):
         title = item['title']
         link = item['link']
         date = None
         date_text = ''
         
-        print(f"  -> 正在抓取 ET Travel 内页: {title[:25]}...")
+        print(f"  -> 正在抓取 ET Travel 内页 ({idx+1}/{len(valid_links)}): {title[:25]}...")
         
+        # 请求间隔一下，避免请求太密集被网站限流/封锁（这很可能是之前只有第1条能抓到日期、
+        # 后面全部失败的原因：连续高速请求触发了反爬虫机制）
+        if idx > 0:
+            time.sleep(1.5)
+        
+        inner_res = None
         try:
-            inner_res = scraper.get(link, timeout=10)
-            if inner_res.status_code == 200:
+            # 先用普通 requests，比 cloudscraper 快很多，成功率其实通常也够
+            r = requests.get(link, headers=headers, timeout=15)
+            if r.status_code == 200:
+                inner_res = r
+            else:
+                print(f"     普通请求返回状态码 {r.status_code}，尝试 cloudscraper...")
+        except Exception as e:
+            print(f"     普通请求失败: {e}，尝试 cloudscraper...")
+        
+        if inner_res is None:
+            try:
+                if scraper is None:
+                    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True})
+                r2 = scraper.get(link, timeout=20)
+                if r2.status_code == 200:
+                    inner_res = r2
+                else:
+                    print(f"     cloudscraper 也失败，状态码 {r2.status_code}")
+            except Exception as e:
+                print(f"     cloudscraper 请求失败: {e}")
+        
+        if inner_res is not None:
+            try:
                 inner_soup = BeautifulSoup(inner_res.text, 'html.parser')
                 # ET Travel 的页面 class 名会不定期改版（例如 .author-section 已经不存在了），
                 # 所以不再依赖具体的 class，而是直接在整页文字里用正则找 "Published On ..." / "Updated On ..."
@@ -533,8 +561,11 @@ def parse_et_travel(html, base_url):
                                 date_text = date.strftime('%B %d, %Y')
                                 break
                             except: pass
-        except Exception:
-            pass
+                
+                if not date:
+                    print(f"     页面已获取但未匹配到日期文字（可能页面结构又变了）")
+            except Exception as e:
+                print(f"     解析内页失败: {e}")
             
         if title and link:
             out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text or '—', 'source': 'et-travel'})
