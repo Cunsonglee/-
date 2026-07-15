@@ -138,12 +138,28 @@ def infer_year(day, month_idx):
         assumed = safe_datetime(now.year - 1, month_idx + 1, day)
     return assumed.year if assumed else now.year
 
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 def absolute_url(href, base):
     if not href:
         return href
     return urljoin(base, href)
+
+def has_duplicate_path_segment(url):
+    """检测形如 /a/b/a/b/xxx 这种路径前缀整段重复出现的坏链接。
+    这是之前 absolute_url 手写拼接逻辑遗留下来的历史bug（buch-dein-visum 的
+    /en/news/en/news/... 和 ET Travel 的 /news/visas-and-passports/news/visas-and-passports/...
+    都是这个模式），用来清理 visa_data.json 里的僵尸数据。"""
+    try:
+        path = urlparse(url).path
+    except Exception:
+        return False
+    parts = [p for p in path.split('/') if p]
+    n = len(parts)
+    for size in range(1, n // 2 + 1):
+        if parts[:size] == parts[size:size * 2]:
+            return True
+    return False
 
 def parse_bdv(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
@@ -484,7 +500,12 @@ def parse_et_travel(html, base_url):
     links = soup.find_all('a', href=True)
     out = []
     
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Referer': base_url,
+    }
     scraper = None  # cloudscraper 实例延迟创建，只在普通 requests 失败时才用
     
     valid_links = []
@@ -726,6 +747,8 @@ def main(days=3):
 
     serializable_posts = []
     for post in all_posts:
+        if post.get('link') and has_duplicate_path_segment(post['link']):
+            continue
         item = post.copy()
         if isinstance(item.get('date'), datetime):
             item['date'] = item['date'].isoformat()
@@ -736,7 +759,13 @@ def main(days=3):
     if os.path.exists('visa_data.json'):
         try:
             with open('visa_data.json', 'r', encoding='utf-8') as f:
-                existing_posts = json.load(f)
+                raw_existing = json.load(f)
+            # 清理历史遗留的"路径重复"坏链接（老版本 absolute_url 拼接 bug 造成的僵尸数据）
+            before_count = len(raw_existing)
+            existing_posts = [p for p in raw_existing if not (p.get('link') and has_duplicate_path_segment(p['link']))]
+            removed_count = before_count - len(existing_posts)
+            if removed_count > 0:
+                print(f"🧹 清理了 {removed_count} 条历史遗留的坏链接记录（路径重复）")
         except Exception as e:
             print(f"读取旧数据失败 (Ignorando archivo anterior): {e}")
 
