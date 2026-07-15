@@ -61,6 +61,16 @@ def normalize_date(dt):
         dt = dt.astimezone(tz=None).replace(tzinfo=None)
     return dt
 
+def parse_relative_date(text):
+    t = (text or '').strip().lower()
+    now = datetime.now()
+    if t in ('today', 'heute'):
+        return safe_datetime(now.year, now.month, now.day)
+    if t in ('yesterday', 'gestern'):
+        y = now - timedelta(days=1)
+        return safe_datetime(y.year, y.month, y.day)
+    return None
+
 def parse_day_month(text):
     t = re.sub(r'\s+', ' ', (text or '')).strip()
     m = re.match(r'^(\d{1,2})\s+([A-Za-zÀ-ÿ\.]+)$', t)
@@ -148,7 +158,7 @@ def parse_bdv(html, base_url):
         href = title_a.get('href')
         link = absolute_url(href, base_url)
         date_text = date_small.get_text().strip() if date_small else ''
-        date = parse_day_month(date_text)
+        date = parse_relative_date(date_text) or parse_day_month(date_text)
         out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text, 'source': 'buch-dein-visum'})
     return out
 
@@ -500,13 +510,13 @@ def parse_et_travel(html, base_url):
             inner_res = scraper.get(link, timeout=10)
             if inner_res.status_code == 200:
                 inner_soup = BeautifulSoup(inner_res.text, 'html.parser')
-                author_section = inner_soup.select_one('.author-section') or inner_soup.select_one('.article-publish-date')
-                if author_section:
-                    raw_text = author_section.get_text(separator=' ').strip()
-                    m_auth = re.search(r'(?:Published|Updated)\s*On\s*([A-Za-z]{3,})\s+(\d{1,2}),\s*(\d{4})', raw_text, re.IGNORECASE)
-                    if m_auth:
-                        date_text = f"{m_auth.group(1).capitalize()} {m_auth.group(2)}, {m_auth.group(3)}"
-                        date = parse_month_day_year(date_text)
+                # ET Travel 的页面 class 名会不定期改版（例如 .author-section 已经不存在了），
+                # 所以不再依赖具体的 class，而是直接在整页文字里用正则找 "Published On ..." / "Updated On ..."
+                raw_text = inner_soup.get_text(separator=' ')
+                m_auth = re.search(r'(?:Published|Updated)\s*On\s*([A-Za-z]{3,})\s+(\d{1,2}),\s*(\d{4})', raw_text, re.IGNORECASE)
+                if m_auth:
+                    date_text = f"{m_auth.group(1).capitalize()} {m_auth.group(2)}, {m_auth.group(3)}"
+                    date = parse_month_day_year(date_text)
                 
                 if not date:
                     meta_tags = [
@@ -519,7 +529,7 @@ def parse_et_travel(html, base_url):
                             iso_str = meta.get('content')
                             try:
                                 date_only = re.split(r'[T\s]', iso_str)[0]
-                                date = datetime.fromisoformat(date_part)
+                                date = datetime.fromisoformat(date_only)
                                 date_text = date.strftime('%B %d, %Y')
                                 break
                             except: pass
