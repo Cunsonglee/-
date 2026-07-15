@@ -633,7 +633,7 @@ def scrape_website(url):
 def main(days=3):
     print(f"Iniciando extracción de noticias de los últimos {days} días...")
     all_posts = []
-    cutoff = datetime.now() - timedelta(days=days-1)
+    cutoff = datetime.now() - timedelta(days=days-59)
 
     for url in websites:
         posts = scrape_website(url)
