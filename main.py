@@ -630,10 +630,9 @@ def scrape_website(url):
             print(f"抓取失败 {url}: {e}")
             return []
 
-def main(days=60):
-    print(f"Iniciando extracción de noticias de los últimos {days} días...")
+def main():
+    print(f"Iniciando extracción de noticias...")
     all_posts = []
-    cutoff = datetime.now() - timedelta(days=days-59)
 
     for url in websites:
         posts = scrape_website(url)
@@ -641,10 +640,10 @@ def main(days=60):
             date = post.get('date')
             date = normalize_date(date) if isinstance(date, datetime) else date
             post['date'] = date
-            if date and isinstance(date, datetime) and date >= cutoff:
-                all_posts.append(post)
-            elif not date:
-                all_posts.append(post)
+            # 不再按天数预先过滤：所有成功抓取到的文章都直接收录进历史存档，
+            # "只看最近几天"这件事交给 visa_news.html 页面里的日期筛选框（daysFilter）在浏览器端处理。
+            # 这样可以避免"文章第一次被抓到时恰好超过窗口期，就永远进不了历史库"的问题。
+            all_posts.append(post)
 
     all_posts.sort(key=lambda x: x.get('date') or datetime.min, reverse=True)
 
@@ -798,4 +797,4 @@ def main(days=60):
     print("Los archivos 'visa_news.html' y 'visa_data.json' han sido generados con éxito.")
 
 if __name__ == "__main__":
-    main(3)
+    main()
