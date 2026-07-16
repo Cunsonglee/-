@@ -9,6 +9,7 @@ from urllib.parse import urlparse
 import main
 import json
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # ==========================================
 # 1. 基础国家列表 (标准名称)
@@ -149,6 +150,50 @@ HEADERS = {
     'Accept-Language': 'en-US,en;q=0.9',
     'Referer': 'https://www.google.com/'
 }
+
+# ==========================================
+# 翻译功能：用 Google 翻译网页版内部使用的免费接口
+# （不需要 API Key，但不是官方正式支持的方式，量太大/太频繁可能被临时限流）
+# ==========================================
+TRANSLATE_LANG_OPTIONS = {
+    "Original (sin traducir)": None,
+    "Español": "es",
+    "中文": "zh-CN",
+    "한국어": "ko",
+    "日本語": "ja",
+}
+
+def translate_text(text, target_lang):
+    if not text or not str(text).strip():
+        return text
+    try:
+        url = "https://translate.googleapis.com/translate_a/single"
+        params = {"client": "gtx", "sl": "auto", "tl": target_lang, "dt": "t", "q": text}
+        r = requests.get(url, params=params, timeout=8)
+        r.raise_for_status()
+        data = r.json()
+        return "".join(seg[0] for seg in data[0])
+    except Exception:
+        return text  # 翻译失败就退回原文，不影响页面正常显示
+
+def translate_missing(texts, target_lang, cache, progress_placeholder=None):
+    """把 texts 里还没缓存过的翻译结果并发抓回来，写进 cache 字典。"""
+    to_fetch = sorted({t for t in texts if t and (target_lang, t) not in cache})
+    if not to_fetch:
+        return
+    done = 0
+    total = len(to_fetch)
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        future_to_text = {executor.submit(translate_text, t, target_lang): t for t in to_fetch}
+        for future in as_completed(future_to_text):
+            t = future_to_text[future]
+            try:
+                cache[(target_lang, t)] = future.result()
+            except Exception:
+                cache[(target_lang, t)] = t
+            done += 1
+            if progress_placeholder is not None:
+                progress_placeholder.progress(done / total, text=f"Traduciendo {done}/{total}...")
 
 websites = [
     "https://www.buch-dein-visum.de/en/news",
@@ -427,12 +472,45 @@ if st.session_state.all_data:
         filtered_df = filtered_df[(filtered_df['date'] >= start_dt) & (filtered_df['date'] <= end_dt)]
 
     # ==========================================
+    # 翻译功能：把当前显示的 Título 和 País 翻译成选定语言
+    # ==========================================
+    if "translation_cache" not in st.session_state:
+        st.session_state.translation_cache = {}
+
+    st.markdown("---")
+    t_col1, t_col2 = st.columns([2, 1])
+    with t_col1:
+        selected_lang_label = st.selectbox(
+            "🌐 Traducir Título y País a:",
+            list(TRANSLATE_LANG_OPTIONS.keys()),
+            key="translate_lang_select"
+        )
+    target_lang = TRANSLATE_LANG_OPTIONS[selected_lang_label]
+    with t_col2:
+        st.write("")  # 对齐按钮和下拉框
+        translate_clicked = st.button("🔄 Traducir ahora", disabled=(target_lang is None))
+
+    if translate_clicked and target_lang:
+        texts_to_translate = set(filtered_df['title'].tolist())
+        for countries in filtered_df['matched_countries']:
+            texts_to_translate.update(countries)
+        progress_bar = st.progress(0, text="Preparando traducción...")
+        translate_missing(texts_to_translate, target_lang, st.session_state.translation_cache, progress_bar)
+        progress_bar.empty()
+        st.success(f"✅ {len(texts_to_translate)} elemento(s) traducido(s) a {selected_lang_label}.")
+
+    def apply_translation(text, lang, cache):
+        if not lang:
+            return text
+        return cache.get((lang, text), text)
+
+    # ==========================================
     # HTML 渲染风格 + 蓝色可点击 Fuente + 显示国家
     # ==========================================
 # ==========================================
     # HTML 渲染风格 + 蓝色可点击 Fuente + 显示国家
     # ==========================================
-    def render_results_html(df):
+    def render_results_html(df, lang=None, cache=None):
         html = '''<div>
   <style>
     .visa-results-table { width: 100%; border-collapse: collapse; margin-top: 10px; table-layout: auto; }
@@ -464,12 +542,13 @@ if st.session_state.all_data:
     </thead>
     <tbody>'''
         for _, row in df.iterrows():
-            title = row['title']
+            title = apply_translation(row['title'], lang, cache) if cache is not None else row['title']
             source = row['source']
             fecha = row['Fecha']
             link = row['link']
             # 将检测到的国家用逗号拼接，没有就显示 -
-            detected = ", ".join(row['matched_countries']) if row['matched_countries'] else "-"
+            translated_countries = [apply_translation(c, lang, cache) if cache is not None else c for c in row['matched_countries']]
+            detected = ", ".join(translated_countries) if translated_countries else "-"
             
             html += f'''
       <tr>
@@ -482,7 +561,7 @@ if st.session_state.all_data:
         return html
 
     # 在页面上显示 HTML 表格
-    st.markdown(render_results_html(filtered_df), unsafe_allow_html=True)
+    st.markdown(render_results_html(filtered_df, target_lang, st.session_state.translation_cache), unsafe_allow_html=True)
 
     # ==========================================
     # 下载 HTML 区域（支持全选 / 打勾多选）
@@ -518,7 +597,7 @@ if st.session_state.all_data:
         selected_indices = edited_df[edited_df["Descargar"]].index
         download_df = filtered_df.loc[selected_indices]
 
-    def generate_html(df):
+    def generate_html(df, lang=None, cache=None):
         html_content = '''<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -541,10 +620,12 @@ if st.session_state.all_data:
     </thead>
     <tbody>'''
         for _, row in df.iterrows():
-            detected = ", ".join(row['matched_countries']) if row['matched_countries'] else "-"
+            title = apply_translation(row['title'], lang, cache) if cache is not None else row['title']
+            translated_countries = [apply_translation(c, lang, cache) if cache is not None else c for c in row['matched_countries']]
+            detected = ", ".join(translated_countries) if translated_countries else "-"
             html_content += f'''
       <tr>
-        <td><strong>{row['title']}</strong></td>
+        <td><strong>{title}</strong></td>
         <td>{detected}</td>
         <td><a href="{row['link']}" target="_blank">{row['source']}</a></td>
         <td>{row['Fecha']}</td>
@@ -554,7 +635,7 @@ if st.session_state.all_data:
 
     # 下载按钮
     if not download_df.empty:
-        html_data = generate_html(download_df)
+        html_data = generate_html(download_df, target_lang, st.session_state.translation_cache)
         st.download_button(
             label=f"📥 Descargar {len(download_df)} resultados",
             data=html_data,
