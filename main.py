@@ -6,6 +6,7 @@ import json
 import re
 import time
 import os
+import html as html_module
 
 # List of websites to scrape
 websites = [
@@ -677,6 +678,18 @@ def main():
     <input type="number" id="daysFilter" placeholder="Últimos X días" min="0">
     <button onclick="filterTable()">Filtrar Resultados</button>
   </div>
+  <div class="filters">
+    <label>Traducir a:</label>
+    <select id="translateLang">
+      <option value="es">Español</option>
+      <option value="zh-CN">中文</option>
+      <option value="ko">한국어</option>
+      <option value="ja">日本語</option>
+    </select>
+    <button onclick="translatePage()">Traducir</button>
+    <button onclick="restoreOriginal()">Mostrar Original</button>
+    <span id="translateStatus" style="margin-left:10px; color:#666; font-size:13px;"></span>
+  </div>
   <table id="newsTable">
     <thead>
       <tr>
@@ -695,10 +708,12 @@ def main():
         row_date = date.strftime('%Y-%m-%d') if date else '—'
         display_date = date.strftime('%d-%m-%Y') if date else 'Desconocida'
         link = post.get('link', '')
+        title_esc = html_module.escape(title)
+        source_esc = html_module.escape(source)
         html_content += f'''
-      <tr data-date="{row_date}" data-title="{title.lower()}">
-        <td><strong>{title}</strong></td>
-        <td>{source}</td>
+      <tr data-date="{row_date}" data-title="{title_esc.lower()}">
+        <td class="t-title" data-original="{title_esc}"><strong>{title}</strong></td>
+        <td class="t-source" data-original="{source_esc}">{source}</td>
         <td>{display_date}</td>
         <td><a href="{link}" target="_blank">Ver Noticia</a></td>
       </tr>'''
@@ -736,6 +751,66 @@ def main():
         
         row.style.display = show ? '' : 'none';
       });
+    }
+
+    // ------------------ 翻译功能 ------------------
+    // 用的是 Google 翻译网页版内部使用的免费接口（不需要 API Key，
+    // 但不是官方正式支持的方式，量太大或太频繁可能会被临时限流）。
+    const translateCache = {};
+
+    async function translateText(text, lang) {
+      const cacheKey = lang + '|' + text;
+      if (translateCache[cacheKey]) return translateCache[cacheKey];
+      if (!text || !text.trim()) return text;
+      const url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=' + encodeURIComponent(lang) + '&dt=t&q=' + encodeURIComponent(text);
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      const translated = data[0].map(seg => seg[0]).join('');
+      translateCache[cacheKey] = translated;
+      return translated;
+    }
+
+    async function translatePage() {
+      const lang = document.getElementById('translateLang').value;
+      const statusEl = document.getElementById('translateStatus');
+      const cells = Array.from(document.querySelectorAll('.t-title, .t-source'));
+      let done = 0, failed = 0;
+      statusEl.textContent = 'Traduciendo 0/' + cells.length + '...';
+
+      // 分批处理，避免一次性发太多请求触发限流
+      const batchSize = 5;
+      for (let i = 0; i < cells.length; i += batchSize) {
+        const batch = cells.slice(i, i + batchSize);
+        await Promise.all(batch.map(async cell => {
+          const original = cell.getAttribute('data-original');
+          try {
+            const translated = await translateText(original, lang);
+            if (cell.classList.contains('t-title')) {
+              cell.innerHTML = '<strong>' + translated + '</strong>';
+            } else {
+              cell.textContent = translated;
+            }
+          } catch (e) {
+            failed++;
+          }
+          done++;
+          statusEl.textContent = 'Traduciendo ' + done + '/' + cells.length + '...' + (failed ? (' (' + failed + ' fallidos)') : '');
+        }));
+      }
+      statusEl.textContent = failed
+        ? ('Traducción completa, ' + failed + ' elemento(s) fallaron.')
+        : 'Traducción completa.';
+    }
+
+    function restoreOriginal() {
+      document.querySelectorAll('.t-title').forEach(cell => {
+        cell.innerHTML = '<strong>' + cell.getAttribute('data-original') + '</strong>';
+      });
+      document.querySelectorAll('.t-source').forEach(cell => {
+        cell.textContent = cell.getAttribute('data-original');
+      });
+      document.getElementById('translateStatus').textContent = '';
     }
   </script>
 </body>
