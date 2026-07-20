@@ -24,7 +24,12 @@ websites = [
     "https://www.bal.com/immigration-news/",
     "https://www.fragomen.com/insights/index.html?nt=news",
     "https://travelobiz.com/category/visas-passports/",
-    "https://travel.economictimes.indiatimes.com/news/visas-and-passports"
+    "https://travel.economictimes.indiatimes.com/news/visas-and-passports",
+    "https://www.business-standard.com/search?q=visa",
+    "https://www.egyptindependent.com/category/life_style/travel/",
+    "https://www.travelandtourworld.com/news/article/category/tourism-news/",
+    "https://www.travelandtourworld.com/news/article/category/travel-news/",
+    "https://www.travelandtourworld.com/news/article/category/travel-alert/"
 ]
 
 # Month mapping
@@ -595,6 +600,81 @@ def parse_et_travel(html, base_url):
     seen = set()
     return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
 
+def parse_business_standard(html, base_url):
+    soup = BeautifulSoup(html, 'html.parser')
+    out = []
+    for a in soup.select('a.smallcard-title'):
+        title = a.get_text().strip()
+        if not title:
+            continue
+        href = a.get('href')
+        if not href:
+            continue
+        link = absolute_url(href, base_url)
+        # 日期的 span 跟标题所在的 image_card 是兄弟节点，都包在外层的 cardlist 容器里，
+        # 所以要找的是 "cardlist" 这个更外层的容器，而不是 "image_card" 本身
+        container = a.find_parent(class_=re.compile(r'cardlist'))
+        date = None
+        date_text = ''
+        if container:
+            date_el = container.find(class_=re.compile(r'updtText'))
+            if date_el:
+                raw = date_el.get_text(separator=' ').strip()
+                m = re.search(r'(\d{1,2}\s+[A-Za-z]{3,}\s+\d{4})', raw)
+                if m:
+                    date_text = m.group(1)
+                    date = parse_day_month_year(date_text)
+        out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text or '—', 'source': 'business-standard'})
+    seen = set()
+    return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
+
+def parse_egypt_independent(html, base_url):
+    soup = BeautifulSoup(html, 'html.parser')
+    out = []
+    for container in soup.select('.container-wrapper.post-element'):
+        title_a = container.select_one('h2.thumb-title a[href]') or container.select_one('.thumb-title a[href]')
+        if not title_a:
+            continue
+        title = title_a.get_text().strip()
+        if not title:
+            continue
+        link = absolute_url(title_a.get('href'), base_url)
+        date = None
+        date_text = ''
+        date_el = container.select_one('.post-meta .date') or container.select_one('span.date')
+        if date_el:
+            date_text = date_el.get_text().strip()
+            date = parse_month_day_year(date_text)
+        out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text or '—', 'source': 'egypt-independent'})
+    seen = set()
+    return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
+
+def parse_travelandtourworld(html, base_url):
+    soup = BeautifulSoup(html, 'html.parser')
+    out = []
+    items = soup.select('.NewsList li') or soup.select('li')
+    for li in items:
+        title_a = li.select_one('.cat-h1 h1 a[href]') or li.select_one('.cat-h1 a[href]')
+        if not title_a:
+            continue
+        title = title_a.get_text().strip()
+        if not title:
+            continue
+        link = absolute_url(title_a.get('href'), base_url)
+        date = None
+        date_text = ''
+        date_el = li.select_one('p.text-date')
+        if date_el:
+            raw = date_el.get_text(separator=' ').strip()
+            # 日期文字前面带星期几（比如 "Thursday, July 16, 2026"），先把 "Month Day, Year" 这部分单独提取出来
+            m = re.search(r'([A-Za-z]+\s+\d{1,2},\s*\d{4})', raw)
+            if m:
+                date_text = m.group(1)
+                date = parse_month_day_year(date_text)
+        out.append({'title': title, 'link': link, 'date': date, 'date_text': date_text or '—', 'source': 'travelandtourworld'})
+    seen = set()
+    return [it for it in out if not (it['link'] in seen or seen.add(it['link']))]
+
 def parse_items_from_html(html, base_url):
     from urllib.parse import urlparse
     host = urlparse(base_url).netloc
@@ -608,6 +688,9 @@ def parse_items_from_html(html, base_url):
     if 'fragomen.com' in host: return parse_fragomen(html, base_url)
     if 'travelobiz.com' in host: return parse_travelobiz(html, base_url)
     if 'economictimes.indiatimes.com' in host: return parse_et_travel(html, base_url)
+    if 'business-standard.com' in host: return parse_business_standard(html, base_url)
+    if 'egyptindependent.com' in host: return parse_egypt_independent(html, base_url)
+    if 'travelandtourworld.com' in host: return parse_travelandtourworld(html, base_url)
     return []
 
 def scrape_website(url):
