@@ -445,6 +445,16 @@ if st.session_state.all_data:
     if selected_countries_filter:
         filtered_df = filtered_df[filtered_df['matched_countries'].apply(lambda x: any(c in selected_countries_filter for c in x))]
 
+    # 2.5 根据【Fuente 来源】多选筛选器进行过滤
+    available_sources = sorted(df['source'].dropna().unique().tolist())
+    selected_sources_filter = st.multiselect(
+        "🔗 Filtrar por Fuente:",
+        options=available_sources,
+        help="Selecciona una o más fuentes para mostrar solo esas noticias."
+    )
+    if selected_sources_filter:
+        filtered_df = filtered_df[filtered_df['source'].isin(selected_sources_filter)]
+
     # 3. 原有侧边栏过滤逻辑
     st.markdown("---")
     st.subheader(f"Resultados de Búsqueda ({len(filtered_df)} artículos en {category})")
