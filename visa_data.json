@@ -353,14 +353,14 @@
         "title": "Philippines: Volcanic Activity at Mayon and Kanlaon – Current Safety Advice for Travelers",
         "link": "https://www.buch-dein-visum.de/en/news/philippinen/philippinen-vulkanaktivitaet-von-mayon-und-kanlaon-aktuelle-sicherheitshinweise-fuer-reisende-d0dbec",
         "date": "2026-07-27T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "27 Jul",
         "source": "buch-dein-visum"
     },
     {
         "title": "Benin: Current Travel and Safety Advice as of July 27, 2026",
         "link": "https://www.buch-dein-visum.de/en/news/allgemein/benin-aktuelle-reise-und-sicherheitshinweise-vom-27-juli-2026-5a40c4",
         "date": "2026-07-27T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "27 Jul",
         "source": "buch-dein-visum"
     },
     {
@@ -6230,13 +6230,6 @@
         "source": "buch-dein-visum"
     },
     {
-        "title": "BLS International expands operations to over 100 countries",
-        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/bls-international-expands-operations-to-over-100-countries/132386937?utm_source=latest_news&utm_medium=sectionListing",
-        "date": "2026-07-14T00:00:00",
-        "date_text": "Jul 14, 2026",
-        "source": "et-travel"
-    },
-    {
         "title": "Markt und Mittelstand: EU-Entsendung: Diese Fehler kosten Unternehmen bis zu 500.000 Euro",
         "link": "https://www.fragomen.com/insights/markt-und-mittelstand-eu-entsendung-diese-fehler-kosten-unternehmen-bis-zu-500000-euro.html",
         "date": "2026-07-14T00:00:00",
@@ -6284,13 +6277,6 @@
         "date": "2026-07-13T00:00:00",
         "date_text": "July 13, 2026",
         "source": "egypt-independent"
-    },
-    {
-        "title": "Kolkata Traders & Hoteliers Prepare To Reopen As India Resumes Bangladesh Visas",
-        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/kolkata-traders-hoteliers-prepare-to-reopen-as-india-resumes-bangladesh-visas/132341885?utm_source=latest_news&utm_medium=sectionListing",
-        "date": "2026-07-12T00:00:00",
-        "date_text": "Jul 12, 2026",
-        "source": "et-travel"
     },
     {
         "title": "Japan extends visa-free entry for Thailand until 2027",
@@ -11674,6 +11660,20 @@
         "date": "2024-08-08T14:02:27",
         "date_text": "August 8, 2024",
         "source": "visasnews"
+    },
+    {
+        "title": "BLS International expands operations to over 100 countries",
+        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/bls-international-expands-operations-to-over-100-countries/132386937?utm_source=latest_news&utm_medium=sectionListing",
+        "date": null,
+        "date_text": "—",
+        "source": "et-travel"
+    },
+    {
+        "title": "Kolkata Traders & Hoteliers Prepare To Reopen As India Resumes Bangladesh Visas",
+        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/kolkata-traders-hoteliers-prepare-to-reopen-as-india-resumes-bangladesh-visas/132341885?utm_source=latest_news&utm_medium=sectionListing",
+        "date": null,
+        "date_text": "—",
+        "source": "et-travel"
     },
     {
         "title": "GATE 2027: IIT Madras announces exam dates, registration starts on Aug 14",
