@@ -6237,6 +6237,13 @@
         "source": "fragomen"
     },
     {
+        "title": "BLS International expands operations to over 100 countries",
+        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/bls-international-expands-operations-to-over-100-countries/132386937?utm_source=latest_news&utm_medium=sectionListing",
+        "date": "2026-07-14T00:00:00",
+        "date_text": "Jul 14, 2026",
+        "source": "et-travel"
+    },
+    {
         "title": "Australia: Digital arrival card to gradually replace paper form",
         "link": "https://visasnews.com/en/australia-digital-arrival-card-to-gradually-replace-paper-form/",
         "date": "2026-07-13T08:45:45",
@@ -6284,6 +6291,13 @@
         "date": "2026-07-12T00:00:00",
         "date_text": "July 12, 2026",
         "source": "vnexpress"
+    },
+    {
+        "title": "Kolkata Traders & Hoteliers Prepare To Reopen As India Resumes Bangladesh Visas",
+        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/kolkata-traders-hoteliers-prepare-to-reopen-as-india-resumes-bangladesh-visas/132341885?utm_source=latest_news&utm_medium=sectionListing",
+        "date": "2026-07-12T00:00:00",
+        "date_text": "Jul 12, 2026",
+        "source": "et-travel"
     },
     {
         "title": "No More BLS & SGIVS in UAE: India Shifts Passport and Visa Services to Embassy",
@@ -11662,20 +11676,6 @@
         "source": "visasnews"
     },
     {
-        "title": "BLS International expands operations to over 100 countries",
-        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/bls-international-expands-operations-to-over-100-countries/132386937?utm_source=latest_news&utm_medium=sectionListing",
-        "date": null,
-        "date_text": "—",
-        "source": "et-travel"
-    },
-    {
-        "title": "Kolkata Traders & Hoteliers Prepare To Reopen As India Resumes Bangladesh Visas",
-        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/kolkata-traders-hoteliers-prepare-to-reopen-as-india-resumes-bangladesh-visas/132341885?utm_source=latest_news&utm_medium=sectionListing",
-        "date": null,
-        "date_text": "—",
-        "source": "et-travel"
-    },
-    {
         "title": "GATE 2027: IIT Madras announces exam dates, registration starts on Aug 14",
         "link": "https://www.business-standard.com/education/news/gate-2027-iit-madras-announces-exam-dates-registration-starts-nc-126072000918_1.html",
         "date": null,
@@ -12931,6 +12931,48 @@
     {
         "title": "Why publicly shared AI chats can become privacy nightmare for enterprises",
         "link": "https://www.business-standard.com/technology/artificial-intelligence/why-publicly-shared-ai-chats-can-become-privacy-nightmare-for-enterprises-126072800893_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "World Cup hydration breaks help Coca-Cola lift its annual forecasts",
+        "link": "https://www.business-standard.com/world-news/world-cup-hydration-breaks-help-coca-cola-lift-its-annual-forecasts-126072801732_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Govt introduces Bill in RS to tackle payment delays faced by MSMEs",
+        "link": "https://www.business-standard.com/industry/news/govt-introduces-bill-in-rs-to-tackle-payment-delays-faced-by-msmes-126072801349_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "India's green hydrogen plans gain pace, but demand and costs pose hurdles",
+        "link": "https://www.business-standard.com/industry/news/india-s-green-hydrogen-plans-gain-pace-but-demand-and-costs-pose-hurdles-126072801706_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Standard Chartered India loses top wealth executives amid strategy revamp",
+        "link": "https://www.business-standard.com/companies/news/standard-chartered-india-loses-top-wealth-executives-amid-strategy-revamp-126072801365_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Infrastructure projects see cost overrun of ₹4.92 trillion: Mospi",
+        "link": "https://www.business-standard.com/economy/news/infrastructure-projects-see-cost-overrun-of-4-92-trillion-mospi-126072801176_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Pine Labs posts ₹19.6 crore Q1 FY27 profit as revenue rises nearly 20%",
+        "link": "https://www.business-standard.com/companies/quarterly-results/pine-labs-posts-19-6-crore-q1-fy27-profit-as-revenue-rises-nearly-20-126072801382_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
