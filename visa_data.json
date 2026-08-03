@@ -1,5 +1,26 @@
 [
     {
+        "title": "US makes visa bonds of up to $20,000 permanent for nationals of 50 countries",
+        "link": "https://visasnews.com/en/us-makes-visa-bonds-of-up-to-20000-permanent-for-nationals-of-50-countries/",
+        "date": "2026-08-03T14:45:58",
+        "date_text": "August 3, 2026",
+        "source": "visasnews"
+    },
+    {
+        "title": "Kenya’s mandatory health insurance requirement for foreign visitors takes shape",
+        "link": "https://visasnews.com/en/kenyas-mandatory-health-insurance-requirement-for-foreign-visitors-takes-shape/",
+        "date": "2026-08-03T14:03:03",
+        "date_text": "August 3, 2026",
+        "source": "visasnews"
+    },
+    {
+        "title": "Nepal to fully roll out its e-Visa system on August 17, 2026",
+        "link": "https://visasnews.com/en/nepal-to-fully-roll-out-its-e-visa-system-on-august-17-2026/",
+        "date": "2026-08-03T12:53:57",
+        "date_text": "August 3, 2026",
+        "source": "visasnews"
+    },
+    {
         "title": "Egypt’s digital visa on arrival with QR code is now available at Cairo Airport",
         "link": "https://visasnews.com/en/egypts-digital-visa-on-arrival-with-qr-code-is-now-available-at-cairo-airport/",
         "date": "2026-08-03T12:02:34",
@@ -16,6 +37,13 @@
     {
         "title": "Colombia: Processing Delays and Increased Scrutiny Affecting Work Visa Applications",
         "link": "https://www.fragomen.com/insights/colombia-processing-delays-and-increased-scrutiny-affecting-work-visa-applications.html",
+        "date": "2026-08-03T00:00:00",
+        "date_text": "August 3, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "Australia: New Processing Priorities for Certain Visas Announced",
+        "link": "https://www.fragomen.com/insights/australia-new-processing-priorities-for-certain-visas-announced.html",
         "date": "2026-08-03T00:00:00",
         "date_text": "August 3, 2026",
         "source": "fragomen"
@@ -14135,6 +14163,48 @@
     {
         "title": "MobiKwik posts ₹7.61 cr profit in Q1FY27; revenue from operations up 3.72%",
         "link": "https://www.business-standard.com/companies/quarterly-results/mobikwik-q1-fy27-results-profit-rises-rs-7-61-crore-revenue-up-3-7-126080300493_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "GRSE wins ₹1,032 crore ONGC order for four platform supply vessels",
+        "link": "https://www.business-standard.com/companies/news/grse-wins-1-032-crore-ongc-order-for-four-platform-supply-vessels-126080301413_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "MobiKwik bets on AI to boost loan disbursals by ₹300 crore a quarter",
+        "link": "https://www.business-standard.com/companies/news/mobikwik-bets-on-ai-to-boost-loan-disbursals-by-300-crore-a-quarter-126080301366_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Kalpataru narrows Q1 loss to ₹27 crore on higher revenue, collections",
+        "link": "https://www.business-standard.com/companies/quarterly-results/kalpataru-narrows-q1-loss-to-27-crore-on-higher-revenue-collections-126080301356_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Explained: India's new guidelines for planned re-entry of space objects",
+        "link": "https://www.business-standard.com/india-news/explained-india-s-new-guidelines-for-planned-re-entry-of-space-objects-126080300651_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "MobiKwik share price jumps 8% as fintech swings to profit in Q1FY27",
+        "link": "https://www.business-standard.com/markets/news/mobikwik-share-price-jumps-8-as-fintech-swings-to-profit-in-q1fy27-126080300677_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Small-cap chemical stock NOCIL surges 12% after Q1 profit zooms 61% Y-o-Y",
+        "link": "https://www.business-standard.com/markets/news/small-cap-chemical-stock-nocil-surges-12-after-q1-profit-zooms-61-y-o-y-126080300695_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
