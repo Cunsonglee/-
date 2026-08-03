@@ -1,5 +1,12 @@
 [
     {
+        "title": "United States | State Department finalizes permanent visa bond program for certain B-1/B-2 applicants",
+        "link": "https://www.bal.com/immigration-news/united-states-state-department-finalizes-permanent-visa-bond-program-for-certain-b-1-b-2-applicants/",
+        "date": "2026-08-03T20:52:42",
+        "date_text": "August 03, 2026",
+        "source": "bal"
+    },
+    {
         "title": "South Africa proposes $30 fee for ETA",
         "link": "https://visasnews.com/en/south-africa-proposes-30-fee-for-eta/",
         "date": "2026-08-03T16:24:29",
@@ -56,53 +63,11 @@
         "source": "fragomen"
     },
     {
-        "title": "Suriname: Current Travel and Safety Information for Tourists and Visa Applicants",
-        "link": "https://www.buch-dein-visum.de/en/news/allgemein/suriname-aktuelle-reise-und-sicherheitshinweise-fuer-touristen-und-antragsteller-d4d004",
-        "date": "2026-08-03T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
-        "title": "Mauritania: Travel and Safety Information – Partial Travel Warning and Fuel Shortages in 2026",
-        "link": "https://www.buch-dein-visum.de/en/news/mauretanien/mauretanien-reise-und-sicherheitshinweise-teilreisewarnung-und-treibstoffengpaesse-2026-8a040a",
-        "date": "2026-08-03T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
-        "title": "Kenya: Mandatory Health Insurance for Travelers Takes Shape",
-        "link": "https://www.buch-dein-visum.de/en/news/kenia/kenia-pflicht-krankenversicherung-fuer-einreisende-nimmt-konkrete-form-an-95a4f1",
-        "date": "2026-08-03T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
-        "title": "Nepal will introduce a full e-visa system starting August 17, 2026",
-        "link": "https://www.buch-dein-visum.de/en/news/allgemein/nepal-fuehrt-ab-17-august-2026-vollstaendiges-e-visum-system-ein-291de7",
-        "date": "2026-08-03T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
-        "title": "U.S. Makes Visa Deposits of Up to $20,000 Permanent for 50 Countries",
-        "link": "https://www.buch-dein-visum.de/en/news/usa/usa-machen-visa-kautionen-bis-20-000-us-dollar-fuer-50-laender-dauerhaft-13ad05",
-        "date": "2026-08-03T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
         "title": "European Union/Schengen Area: Internal Schengen Border Checks Situation",
         "link": "https://www.fragomen.com/insights/european-unionschengen-area-internal-schengen-border-checks-further-extended.html",
         "date": "2026-08-03T00:00:00",
         "date_text": "August 3, 2026",
         "source": "fragomen"
-    },
-    {
-        "title": "South Africa plans to charge a fee of about 30 U.S. dollars for the eTA",
-        "link": "https://www.buch-dein-visum.de/en/news/sedafrika/suedafrika-plant-gebuehr-von-rund-30-us-dollar-fuer-die-eta-2c1d9e",
-        "date": "2026-08-03T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
     },
     {
         "title": "Mozambique Brings Back Mandatory ETA for Visa-Free Travellers After Portal Fix",
@@ -112,10 +77,52 @@
         "source": "travelobiz"
     },
     {
+        "title": "Suriname: Current Travel and Safety Information for Tourists and Visa Applicants",
+        "link": "https://www.buch-dein-visum.de/en/news/allgemein/suriname-aktuelle-reise-und-sicherheitshinweise-fuer-touristen-und-antragsteller-d4d004",
+        "date": "2026-08-02T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Mauritania: Travel and Safety Information – Partial Travel Warning and Fuel Shortages in 2026",
+        "link": "https://www.buch-dein-visum.de/en/news/mauretanien/mauretanien-reise-und-sicherheitshinweise-teilreisewarnung-und-treibstoffengpaesse-2026-8a040a",
+        "date": "2026-08-02T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Kenya: Mandatory Health Insurance for Travelers Takes Shape",
+        "link": "https://www.buch-dein-visum.de/en/news/kenia/kenia-pflicht-krankenversicherung-fuer-einreisende-nimmt-konkrete-form-an-95a4f1",
+        "date": "2026-08-02T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Nepal will introduce a full e-visa system starting August 17, 2026",
+        "link": "https://www.buch-dein-visum.de/en/news/allgemein/nepal-fuehrt-ab-17-august-2026-vollstaendiges-e-visum-system-ein-291de7",
+        "date": "2026-08-02T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "U.S. Makes Visa Deposits of Up to $20,000 Permanent for 50 Countries",
+        "link": "https://www.buch-dein-visum.de/en/news/usa/usa-machen-visa-kautionen-bis-20-000-us-dollar-fuer-50-laender-dauerhaft-13ad05",
+        "date": "2026-08-02T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "South Africa plans to charge a fee of about 30 U.S. dollars for the eTA",
+        "link": "https://www.buch-dein-visum.de/en/news/sedafrika/suedafrika-plant-gebuehr-von-rund-30-us-dollar-fuer-die-eta-2c1d9e",
+        "date": "2026-08-02T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
         "title": "Peru: Travel and Safety Advice Following the 2026 Presidential Elections",
         "link": "https://www.buch-dein-visum.de/en/news/peru/peru-reise-und-sicherheitshinweise-nach-den-praesidentschaftswahlen-2026-2db3f0",
         "date": "2026-08-02T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "2 Aug",
         "source": "buch-dein-visum"
     },
     {
