@@ -26,10 +26,7 @@ websites = [
     "https://travelobiz.com/category/visas-passports/",
     "https://travel.economictimes.indiatimes.com/news/visas-and-passports",
     "https://www.business-standard.com/search?q=visa",
-    "https://www.egyptindependent.com/category/life_style/travel/",
-    "https://www.travelandtourworld.com/news/article/category/tourism-news/",
-    "https://www.travelandtourworld.com/news/article/category/travel-news/",
-    "https://www.travelandtourworld.com/news/article/category/travel-alert/"
+    "https://www.egyptindependent.com/category/life_style/travel/"
 ]
 
 # Month mapping
