@@ -1,5 +1,12 @@
 [
     {
+        "title": "United States | Global visa wait times as of Aug. 17",
+        "link": "https://www.bal.com/immigration-news/united-states-global-visa-wait-times-as-of-aug-17/",
+        "date": "2026-08-26T18:33:30",
+        "date_text": "August 26, 2026",
+        "source": "bal"
+    },
+    {
         "title": "US Visa Appointments Disrupted Worldwide Amid New Screening Rules",
         "link": "https://travelobiz.com/us-visa-appointments-disrupted-worldwide-new-screening-rules/",
         "date": "2026-08-26T15:36:24",
@@ -42,13 +49,6 @@
         "source": "et-travel"
     },
     {
-        "title": "U.S. Temporarily Suspends Immigrant Visa Appointments Worldwide",
-        "link": "https://www.buch-dein-visum.de/en/news/usa/usa-setzen-immigrant-visa-termine-weltweit-voruebergehend-aus-eeed47",
-        "date": "2026-08-26T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
         "title": "Atlys launches Assure and Rejection Recovery to support travellers before and after visa decisions",
         "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/atlys-launches-assure-and-rejection-recovery-to-support-travellers-before-and-after-visa-decisions/133530568",
         "date": "2026-08-26T00:00:00",
@@ -68,13 +68,6 @@
         "date": "2026-08-26T00:00:00",
         "date_text": "August 26, 2026",
         "source": "fragomen"
-    },
-    {
-        "title": "Myanmar: Travel and Safety Information – Current Situation for Travelers",
-        "link": "https://www.buch-dein-visum.de/en/news/myanmar/myanmar-reise-und-sicherheitshinweise-aktuelle-lage-fuer-reisende-97d50a",
-        "date": "2026-08-26T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
     },
     {
         "title": "Financial Times: Trump Administration Pauses Immigrant Visa Applications",
@@ -147,6 +140,20 @@
         "source": "visasnews"
     },
     {
+        "title": "U.S. Temporarily Suspends Immigrant Visa Appointments Worldwide",
+        "link": "https://www.buch-dein-visum.de/en/news/usa/usa-setzen-immigrant-visa-termine-weltweit-voruebergehend-aus-eeed47",
+        "date": "2026-08-25T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Myanmar: Travel and Safety Information – Current Situation for Travelers",
+        "link": "https://www.buch-dein-visum.de/en/news/myanmar/myanmar-reise-und-sicherheitshinweise-aktuelle-lage-fuer-reisende-97d50a",
+        "date": "2026-08-25T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
         "title": "Soon, no need for physical boarding cards at immigration",
         "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/soon-no-need-for-physical-boarding-cards-at-immigration/133491440?utm_source=latest_news&utm_medium=sectionListing",
         "date": "2026-08-25T00:00:00",
@@ -192,28 +199,28 @@
         "title": "U.S.: Up to 200,000 B1/B2 visas could be revoked",
         "link": "https://www.buch-dein-visum.de/en/news/usa/usa-bis-zu-200-000-b1-b2-visa-koennten-widerrufen-werden-a4c07b",
         "date": "2026-08-25T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "25 Aug",
         "source": "buch-dein-visum"
     },
     {
         "title": "Eritrea: Current Travel and Safety Information for Travelers (as of August 25, 2026)",
         "link": "https://www.buch-dein-visum.de/en/news/allgemein/eritrea-aktuelle-reise-und-sicherheitshinweise-fuer-reisende-stand-25-08-2026-7f10b1",
         "date": "2026-08-25T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "25 Aug",
         "source": "buch-dein-visum"
     },
     {
         "title": "Vatican Travel Tips for 2026: What Visitors to the Holy See Should Keep in Mind",
         "link": "https://www.buch-dein-visum.de/en/news/allgemein/vatikan-reisehinweise-2026-was-besucher-des-heiligen-stuhls-beachten-sollten-1b6c3a",
         "date": "2026-08-25T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "25 Aug",
         "source": "buch-dein-visum"
     },
     {
         "title": "Kenya: Court Temporarily Suspends Mandatory Health Insurance for Foreign Visitors",
         "link": "https://www.buch-dein-visum.de/en/news/kenia/kenia-gericht-setzt-pflicht-krankenversicherung-fuer-auslaendische-besucher-vorlaeufig-aus-554028",
         "date": "2026-08-25T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "25 Aug",
         "source": "buch-dein-visum"
     },
     {
@@ -14310,6 +14317,48 @@
     {
         "title": "'We made a chip and it is fast': OpenAI's Jalapeno shows big gains in speed",
         "link": "https://www.business-standard.com/technology/tech-news/openai-jalapeno-ai-inference-chip-shows-speed-efficiency-gains-126082600184_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Cong calls Fadnavis' APTEL bias charge against private firms 'hypocrisy'",
+        "link": "https://www.business-standard.com/politics/cong-calls-fadnavis-aptel-bias-charge-against-private-firms-hypocrisy-126082600699_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "US economy growth sluggish at 1.5% in Q2, consumer spending rises 3.4%",
+        "link": "https://www.business-standard.com/world-news/us-economy-growth-sluggish-at-1-5-in-q2-consumer-spending-rises-3-4-126082601046_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "LS Secretariat sends notices to 20 rebel TMC MPs over disqualification plea",
+        "link": "https://www.business-standard.com/politics/ls-secretariat-sends-notices-to-20-rebel-tmc-mps-over-disqualification-plea-126082600213_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Private banks drive Nifty Bank up 0.47%; PSU lenders retain long-term lead",
+        "link": "https://www.business-standard.com/markets/news/private-banks-drive-nifty-bank-up-0-47-psu-lenders-retain-long-term-lead-126082601013_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "JSW, SAIC discuss fresh capital as MG Motor plans its next growth phase",
+        "link": "https://www.business-standard.com/industry/news/jsw-saic-discuss-fresh-capital-as-mg-motor-plans-its-next-growth-phase-126082600950_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Blinkit expands beyond metros in India's quick-commerce market race",
+        "link": "https://www.business-standard.com/industry/news/blinkit-expands-beyond-metros-in-india-s-quick-commerce-market-race-126082601002_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
