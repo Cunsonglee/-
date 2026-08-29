@@ -1,5 +1,12 @@
 [
     {
+        "title": "Southeast Asia's second most visited country warns 'problematic' tourists could face deportation",
+        "link": "https://e.vnexpress.net/news/travel/visa/southeast-asia-s-second-most-visited-country-warns-problematic-tourists-could-face-deportation-5114817.html",
+        "date": "2026-08-29T00:00:00",
+        "date_text": "August 29, 2026",
+        "source": "vnexpress"
+    },
+    {
         "title": "United States | New port of entry Gordie Howe International Bridge opened July 27",
         "link": "https://www.bal.com/immigration-news/united-states-new-port-of-entry-gordie-howe-international-bridge-opened-july-27/",
         "date": "2026-08-28T20:38:04",
@@ -35,6 +42,20 @@
         "source": "fragomen"
     },
     {
+        "title": "Thailand Enacts New Rules on the Deportation of Foreigners Who Disrupt Public Order",
+        "link": "https://www.buch-dein-visum.de/en/news/thailand/thailand-erlaesst-neue-regeln-zur-abschiebung-von-auslaendern-bei-stoerung-der-oeffentlichen-ordnung-0f8d4d",
+        "date": "2026-08-28T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Worldwide: Temporary Ebola-Related Entry Restrictions Introduced",
+        "link": "https://www.fragomen.com/insights/middle-eastafrica-temporary-ebola-related-entry-restrictions-introduced.html",
+        "date": "2026-08-28T00:00:00",
+        "date_text": "August 28, 2026",
+        "source": "fragomen"
+    },
+    {
         "title": "United States | Federal court vacates 75-country immigrant visa issuance suspension",
         "link": "https://www.bal.com/immigration-news/united-states-federal-court-vacates-75-country-immigrant-visa-issuance-suspension/",
         "date": "2026-08-27T20:51:50",
@@ -61,13 +82,6 @@
         "date": "2026-08-27T07:19:53",
         "date_text": "August 27, 2026",
         "source": "visasnews"
-    },
-    {
-        "title": "Thailand Enacts New Rules on the Deportation of Foreigners Who Disrupt Public Order",
-        "link": "https://www.buch-dein-visum.de/en/news/thailand/thailand-erlaesst-neue-regeln-zur-abschiebung-von-auslaendern-bei-stoerung-der-oeffentlichen-ordnung-0f8d4d",
-        "date": "2026-08-27T00:00:00",
-        "date_text": "Yesterday",
-        "source": "buch-dein-visum"
     },
     {
         "title": "Southeast Asia's second largest economy warns foreign tourists of visa revocations over misconduct",
@@ -791,13 +805,6 @@
         "source": "travelobiz"
     },
     {
-        "title": "World's second most powerful passport sees 60% rise in applications after fee cut",
-        "link": "https://e.vnexpress.net/news/travel/visa/world-s-second-most-powerful-passport-sees-60-rise-in-applications-after-fee-cut-5109704.html",
-        "date": "2026-08-18T00:00:00",
-        "date_text": "August 18, 2026",
-        "source": "vnexpress"
-    },
-    {
         "title": "South Africa: Draft Immigration Fee Amendments Published for Public Comment",
         "link": "https://www.fragomen.com/insights/south-africa-draft-immigration-fee-amendments-published-for-public-comment.html",
         "date": "2026-08-18T00:00:00",
@@ -894,6 +901,13 @@
         "date": "2026-08-17T09:01:21",
         "date_text": "August 17, 2026",
         "source": "visasnews"
+    },
+    {
+        "title": "World's second most powerful passport sees 60% rise in applications after fee cut",
+        "link": "https://e.vnexpress.net/news/travel/visa/world-s-second-most-powerful-passport-sees-60-rise-in-applications-after-fee-cut-5109704.html",
+        "date": "2026-08-17T00:00:00",
+        "date_text": "August 17, 2026",
+        "source": "vnexpress"
     },
     {
         "title": "Saudi Arabia clarifies rules for one-year multiple-entry Umrah visa",
@@ -1524,13 +1538,6 @@
         "date": "2026-08-07T00:00:00",
         "date_text": "August 7, 2026",
         "source": "vnexpress"
-    },
-    {
-        "title": "Worldwide: Temporary Ebola-Related Entry Restrictions Introduced",
-        "link": "https://www.fragomen.com/insights/middle-eastafrica-temporary-ebola-related-entry-restrictions-introduced.html",
-        "date": "2026-08-07T00:00:00",
-        "date_text": "August 7, 2026",
-        "source": "fragomen"
     },
     {
         "title": "Malaysia: Salary Threshold for Labour Market Test Exemption Increased",
@@ -14667,6 +14674,34 @@
     {
         "title": "Will Warsh's Jackson Hole speech be a course correction or detour?",
         "link": "https://www.business-standard.com/world-news/will-warsh-s-jackson-hole-speech-be-a-course-correction-or-detour-126082800985_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "PM Modi to advance India's vision for security, connectivity at SCO summit",
+        "link": "https://www.business-standard.com/india-news/pm-modi-to-advance-india-s-vision-for-security-connectivity-at-sco-summit-126082900099_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "CJI Surya Kant flags unequal burden of global shift to clean energy",
+        "link": "https://www.business-standard.com/india-news/cji-surya-kant-flags-unequal-burden-of-global-shift-to-clean-energy-126082900091_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "IMD forecasts widespread rain across India as monsoon remains active",
+        "link": "https://www.business-standard.com/india-news/imd-forecasts-widespread-rain-across-india-as-monsoon-remains-active-126082900080_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "A history of learning in R&D",
+        "link": "https://www.business-standard.com/opinion/columns/a-history-of-learning-in-r-d-126082801341_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
