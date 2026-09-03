@@ -35,32 +35,11 @@
         "source": "vnexpress"
     },
     {
-        "title": "Slovenia Travel and Safety Advice: What Travelers Need to Know Now",
-        "link": "https://www.buch-dein-visum.de/en/news/allgemein/slowenien-reise-und-sicherheitshinweise-was-reisende-jetzt-wissen-muessen-176940",
-        "date": "2026-09-03T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
         "title": "Mexico: Processing Delays Impacting Immigration Timelines",
         "link": "https://www.fragomen.com/insights/mexico-processing-delays-impacting-immigration-timelines.html",
         "date": "2026-09-03T00:00:00",
         "date_text": "September 3, 2026",
         "source": "fragomen"
-    },
-    {
-        "title": "U.S.: White House Discusses Visa Restrictions Amid Declining Tourist Numbers",
-        "link": "https://www.buch-dein-visum.de/en/news/usa/usa-weisses-haus-diskutiert-visa-einschraenkungen-angesichts-sinkender-touristenzahlen-baf69e",
-        "date": "2026-09-03T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
-        "title": "Thailand: Citizens of 21 countries will need a visa starting September 15, 2026",
-        "link": "https://www.buch-dein-visum.de/en/news/thailand/thailand-21-nationalitaeten-benoetigen-ab-15-september-2026-ein-visum-5a9b6b",
-        "date": "2026-09-03T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
     },
     {
         "title": "India/Canada: Updates to Suspension of Services for Canadian Nationals",
@@ -154,6 +133,27 @@
         "source": "visasnews"
     },
     {
+        "title": "Slovenia Travel and Safety Advice: What Travelers Need to Know Now",
+        "link": "https://www.buch-dein-visum.de/en/news/allgemein/slowenien-reise-und-sicherheitshinweise-was-reisende-jetzt-wissen-muessen-176940",
+        "date": "2026-09-02T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "U.S.: White House Discusses Visa Restrictions Amid Declining Tourist Numbers",
+        "link": "https://www.buch-dein-visum.de/en/news/usa/usa-weisses-haus-diskutiert-visa-einschraenkungen-angesichts-sinkender-touristenzahlen-baf69e",
+        "date": "2026-09-02T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Thailand: Citizens of 21 countries will need a visa starting September 15, 2026",
+        "link": "https://www.buch-dein-visum.de/en/news/thailand/thailand-21-nationalitaeten-benoetigen-ab-15-september-2026-ein-visum-5a9b6b",
+        "date": "2026-09-02T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
         "title": "Thailand shortens visa-free stays for dozens of nations from Sep 15",
         "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/thailand-shortens-visa-free-stays-for-dozens-of-nations-from-sep-15/133704909?utm_source=latest_news&utm_medium=sectionListing",
         "date": "2026-09-02T00:00:00",
@@ -199,14 +199,14 @@
         "title": "Brazil: Temporary visas (VITEM) for visa-exempt travelers will be issued electronically starting in 2026",
         "link": "https://www.buch-dein-visum.de/en/news/allgemein/brasilien-befristete-visa-vitem-fuer-visumbefreite-reisende-werden-ab-2026-elektronisch-7203cf",
         "date": "2026-09-02T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "2 Sep",
         "source": "buch-dein-visum"
     },
     {
         "title": "Malaysia: Current Travel and Safety Information for Visa Applicants",
         "link": "https://www.buch-dein-visum.de/en/news/malaysia/malaysia-aktuelle-reise-und-sicherheitshinweise-fuer-visumantragsteller-5a6cd3",
         "date": "2026-09-02T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "2 Sep",
         "source": "buch-dein-visum"
     },
     {
@@ -15633,6 +15633,41 @@
     {
         "title": "Check the best interest rates senior citizens can get on fixed deposits",
         "link": "https://www.business-standard.com/finance/personal-finance/check-the-best-interest-rates-senior-citizens-can-get-on-fixed-deposits-126090301007_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Two-time Grammy-winning jazz singer Cassandra Wilson dies at 70",
+        "link": "https://www.business-standard.com/world-news/two-time-grammy-winning-jazz-singer-cassandra-wilson-dies-at-70-126090300819_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "New York Mayor Mamdani bans AI tools till class VIII in NYC public schools",
+        "link": "https://www.business-standard.com/world-news/new-york-mayor-mamdani-bans-ai-tools-till-class-viii-in-nyc-public-schools-126090301646_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Used-car loan traps: How to reduce borrowing risks, keep EMIs manageable",
+        "link": "https://www.business-standard.com/finance/personal-finance/used-car-loan-traps-how-to-reduce-borrowing-risks-keep-emis-manageable-126090301343_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Rare-earth magnet issue showed how a country can hold us to ransom: Kapoor",
+        "link": "https://www.business-standard.com/india-news/rare-earth-magnet-issue-showed-how-a-country-can-hold-us-to-ransom-kapoor-126090301342_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "CCI asks three debenture trustees and association not to cartelise",
+        "link": "https://www.business-standard.com/industry/news/cci-asks-three-debenture-trustees-and-association-not-to-cartelise-126090301344_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
