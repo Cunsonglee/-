@@ -1,5 +1,12 @@
 [
     {
+        "title": "Southeast Asia's second most visited country shortens visa-free stays for 60 countries including Singapore, China",
+        "link": "https://e.vnexpress.net/news/travel/visa/southeast-asia-s-second-most-visited-country-shortens-visa-free-stays-for-60-countries-including-singapore-china-5115933.html",
+        "date": "2026-09-03T00:00:00",
+        "date_text": "September 03, 2026",
+        "source": "vnexpress"
+    },
+    {
         "title": "United States | State Department update on diversity visa issuance pause",
         "link": "https://www.bal.com/immigration-news/united-states-state-department-update-on-diversity-visa-issuance-pause/",
         "date": "2026-09-02T20:06:31",
@@ -84,6 +91,20 @@
         "source": "fragomen"
     },
     {
+        "title": "Brazil: Temporary visas (VITEM) for visa-exempt travelers will be issued electronically starting in 2026",
+        "link": "https://www.buch-dein-visum.de/en/news/allgemein/brasilien-befristete-visa-vitem-fuer-visumbefreite-reisende-werden-ab-2026-elektronisch-7203cf",
+        "date": "2026-09-02T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Malaysia: Current Travel and Safety Information for Visa Applicants",
+        "link": "https://www.buch-dein-visum.de/en/news/malaysia/malaysia-aktuelle-reise-und-sicherheitshinweise-fuer-visumantragsteller-5a6cd3",
+        "date": "2026-09-02T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
         "title": "United States | DHS removes Houston airport from Ebola-related designated airport list",
         "link": "https://www.bal.com/immigration-news/united-states-dhs-removes-houston-airport-from-ebola-related-designated-airport-list/",
         "date": "2026-09-01T20:49:52",
@@ -124,20 +145,6 @@
         "date": "2026-09-01T03:07:26",
         "date_text": "2026-09-01T08:37:26+05:30",
         "source": "travelobiz"
-    },
-    {
-        "title": "Brazil: Temporary visas (VITEM) for visa-exempt travelers will be issued electronically starting in 2026",
-        "link": "https://www.buch-dein-visum.de/en/news/allgemein/brasilien-befristete-visa-vitem-fuer-visumbefreite-reisende-werden-ab-2026-elektronisch-7203cf",
-        "date": "2026-09-01T00:00:00",
-        "date_text": "Yesterday",
-        "source": "buch-dein-visum"
-    },
-    {
-        "title": "Malaysia: Current Travel and Safety Information for Visa Applicants",
-        "link": "https://www.buch-dein-visum.de/en/news/malaysia/malaysia-aktuelle-reise-und-sicherheitshinweise-fuer-visumantragsteller-5a6cd3",
-        "date": "2026-09-01T00:00:00",
-        "date_text": "Yesterday",
-        "source": "buch-dein-visum"
     },
     {
         "title": "Thailand: Reduction in Visa-Exempt Stay Duration Forthcoming",
@@ -483,13 +490,6 @@
         "source": "visasnews"
     },
     {
-        "title": "World's second richest country updates arrival card with more language options, passport scanning",
-        "link": "https://e.vnexpress.net/news/travel/visa/world-s-second-richest-country-updates-arrival-card-with-more-language-options-passport-scanning-5112465.html",
-        "date": "2026-08-26T00:00:00",
-        "date_text": "August 26, 2026",
-        "source": "vnexpress"
-    },
-    {
         "title": "Atlys launches Assure and Rejection Recovery to support travellers before and after visa decisions",
         "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/atlys-launches-assure-and-rejection-recovery-to-support-travellers-before-and-after-visa-decisions/133530568?utm_source=latest_news&utm_medium=sectionListing",
         "date": "2026-08-26T00:00:00",
@@ -614,6 +614,13 @@
         "date": "2026-08-25T05:59:39",
         "date_text": "August 25, 2026",
         "source": "visasnews"
+    },
+    {
+        "title": "World's second richest country updates arrival card with more language options, passport scanning",
+        "link": "https://e.vnexpress.net/news/travel/visa/world-s-second-richest-country-updates-arrival-card-with-more-language-options-passport-scanning-5112465.html",
+        "date": "2026-08-25T00:00:00",
+        "date_text": "August 25, 2026",
+        "source": "vnexpress"
     },
     {
         "title": "Soon, no need for physical boarding cards at immigration",
@@ -15381,6 +15388,48 @@
     {
         "title": "Coal India to sell 10% stake in subsidiary Mahanadi Coalfields' IPO",
         "link": "https://www.business-standard.com/companies/news/coal-india-to-sell-10-stake-in-subsidiary-mahanadi-coalfields-ipo-126090101748_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "School Holidays in September 2026: Check Janmashtami, Ganpati dates, more",
+        "link": "https://www.business-standard.com/education/news/school-holidays-in-september-2026-check-janmashtami-ganpati-dates-more-nc-126090100487_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Trump says Venezuela 'not ready yet' for elections after Maduro ouster",
+        "link": "https://www.business-standard.com/world-news/trump-says-venezuela-not-ready-yet-for-elections-after-maduro-ouster-126090300048_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Best of BS Opinion: External, financial sectors need sustained engagement",
+        "link": "https://www.business-standard.com/opinion/specials/best-of-bs-opinion-external-financial-sectors-need-sustained-engagement-126090201559_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Belgian PM to focus on diamonds, defence, maritime ties during India visit",
+        "link": "https://www.business-standard.com/economy/news/belgian-pm-s-india-visit-to-focus-on-diamonds-defence-maritime-ties-126090201382_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "NCLT orders TLPL's RP to halt further disposal of auctioned assets",
+        "link": "https://www.business-standard.com/companies/news/nclt-orders-tlpl-s-rp-to-halt-further-disposal-of-auctioned-assets-126090201410_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Hyundai expects 8-10% H2 sales growth, aims to outpace PV industry",
+        "link": "https://www.business-standard.com/companies/news/hyundai-expects-8-10-h2-sales-growth-aims-to-outpace-pv-industry-126090201412_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
