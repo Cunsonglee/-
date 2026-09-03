@@ -1,5 +1,19 @@
 [
     {
+        "title": "U.S. Restarts Green Card Lottery Visa Issuance: Why September 30 Matters!",
+        "link": "https://travelobiz.com/us-resumes-diversity-visa-issuance-after-court-order/",
+        "date": "2026-09-03T10:48:44",
+        "date_text": "2026-09-03T16:18:44+05:30",
+        "source": "travelobiz"
+    },
+    {
+        "title": "Thailand: These 21 nationalities will need a visa starting September 15, 2026",
+        "link": "https://visasnews.com/en/thailand-these-21-nationalities-will-need-a-visa-starting-september-15-2026/",
+        "date": "2026-09-03T09:27:59",
+        "date_text": "September 3, 2026",
+        "source": "visasnews"
+    },
+    {
         "title": "US: Visa restrictions take center stage at White House as tourism declines",
         "link": "https://visasnews.com/en/us-visa-restrictions-take-center-stage-at-white-house-as-tourism-declines/",
         "date": "2026-09-03T08:21:52",
@@ -19,6 +33,41 @@
         "date": "2026-09-03T00:00:00",
         "date_text": "Today",
         "source": "buch-dein-visum"
+    },
+    {
+        "title": "Mexico: Processing Delays Impacting Immigration Timelines",
+        "link": "https://www.fragomen.com/insights/mexico-processing-delays-impacting-immigration-timelines.html",
+        "date": "2026-09-03T00:00:00",
+        "date_text": "September 3, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "U.S.: White House Discusses Visa Restrictions Amid Declining Tourist Numbers",
+        "link": "https://www.buch-dein-visum.de/en/news/usa/usa-weisses-haus-diskutiert-visa-einschraenkungen-angesichts-sinkender-touristenzahlen-baf69e",
+        "date": "2026-09-03T00:00:00",
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Thailand: Citizens of 21 countries will need a visa starting September 15, 2026",
+        "link": "https://www.buch-dein-visum.de/en/news/thailand/thailand-21-nationalitaeten-benoetigen-ab-15-september-2026-ein-visum-5a9b6b",
+        "date": "2026-09-03T00:00:00",
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "India/Canada: Updates to Suspension of Services for Canadian Nationals",
+        "link": "https://www.fragomen.com/insights/indiacanada-indian-visa-issuance-temporarily-suspended-in-canada.html",
+        "date": "2026-09-03T00:00:00",
+        "date_text": "September 3, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "Nepal: Electronic Travel Authorization System Fully Implemented",
+        "link": "https://www.fragomen.com/insights/nepal-electronic-travel-authorization-system-fully-implemented.html",
+        "date": "2026-09-03T00:00:00",
+        "date_text": "September 3, 2026",
+        "source": "fragomen"
     },
     {
         "title": "United States | State Department update on diversity visa issuance pause",
@@ -6725,13 +6774,6 @@
         "date": "2026-05-08T00:00:00",
         "date_text": "May 08, 2026",
         "source": "vnexpress"
-    },
-    {
-        "title": "Mexico: Processing Delays Impacting Immigration Timelines",
-        "link": "https://www.fragomen.com/insights/mexico-processing-delays-impacting-immigration-timelines.html",
-        "date": "2026-05-08T00:00:00",
-        "date_text": "May 8, 2026",
-        "source": "fragomen"
     },
     {
         "title": "Mexico: Reminder: Use of Automated Immigration Kiosks at Airports",
@@ -15486,6 +15528,48 @@
     {
         "title": "Mutual fund assets surge as households shift to capital markets: Bajaj MF",
         "link": "https://www.business-standard.com/markets/capital-market-news/mutual-fund-assets-surge-as-households-shift-to-capital-markets-bajaj-mf-126090201312_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Bigg Boss 20: Date, time, streaming details, contestants, details inside",
+        "link": "https://www.business-standard.com/entertainment/bigg-boss-20-date-time-streaming-details-contestants-details-inside-nc-126090300957_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Janmashtami 2026: Is the stock market, NSE, BSE open or closed tomorrow?",
+        "link": "https://www.business-standard.com/markets/news/janmashtami-2026-is-the-stock-market-nse-bse-open-or-closed-tomorrow-nc-126090300941_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Nifty Realty index soars 3%; Anant Raj, Brigade rally up to 9%",
+        "link": "https://www.business-standard.com/markets/news/nifty-realty-index-soars-3-anant-raj-brigade-rally-up-to-9-126090300766_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Nepal flash floods: Death toll rises to 1,252 as more bodies recovered",
+        "link": "https://www.business-standard.com/world-news/nepal-flash-floods-death-toll-rises-to-1-252-as-more-bodies-recovered-126090300405_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "WhatsApp now lets you pay FASTag, water, other utility bills: How it works",
+        "link": "https://www.business-standard.com/technology/tech-news/whatsapp-fastag-water-utility-bill-payments-india-how-it-works-126090300407_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Adani Power: 3 key reasons why MOFSL is bullish on this Adani group stock",
+        "link": "https://www.business-standard.com/markets/news/adani-power-share-3-key-reasons-why-mofsl-is-bullish-on-this-adani-group-stock-126090300393_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
