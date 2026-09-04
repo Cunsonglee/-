@@ -91,6 +91,27 @@
         "source": "fragomen"
     },
     {
+        "title": "Slovenia Travel and Safety Advice: What Travelers Need to Know Now",
+        "link": "https://www.buch-dein-visum.de/en/news/allgemein/slowenien-reise-und-sicherheitshinweise-was-reisende-jetzt-wissen-muessen-176940",
+        "date": "2026-09-03T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "U.S.: White House Discusses Visa Restrictions Amid Declining Tourist Numbers",
+        "link": "https://www.buch-dein-visum.de/en/news/usa/usa-weisses-haus-diskutiert-visa-einschraenkungen-angesichts-sinkender-touristenzahlen-baf69e",
+        "date": "2026-09-03T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Thailand: Citizens of 21 countries will need a visa starting September 15, 2026",
+        "link": "https://www.buch-dein-visum.de/en/news/thailand/thailand-21-nationalitaeten-benoetigen-ab-15-september-2026-ein-visum-5a9b6b",
+        "date": "2026-09-03T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
         "title": "United States | State Department update on diversity visa issuance pause",
         "link": "https://www.bal.com/immigration-news/united-states-state-department-update-on-diversity-visa-issuance-pause/",
         "date": "2026-09-02T20:06:31",
@@ -131,27 +152,6 @@
         "date": "2026-09-02T09:13:03",
         "date_text": "September 2, 2026",
         "source": "visasnews"
-    },
-    {
-        "title": "Slovenia Travel and Safety Advice: What Travelers Need to Know Now",
-        "link": "https://www.buch-dein-visum.de/en/news/allgemein/slowenien-reise-und-sicherheitshinweise-was-reisende-jetzt-wissen-muessen-176940",
-        "date": "2026-09-02T00:00:00",
-        "date_text": "Yesterday",
-        "source": "buch-dein-visum"
-    },
-    {
-        "title": "U.S.: White House Discusses Visa Restrictions Amid Declining Tourist Numbers",
-        "link": "https://www.buch-dein-visum.de/en/news/usa/usa-weisses-haus-diskutiert-visa-einschraenkungen-angesichts-sinkender-touristenzahlen-baf69e",
-        "date": "2026-09-02T00:00:00",
-        "date_text": "Yesterday",
-        "source": "buch-dein-visum"
-    },
-    {
-        "title": "Thailand: Citizens of 21 countries will need a visa starting September 15, 2026",
-        "link": "https://www.buch-dein-visum.de/en/news/thailand/thailand-21-nationalitaeten-benoetigen-ab-15-september-2026-ein-visum-5a9b6b",
-        "date": "2026-09-02T00:00:00",
-        "date_text": "Yesterday",
-        "source": "buch-dein-visum"
     },
     {
         "title": "Thailand shortens visa-free stays for dozens of nations from Sep 15",
@@ -15668,6 +15668,48 @@
     {
         "title": "CCI asks three debenture trustees and association not to cartelise",
         "link": "https://www.business-standard.com/industry/news/cci-asks-three-debenture-trustees-and-association-not-to-cartelise-126090301344_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Gaganyaan's first uncrewed mission likely to launch this year: Isro chief",
+        "link": "https://www.business-standard.com/india-news/gaganyaan-s-first-uncrewed-mission-likely-to-launch-this-year-isro-chief-126090400065_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Best of BS Opinion: Rising bond yields can lead to unwanted risks",
+        "link": "https://www.business-standard.com/opinion/specials/best-of-bs-opinion-rising-bond-yields-can-lead-to-unwanted-risks-126090301535_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Chinese AI firm Moonshot files confidentially for Hong Kong IPO",
+        "link": "https://www.business-standard.com/world-news/chinese-ai-firm-moonshot-files-confidentially-for-hong-kong-ipo-126090301687_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "UBL targets mid-teens growth as premiumisation, beer reforms aid outlook",
+        "link": "https://www.business-standard.com/companies/news/ubl-targets-mid-teens-growth-as-premiumisation-beer-reforms-aid-outlook-126090301432_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "India, Belgium expand defence ties, set to double trade in 5 years",
+        "link": "https://www.business-standard.com/external-affairs-defence-security/news/india-belgium-aim-to-double-bilateral-trade-in-5-years-sign-defence-pacts-126090301427_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Delhi HC limits booth agents' liability in electoral roll revision exercise",
+        "link": "https://www.business-standard.com/india-news/delhi-hc-limits-booth-agents-liability-in-electoral-roll-revision-exercise-126090301428_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
