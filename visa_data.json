@@ -28,43 +28,15 @@
         "source": "et-travel"
     },
     {
-        "title": "25 Years After 9/11: How the Attack Changed U.S. Entry Requirements Forever",
-        "link": "https://www.buch-dein-visum.de/en/news/usa/25-jahre-nach-9-11-wie-der-anschlag-die-us-einreisebestimmungen-fuer-immer-veraenderte-7d6df8",
-        "date": "2026-09-14T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
-        "title": "Starting September 15, 2026, Thailand will change the rules for visa-free entry and visas upon arrival",
-        "link": "https://www.buch-dein-visum.de/en/news/thailand/thailand-aendert-ab-15-september-2026-die-regeln-fuer-visumfreie-einreise-und-visum-bei-ankunft-b5cac9",
-        "date": "2026-09-14T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
-        "title": "Togo: Travel and Safety Advice – Partial Travel Warning for the Border Region with Burkina Faso",
-        "link": "https://www.buch-dein-visum.de/en/news/allgemein/togo-reise-und-sicherheitshinweise-teilreisewarnung-fuer-grenzregion-zu-burkina-faso-c93c8d",
-        "date": "2026-09-14T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
-        "title": "Morocco: Current Travel and Safety Information for Travelers (as of September 14, 2026)",
-        "link": "https://www.buch-dein-visum.de/en/news/allgemein/marokko-aktuelle-reise-und-sicherheitshinweise-fuer-reisende-stand-14-09-2026-96696f",
-        "date": "2026-09-14T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
-        "title": "Senegal: Current Travel and Safety Information (as of September 2026)",
-        "link": "https://www.buch-dein-visum.de/en/news/allgemein/senegal-aktuelle-reise-und-sicherheitshinweise-stand-september-2026-b9d48e",
-        "date": "2026-09-14T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
         "title": "United States: DHS Optional Practical Training Fee Proposal Clears Federal Review",
         "link": "https://www.fragomen.com/insights/united-states-dhs-optional-practical-training-fee-proposal-clears-federal-review.html",
+        "date": "2026-09-14T00:00:00",
+        "date_text": "September 14, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "ABC News: What Australia can learn from 165 years of migration data",
+        "link": "https://www.fragomen.com/insights/abc-news-what-australia-can-learn-from-165-years-of-migration-data.html",
         "date": "2026-09-14T00:00:00",
         "date_text": "September 14, 2026",
         "source": "fragomen"
@@ -75,6 +47,41 @@
         "date": "2026-09-13T11:14:42",
         "date_text": "2026-09-13T16:44:42+05:30",
         "source": "travelobiz"
+    },
+    {
+        "title": "25 Years After 9/11: How the Attack Changed U.S. Entry Requirements Forever",
+        "link": "https://www.buch-dein-visum.de/en/news/usa/25-jahre-nach-9-11-wie-der-anschlag-die-us-einreisebestimmungen-fuer-immer-veraenderte-7d6df8",
+        "date": "2026-09-13T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Starting September 15, 2026, Thailand will change the rules for visa-free entry and visas upon arrival",
+        "link": "https://www.buch-dein-visum.de/en/news/thailand/thailand-aendert-ab-15-september-2026-die-regeln-fuer-visumfreie-einreise-und-visum-bei-ankunft-b5cac9",
+        "date": "2026-09-13T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Togo: Travel and Safety Advice – Partial Travel Warning for the Border Region with Burkina Faso",
+        "link": "https://www.buch-dein-visum.de/en/news/allgemein/togo-reise-und-sicherheitshinweise-teilreisewarnung-fuer-grenzregion-zu-burkina-faso-c93c8d",
+        "date": "2026-09-13T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Morocco: Current Travel and Safety Information for Travelers (as of September 14, 2026)",
+        "link": "https://www.buch-dein-visum.de/en/news/allgemein/marokko-aktuelle-reise-und-sicherheitshinweise-fuer-reisende-stand-14-09-2026-96696f",
+        "date": "2026-09-13T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Senegal: Current Travel and Safety Information (as of September 2026)",
+        "link": "https://www.buch-dein-visum.de/en/news/allgemein/senegal-aktuelle-reise-und-sicherheitshinweise-stand-september-2026-b9d48e",
+        "date": "2026-09-13T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
     },
     {
         "title": "China to raise visa fees sevenfold for Japanese visitors",
