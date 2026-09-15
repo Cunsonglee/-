@@ -1,5 +1,33 @@
 [
     {
+        "title": "India Offers Thai Travellers Free 30-Day Double-Entry e-Tourist Visa Until 2027",
+        "link": "https://travelobiz.com/india-free-30-day-double-entry-e-tourist-visa-thai-travellers-2027/",
+        "date": "2026-09-15T10:10:31",
+        "date_text": "2026-09-15T15:40:31+05:30",
+        "source": "travelobiz"
+    },
+    {
+        "title": "Kyrgyzstan: Current Travel and Safety Advice for Tourists",
+        "link": "https://www.buch-dein-visum.de/en/news/kirgisistan/kirgisistan-aktuelle-reise-und-sicherheitshinweise-fuer-touristen-42ac52",
+        "date": "2026-09-15T00:00:00",
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "3 Italian passengers fly out of India without immigration checks",
+        "link": "https://e.vnexpress.net/news/travel/visa/3-italian-passengers-fly-out-of-india-without-immigration-checks-5120538.html",
+        "date": "2026-09-15T00:00:00",
+        "date_text": "September 15, 2026",
+        "source": "vnexpress"
+    },
+    {
+        "title": "Belarus introduces e-visa facility for Indian citizens",
+        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/belarus-introduces-e-visa-facility-for-indian-citizens/134260849?utm_source=latest_news&utm_medium=sectionListing",
+        "date": "2026-09-15T00:00:00",
+        "date_text": "Sep 15, 2026",
+        "source": "et-travel"
+    },
+    {
         "title": "From visas to ESTA, how 9/11 transformed US travel requirements",
         "link": "https://visasnews.com/en/from-visas-to-esta-how-9-11-transformed-us-travel-requirements/",
         "date": "2026-09-14T09:42:31",
@@ -154,13 +182,6 @@
         "source": "travelobiz"
     },
     {
-        "title": "Southeast Asian country granted visa on arrival to Egypt",
-        "link": "https://e.vnexpress.net/news/travel/visa/southeast-asian-country-granted-visa-on-arrival-to-egypt-5119143.html",
-        "date": "2026-09-11T00:00:00",
-        "date_text": "September 11, 2026",
-        "source": "vnexpress"
-    },
-    {
         "title": "New Zealand: New Work Visa Options for Graduates Announced",
         "link": "https://www.fragomen.com/insights/new-zealand-new-work-visa-options-for-graduates-announced.html",
         "date": "2026-09-11T00:00:00",
@@ -208,6 +229,13 @@
         "date": "2026-09-10T03:28:32",
         "date_text": "2026-09-10T08:58:32+05:30",
         "source": "travelobiz"
+    },
+    {
+        "title": "Southeast Asian country granted visa on arrival to Egypt",
+        "link": "https://e.vnexpress.net/news/travel/visa/southeast-asian-country-granted-visa-on-arrival-to-egypt-5119143.html",
+        "date": "2026-09-10T00:00:00",
+        "date_text": "September 10, 2026",
+        "source": "vnexpress"
     },
     {
         "title": "Thailand sets out requirements for Indian tourists using visa exemption",
@@ -17348,6 +17376,48 @@
     {
         "title": "RBI may take until Q2FY28 to absorb ₹4 trn durable liquidity surplus",
         "link": "https://www.business-standard.com/finance/news/rbi-may-take-until-q2fy28-to-absorb-4-trn-durable-liquidity-surplus-126091400722_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Punjab Lecturer Cadre Admit Card 2026 out at erd.punjab.gov.in, know more",
+        "link": "https://www.business-standard.com/education/news/punjab-lecturer-cadre-admit-card-2026-out-at-erd-punjab-gov-in-know-more-nc-126091500843_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Ganesh Chaturthi 2026: Salman Khan, Alia Bhatt and more celebs at Ambanis",
+        "link": "https://www.business-standard.com/entertainment/ganesh-chaturthi-2026-salman-khan-alia-bhatt-and-more-celebs-at-ambanis-nc-126091500837_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Embassy Developments plans ₹2,000 cr investment in North Bengaluru homes",
+        "link": "https://www.business-standard.com/companies/news/embassy-developments-plans-2-000-cr-investment-in-north-bengaluru-homes-126091500804_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Hitachi Digital Services and allnex Strengthen Partnership Through Joint ITGBS to Advance SAP S/4HANA Transformation and overall IT capability",
+        "link": "https://www.business-standard.com/content/specials/hitachi-digital-services-and-allnex-strengthen-partnership-through-joint-itgbs-to-advance-sap-s-4hana-transformation-and-overall-it-capability-126091100879_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "iOS 27 brings Siri AI, Apple Intelligence to eligible iPhone: What's new",
+        "link": "https://www.business-standard.com/technology/tech-news/ios-27-siri-ai-apple-intelligence-features-iphone-india-126091500419_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Cleartrip Elite launch: ₹9 flight date change, 20% hotel discount and more",
+        "link": "https://www.business-standard.com/finance/personal-finance/cleartrip-elite-launch-9-flight-date-change-20-hotel-discount-and-more-126091500414_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
