@@ -42,46 +42,53 @@
         "source": "fragomen"
     },
     {
-        "title": "Ireland Citizenship Rules May Tighten: 8-Year Residence and New Tests Proposed",
-        "link": "https://travelobiz.com/ireland-citizenship-rules-8-year-residence-new-tests-proposed/",
-        "date": "2026-09-13T11:14:42",
-        "date_text": "2026-09-13T16:44:42+05:30",
-        "source": "travelobiz"
-    },
-    {
         "title": "25 Years After 9/11: How the Attack Changed U.S. Entry Requirements Forever",
         "link": "https://www.buch-dein-visum.de/en/news/usa/25-jahre-nach-9-11-wie-der-anschlag-die-us-einreisebestimmungen-fuer-immer-veraenderte-7d6df8",
-        "date": "2026-09-13T00:00:00",
+        "date": "2026-09-14T00:00:00",
         "date_text": "Yesterday",
         "source": "buch-dein-visum"
     },
     {
         "title": "Starting September 15, 2026, Thailand will change the rules for visa-free entry and visas upon arrival",
         "link": "https://www.buch-dein-visum.de/en/news/thailand/thailand-aendert-ab-15-september-2026-die-regeln-fuer-visumfreie-einreise-und-visum-bei-ankunft-b5cac9",
-        "date": "2026-09-13T00:00:00",
+        "date": "2026-09-14T00:00:00",
         "date_text": "Yesterday",
         "source": "buch-dein-visum"
     },
     {
         "title": "Togo: Travel and Safety Advice – Partial Travel Warning for the Border Region with Burkina Faso",
         "link": "https://www.buch-dein-visum.de/en/news/allgemein/togo-reise-und-sicherheitshinweise-teilreisewarnung-fuer-grenzregion-zu-burkina-faso-c93c8d",
-        "date": "2026-09-13T00:00:00",
+        "date": "2026-09-14T00:00:00",
         "date_text": "Yesterday",
         "source": "buch-dein-visum"
     },
     {
         "title": "Morocco: Current Travel and Safety Information for Travelers (as of September 14, 2026)",
         "link": "https://www.buch-dein-visum.de/en/news/allgemein/marokko-aktuelle-reise-und-sicherheitshinweise-fuer-reisende-stand-14-09-2026-96696f",
-        "date": "2026-09-13T00:00:00",
+        "date": "2026-09-14T00:00:00",
         "date_text": "Yesterday",
         "source": "buch-dein-visum"
     },
     {
         "title": "Senegal: Current Travel and Safety Information (as of September 2026)",
         "link": "https://www.buch-dein-visum.de/en/news/allgemein/senegal-aktuelle-reise-und-sicherheitshinweise-stand-september-2026-b9d48e",
-        "date": "2026-09-13T00:00:00",
+        "date": "2026-09-14T00:00:00",
         "date_text": "Yesterday",
         "source": "buch-dein-visum"
+    },
+    {
+        "title": "United States: District Court Postpones Implementation of DHS Final Rule Eliminating Duration of Status for F, J, and I Nonimmigrants",
+        "link": "https://www.fragomen.com/insights/united-states-district-court-postpones-implementation-of-dhs-final-rule-eliminating-duration-of-status-for-f-j-and-i-nonimmigrants.html",
+        "date": "2026-09-14T00:00:00",
+        "date_text": "September 14, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "Ireland Citizenship Rules May Tighten: 8-Year Residence and New Tests Proposed",
+        "link": "https://travelobiz.com/ireland-citizenship-rules-8-year-residence-new-tests-proposed/",
+        "date": "2026-09-13T11:14:42",
+        "date_text": "2026-09-13T16:44:42+05:30",
+        "source": "travelobiz"
     },
     {
         "title": "China to raise visa fees sevenfold for Japanese visitors",
@@ -17299,6 +17306,48 @@
     {
         "title": "Are soaring flagship prices making refurbished iPhones more appealing?",
         "link": "https://www.business-standard.com/technology/tech-news/apple-iphone-price-hike-refurbished-phones-india-demand-126091400550_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Global markets fall sharply as AI slowdown worries hit chipmakers",
+        "link": "https://www.business-standard.com/technology/tech-news/global-markets-fall-sharply-as-ai-slowdown-worries-hit-chipmakers-126091401061_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Frugality, climate and K-pop: The new cultural economics of Gen Z",
+        "link": "https://www.business-standard.com/specials/news/frugality-climate-and-k-pop-the-new-cultural-economics-of-gen-z-126091401049_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "PSG Equity raises over €4.4 billion for software and tech bets",
+        "link": "https://www.business-standard.com/companies/news/psg-equity-raises-over-4-4-billion-for-software-and-tech-bets-126091401013_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Better execution could help United Breweries reverse revenue, margin lag",
+        "link": "https://www.business-standard.com/companies/news/better-execution-could-help-united-breweries-reverse-revenue-margin-lag-126091400537_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Tata Sons' listing: Charter changes, disclosure scrutiny and OFS in focus",
+        "link": "https://www.business-standard.com/markets/ipo/tata-sons-road-to-listing-charter-changes-disclosures-ofs-in-focus-126091400694_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "RBI may take until Q2FY28 to absorb ₹4 trn durable liquidity surplus",
+        "link": "https://www.business-standard.com/finance/news/rbi-may-take-until-q2fy28-to-absorb-4-trn-durable-liquidity-surplus-126091400722_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
