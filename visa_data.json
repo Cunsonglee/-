@@ -1,5 +1,19 @@
 [
     {
+        "title": "Australia announces reforms to Working Holiday and Visitor visas",
+        "link": "https://visasnews.com/en/australia-announces-reforms-to-working-holiday-and-visitor-visas/",
+        "date": "2026-09-17T14:07:50",
+        "date_text": "September 17, 2026",
+        "source": "visasnews"
+    },
+    {
+        "title": "Laos temporarily extends e-Visa validity from 60 to 180 days",
+        "link": "https://visasnews.com/en/laos-temporarily-extends-e-visa-validity-from-60-to-180-days/",
+        "date": "2026-09-17T13:12:03",
+        "date_text": "September 17, 2026",
+        "source": "visasnews"
+    },
+    {
         "title": "E-Visa: Why airlines still struggle to verify electronic visas",
         "link": "https://visasnews.com/en/e-visa-why-airlines-still-struggle-to-verify-electronic-visas/",
         "date": "2026-09-17T11:04:36",
@@ -37,6 +51,27 @@
     {
         "title": "Schengen Visa: EU Plans Comprehensive Reform of the Rules and New Fees",
         "link": "https://www.buch-dein-visum.de/en/news/europeische-union/schengen-visum-eu-plant-umfassende-reform-der-regeln-und-neue-gebuehren-ad57f0",
+        "date": "2026-09-17T00:00:00",
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Laos Temporarily Extends the Validity of the E-Visa from 60 to 180 Days",
+        "link": "https://www.buch-dein-visum.de/en/news/laos/laos-verlaengert-gueltigkeit-des-e-visums-voruebergehend-von-60-auf-180-tage-f8e851",
+        "date": "2026-09-17T00:00:00",
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "E-Visa: Why Airlines Often Can't Reliably Verify Electronic Visas",
+        "link": "https://www.buch-dein-visum.de/en/news/allgemein/e-visum-warum-airlines-elektronische-visa-oft-nicht-zuverlaessig-pruefen-koennen-35fe30",
+        "date": "2026-09-17T00:00:00",
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Thailand: 30-day visa-free stay can be extended by an additional 30 days",
+        "link": "https://www.buch-dein-visum.de/en/news/thailand/thailand-visumfreier-30-tage-aufenthalt-um-weitere-30-tage-verlaengerbar-5b40bf",
         "date": "2026-09-17T00:00:00",
         "date_text": "Today",
         "source": "buch-dein-visum"
@@ -17761,6 +17796,48 @@
     {
         "title": "India vows to protect energy security, warns US tariffs could hit ties",
         "link": "https://www.business-standard.com/external-affairs-defence-security/news/india-committed-to-ensure-energy-security-mea-on-us-russia-sanctions-act-126091700261_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Warsh on the job",
+        "link": "https://www.business-standard.com/opinion/editorial/warsh-on-the-job-126091701441_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "How Viva Money Is Strengthening Customer Relationships Beyond the App",
+        "link": "https://www.business-standard.com/content/specials/how-viva-money-is-strengthening-customer-relationships-beyond-the-app-126091700736_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Oil India to spend ₹15,000 cr over three years on deepwater drilling",
+        "link": "https://www.business-standard.com/companies/news/oil-india-to-spend-15-000-cr-over-three-years-on-deepwater-drilling-126091701359_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Tata group stocks surge up to 14% as N Chandrasekaran gets 5-year extension",
+        "link": "https://www.business-standard.com/markets/news/tata-group-stocks-surge-up-to-14-as-n-chandrasekaran-gets-5-year-extension-126091700714_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "India's ₹86 trillion urban infrastructure push may spur municipal bonds",
+        "link": "https://www.business-standard.com/markets/news/russia-says-new-us-sanctions-would-make-ukraine-peace-deal-harder-126091700767_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "BCCI puts India's bench strength on show; set to field 5 teams in 5 weeks",
+        "link": "https://www.business-standard.com/cricket/news/bcci-puts-india-s-bench-strength-on-show-set-to-field-5-teams-in-5-weeks-126091700776_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
