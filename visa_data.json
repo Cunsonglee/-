@@ -77,6 +77,20 @@
         "source": "buch-dein-visum"
     },
     {
+        "title": "European Union: European Travel Information and Authorisation System (ETIAS) and Entry/Exit System (EES) Launch Status",
+        "link": "https://www.fragomen.com/insights/european-union-european-travel-information-and-authorisation-system-etias-launch-delayed.html",
+        "date": "2026-09-17T00:00:00",
+        "date_text": "September 17, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "Bahrain: Health Insurance Now Required for Dependents Applying for New Residence Permits",
+        "link": "https://www.fragomen.com/insights/bahrain-health-insurance-now-required-for-dependents-applying-for-new-residence-permits.html",
+        "date": "2026-09-17T00:00:00",
+        "date_text": "September 17, 2026",
+        "source": "fragomen"
+    },
+    {
         "title": "United States | Ebola outbreak update as of Sept. 11: CDC extends entry ban for additional 30 days",
         "link": "https://www.bal.com/immigration-news/united-states-ebola-outbreak-update-as-of-sept-11-cdc-extends-entry-ban-for-additional-30-days/",
         "date": "2026-09-16T21:42:39",
@@ -107,13 +121,6 @@
     {
         "title": "European Union/Schengen Area: Internal Schengen Border Checks Situation",
         "link": "https://www.fragomen.com/insights/european-unionschengen-area-internal-schengen-border-checks-further-extended.html",
-        "date": "2026-09-16T00:00:00",
-        "date_text": "September 16, 2026",
-        "source": "fragomen"
-    },
-    {
-        "title": "European Union: European Travel Information and Authorisation System (ETIAS) and Entry/Exit System (EES) Launch Status",
-        "link": "https://www.fragomen.com/insights/european-union-european-travel-information-and-authorisation-system-etias-launch-delayed.html",
         "date": "2026-09-16T00:00:00",
         "date_text": "September 16, 2026",
         "source": "fragomen"
@@ -467,6 +474,13 @@
         "date": "2026-09-10T00:00:00",
         "date_text": "10 Sep",
         "source": "buch-dein-visum"
+    },
+    {
+        "title": "Letter to ICE/Student and Exchange Visitor Program on Curricular Practical Training",
+        "link": "https://www.fragomen.com/insights/letter-to-icestudent-and-exchange-visitor-program-on-curricular-practical-training.html",
+        "date": "2026-09-10T00:00:00",
+        "date_text": "September 10, 2026",
+        "source": "fragomen"
     },
     {
         "title": "United States | PWD and PERM processing times as of Aug. 31",
@@ -17838,6 +17852,48 @@
     {
         "title": "BCCI puts India's bench strength on show; set to field 5 teams in 5 weeks",
         "link": "https://www.business-standard.com/cricket/news/bcci-puts-india-s-bench-strength-on-show-set-to-field-5-teams-in-5-weeks-126091700776_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "EU steel quota opens 2.8 million tonnes export window for India",
+        "link": "https://www.business-standard.com/india-news/eu-steel-quota-opens-2-8-million-tonnes-export-window-for-india-126091701446_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Important that EU listens to India's concerns on CBAM: Finnish minister",
+        "link": "https://www.business-standard.com/world-news/important-that-eu-listens-to-india-s-concerns-on-cbam-finnish-minister-126091701136_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Rupee settles 2 paise up at 95.89 against dollar after breaching 96 level",
+        "link": "https://www.business-standard.com/india-news/rupee-settles-2-paise-up-at-95-89-against-dollar-after-breaching-96-level-126091701414_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "NSE IPO subscribed 43% on the first day of bidding, QIBs' share 19%",
+        "link": "https://www.business-standard.com/markets/news/nse-ipo-subscribed-43-on-first-day-as-non-institutional-investors-lead-126091701088_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "IND vs AFG: Abhishek's record ton powers India to 127-run win, 3-0 sweep",
+        "link": "https://www.business-standard.com/cricket/news/ind-vs-afg-live-streaming-today-how-to-watch-the-3rd-t20i-live-in-india-126091701011_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "DheyaTech raises ₹43 crore to scale up small gas turbine engine output",
+        "link": "https://www.business-standard.com/companies/news/dheyatech-raises-43-crore-to-scale-up-small-gas-turbine-engine-output-126091701129_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
