@@ -1,5 +1,12 @@
 [
     {
+        "title": "Australian tourist banned from entering Indonesia for 10 years after public sex act",
+        "link": "https://e.vnexpress.net/news/travel/visa/australian-tourist-banned-from-entering-indonesia-for-10-years-after-public-sex-act-5123194.html",
+        "date": "2026-09-22T00:00:00",
+        "date_text": "September 22, 2026",
+        "source": "vnexpress"
+    },
+    {
         "title": "United States | President Trump issues orders targeting H-1B oversight and entry restrictions",
         "link": "https://www.bal.com/immigration-news/united-states-president-trump-issues-orders-targeting-h-1b-oversight-and-entry-restrictions/",
         "date": "2026-09-21T22:11:56",
@@ -70,18 +77,18 @@
         "source": "fragomen"
     },
     {
+        "title": "Thailand: eGates at Bangkok Airport Now Open to Travelers from 33 Countries",
+        "link": "https://www.buch-dein-visum.de/en/news/thailand/thailand-egates-am-flughafen-bangkok-jetzt-fuer-33-nationalitaeten-geoeffnet-270bbe",
+        "date": "2026-09-21T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
         "title": "Australia Skilled Visa Update: New Processing Priorities Take Effect September 19",
         "link": "https://travelobiz.com/australia-skilled-visa-processing-priorities-september-2026/",
         "date": "2026-09-20T02:56:50",
         "date_text": "2026-09-20T08:26:50+05:30",
         "source": "travelobiz"
-    },
-    {
-        "title": "Thailand: eGates at Bangkok Airport Now Open to Travelers from 33 Countries",
-        "link": "https://www.buch-dein-visum.de/en/news/thailand/thailand-egates-am-flughafen-bangkok-jetzt-fuer-33-nationalitaeten-geoeffnet-270bbe",
-        "date": "2026-09-20T00:00:00",
-        "date_text": "Yesterday",
-        "source": "buch-dein-visum"
     },
     {
         "title": "'I'm not a harmful person': Backpackers fret over Australia's visa crackdown",
@@ -145,13 +152,6 @@
         "date": "2026-09-18T04:33:23",
         "date_text": "2026-09-18T10:03:23+05:30",
         "source": "travelobiz"
-    },
-    {
-        "title": "Myanmar extends visa on arrival policy for travelers from world's two most populous countries",
-        "link": "https://e.vnexpress.net/news/visa/myanmar-extends-visa-on-arrival-policy-for-travelers-from-world-s-two-most-populous-countries-5121193.html",
-        "date": "2026-09-18T00:00:00",
-        "date_text": "September 18, 2026",
-        "source": "vnexpress"
     },
     {
         "title": "Australia to detain tourists who overstay visa",
@@ -285,6 +285,13 @@
         "date": "2026-09-17T07:36:08",
         "date_text": "September 17, 2026",
         "source": "visasnews"
+    },
+    {
+        "title": "Myanmar extends visa on arrival policy for travelers from world's two most populous countries",
+        "link": "https://e.vnexpress.net/news/visa/myanmar-extends-visa-on-arrival-policy-for-travelers-from-world-s-two-most-populous-countries-5121193.html",
+        "date": "2026-09-17T00:00:00",
+        "date_text": "September 17, 2026",
+        "source": "vnexpress"
     },
     {
         "title": "European Union: European Travel Information and Authorisation System (ETIAS) and Entry/Exit System (EES) Launch Status",
@@ -18573,6 +18580,48 @@
     {
         "title": "Gulshan Group, Ourika Estates form JV to invest ₹750 cr in UP projects",
         "link": "https://www.business-standard.com/companies/news/gulshan-group-ourika-estates-form-jv-to-invest-750-cr-in-up-projects-126092101022_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "US judge refuses to block transfer of wildlife refuge land to SpaceX",
+        "link": "https://www.business-standard.com/world-news/us-judge-refuses-to-block-transfer-of-wildlife-refuge-land-to-spacex-126092200084_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "US ICE hides locations of thousands of detainees with final removal orders",
+        "link": "https://www.business-standard.com/world-news/us-ice-hides-locations-of-thousands-of-detainees-with-final-removal-orders-126092200052_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "UK to provide Saudi Arabia aerial refuelling to counter Houthi attacks",
+        "link": "https://www.business-standard.com/world-news/uk-to-provide-saudi-arabia-aerial-refuelling-to-counter-houthi-attacks-126092200047_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "India set for major data centre push in 5-6 years: Microsoft's Chandok",
+        "link": "https://www.business-standard.com/companies/people/india-s-data-centre-buildout-set-for-a-major-5-6-year-push-puneet-chandok-126092101179_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "One year of GST 2.0: Rate rejig softens inflation blow for FMCG companies",
+        "link": "https://www.business-standard.com/economy/news/gst-2-0-softens-inflation-blow-as-fmcg-firms-gear-up-for-festive-season-126092101203_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "SC flags NCLT infrastructure, member shortage; asks Centre to address gaps",
+        "link": "https://www.business-standard.com/india-news/sc-flags-nclt-infrastructure-member-shortage-asks-centre-to-address-gaps-126092101209_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
