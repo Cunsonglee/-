@@ -1,5 +1,12 @@
 [
     {
+        "title": "India warns against misusing Malaysia's 30-day visa-free scheme to seek jobs",
+        "link": "https://e.vnexpress.net/news/travel/visa/india-warns-against-misusing-malaysia-s-30-day-visa-free-scheme-to-seek-jobs-5123810.html",
+        "date": "2026-09-24T00:00:00",
+        "date_text": "September 24, 2026",
+        "source": "vnexpress"
+    },
+    {
         "title": "Panama Tightens Qualified Investor Residency Rules, Raises Bar for Property Investments",
         "link": "https://travelobiz.com/panama-tightens-qualified-investor-residency-rules/",
         "date": "2026-09-23T02:14:01",
@@ -224,13 +231,6 @@
         "source": "travelobiz"
     },
     {
-        "title": "Australia to detain tourists who overstay visa",
-        "link": "https://e.vnexpress.net/news/visa/world-s-second-safest-country-to-detain-tourists-who-overstay-visa-5121756.html",
-        "date": "2026-09-18T00:00:00",
-        "date_text": "September 18, 2026",
-        "source": "vnexpress"
-    },
-    {
         "title": "Thailand: Reduction in Visa-Exempt Stay Duration Forthcoming",
         "link": "https://www.fragomen.com/insights/thailand-reduction-in-visa-exempt-stay-duration-forthcoming.html",
         "date": "2026-09-18T00:00:00",
@@ -355,6 +355,13 @@
         "date": "2026-09-17T07:36:08",
         "date_text": "September 17, 2026",
         "source": "visasnews"
+    },
+    {
+        "title": "Australia to detain tourists who overstay visa",
+        "link": "https://e.vnexpress.net/news/visa/world-s-second-safest-country-to-detain-tourists-who-overstay-visa-5121756.html",
+        "date": "2026-09-17T00:00:00",
+        "date_text": "September 17, 2026",
+        "source": "vnexpress"
     },
     {
         "title": "Myanmar extends visa on arrival policy for travelers from world's two most populous countries",
@@ -18832,6 +18839,48 @@
     {
         "title": "LSR to resume offline classes from Thursday after Astha Kunj gangrape",
         "link": "https://www.business-standard.com/india-news/lsr-to-resume-offline-classes-from-thursday-after-astha-kunj-gangrape-126092300601_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Meta expected to unveil new smart glasses at Connect developer event",
+        "link": "https://www.business-standard.com/technology/tech-news/meta-expected-to-unveil-new-smart-glasses-at-connect-developer-event-125091701332_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Existing shareholders mount counter offer to keep control of Clix Capital",
+        "link": "https://www.business-standard.com/markets/news/existing-shareholders-mount-counter-offer-to-keep-control-of-clix-capital-126092301358_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Fact check: A look at what Donald Trump got wrong in UN address",
+        "link": "https://www.business-standard.com/world-news/fact-check-a-look-at-what-donald-trump-got-wrong-in-un-address-126092301585_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "What borrowers can do if a lender forcibly repossesses a financed vehicle",
+        "link": "https://www.business-standard.com/finance/personal-finance/what-borrowers-can-do-if-a-lender-forcibly-repossesses-a-financed-vehicle-126092301295_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Indian Railways' coach overhaul on track for completion in FY28",
+        "link": "https://www.business-standard.com/industry/news/railways-conversion-of-all-icf-coaches-to-lhb-likely-to-finish-by-fy28-126092301327_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Global agencies raise India's FY27 growth outlook, see RBI rate hikes",
+        "link": "https://www.business-standard.com/economy/news/adb-oecd-fitch-s-p-global-raise-india-s-fy27-growth-projection-126092301332_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
