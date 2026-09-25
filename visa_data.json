@@ -14,27 +14,6 @@
         "source": "visasnews"
     },
     {
-        "title": "Thailand: THIM Immigration App Officially Launched After Trial Period",
-        "link": "https://www.buch-dein-visum.de/en/news/thailand/thailand-immigrations-app-thim-nach-testphase-offiziell-gestartet-5d5017",
-        "date": "2026-09-25T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
-        "title": "Pakistan: Current Travel and Safety Information (as of September 2026)",
-        "link": "https://www.buch-dein-visum.de/en/news/allgemein/pakistan-aktuelle-reise-und-sicherheitshinweise-stand-september-2026-44ba12",
-        "date": "2026-09-25T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
-        "title": "Ghana Expands E-Visa Program to 48 Border Crossings and Ports",
-        "link": "https://www.buch-dein-visum.de/en/news/ghana/ghana-erweitert-e-visum-auf-48-grenzuebergaenge-und-haefen-b169df",
-        "date": "2026-09-25T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
         "title": "JESTA: What we know about Japan’s future electronic travel authorization",
         "link": "https://visasnews.com/en/jesta-what-we-know-about-japans-future-electronic-travel-authorization/",
         "date": "2026-09-24T12:39:05",
@@ -61,6 +40,27 @@
         "date": "2026-09-24T08:36:43",
         "date_text": "September 24, 2026",
         "source": "visasnews"
+    },
+    {
+        "title": "Thailand: THIM Immigration App Officially Launched After Trial Period",
+        "link": "https://www.buch-dein-visum.de/en/news/thailand/thailand-immigrations-app-thim-nach-testphase-offiziell-gestartet-5d5017",
+        "date": "2026-09-24T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Pakistan: Current Travel and Safety Information (as of September 2026)",
+        "link": "https://www.buch-dein-visum.de/en/news/allgemein/pakistan-aktuelle-reise-und-sicherheitshinweise-stand-september-2026-44ba12",
+        "date": "2026-09-24T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Ghana Expands E-Visa Program to 48 Border Crossings and Ports",
+        "link": "https://www.buch-dein-visum.de/en/news/ghana/ghana-erweitert-e-visum-auf-48-grenzuebergaenge-und-haefen-b169df",
+        "date": "2026-09-24T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
     },
     {
         "title": "India warns against misusing Malaysia's 30-day visa-free scheme to seek jobs",
@@ -122,21 +122,21 @@
         "title": "Trinidad and Tobago: Current Travel and Safety Information for 2026",
         "link": "https://www.buch-dein-visum.de/en/news/allgemein/trinidad-und-tobago-aktuelle-reise-und-sicherheitshinweise-fuer-2026-2dbf8f",
         "date": "2026-09-24T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "24 Sep",
         "source": "buch-dein-visum"
     },
     {
         "title": "Egypt Will Raise Visa Fees to $33 Effective January 1, 2027",
         "link": "https://www.buch-dein-visum.de/en/news/agypten/aegypten-erhoeht-visagebuehr-auf-33-us-dollar-zum-1-januar-2027-c4f0dd",
         "date": "2026-09-24T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "24 Sep",
         "source": "buch-dein-visum"
     },
     {
         "title": "JESTA: An Overview of Japan's Future Electronic Travel Authorization",
         "link": "https://www.buch-dein-visum.de/en/news/japan/jesta-japans-kuenftige-elektronische-reisegenehmigung-im-ueberblick-ff4e78",
         "date": "2026-09-24T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "24 Sep",
         "source": "buch-dein-visum"
     },
     {
@@ -19182,6 +19182,48 @@
     {
         "title": "Tennis icon Sania Mirza to lead Niva Bupa's 'Walk for Healthy Cities' on September 27",
         "link": "https://www.business-standard.com/content/specials/tennis-icon-sania-mirza-to-lead-niva-bupa-s-walk-for-healthy-cities-on-september-27-126092500889_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "'In 1991, we faced both an economic as well as external relations crisis'",
+        "link": "https://www.business-standard.com/specials/news/in-1991-we-faced-both-an-economic-as-well-as-external-relations-crisis-126092600009_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "France to send troops to secure Saudi oil plant as Houthi attacks mount",
+        "link": "https://www.business-standard.com/world-news/france-to-send-troops-to-secure-saudi-oil-plant-as-houthi-attacks-mount-126092501093_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Infra projects see cost overrun of ₹2.88 trillion in August: Mospi",
+        "link": "https://www.business-standard.com/industry/news/infra-projects-see-cost-overrun-of-2-88-trillion-in-august-mospi-126092501055_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "India's forex reserves fall $14.89 billion to $766 billion: RBI data",
+        "link": "https://www.business-standard.com/economy/news/india-s-forex-reserves-fall-14-89-billion-to-766-billion-rbi-data-126092500941_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Signature Global plans 194-acre luxury farmhouse project in Gurugram West",
+        "link": "https://www.business-standard.com/companies/news/signature-global-plans-194-acre-luxury-farmhouse-project-in-gurugram-west-126092500965_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Simpolo Unveils Perspective '26, Expands Surface Portfolio, Manufacturing Footprint, and Enters Faucets to Complete Bathware Solutions",
+        "link": "https://www.business-standard.com/content/specials/simpolo-unveils-perspective-26-expands-surface-portfolio-manufacturing-footprint-and-enters-faucets-to-complete-bathware-solutions-126092500877_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
