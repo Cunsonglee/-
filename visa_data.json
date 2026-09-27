@@ -203,13 +203,6 @@
         "source": "vnexpress"
     },
     {
-        "title": "China allows foreign visitors to skip police stations, register stay online",
-        "link": "https://e.vnexpress.net/news/travel/visa/china-allows-foreign-visitors-to-skip-police-stations-register-stay-online-5123809.html",
-        "date": "2026-09-24T00:00:00",
-        "date_text": "September 24, 2026",
-        "source": "vnexpress"
-    },
-    {
         "title": "US targets birth tourism with new visa curbs",
         "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/us-targets-birth-tourism-with-new-visa-curbs/134458070?utm_source=latest_news&utm_medium=sectionListing",
         "date": "2026-09-24T00:00:00",
@@ -10066,6 +10059,13 @@
         "source": "visasnews"
     },
     {
+        "title": "China allows foreign visitors to skip police stations, register stay online",
+        "link": "https://e.vnexpress.net/news/travel/visa/china-allows-foreign-visitors-to-skip-police-stations-register-stay-online-5123809.html",
+        "date": null,
+        "date_text": "—",
+        "source": "vnexpress"
+    },
+    {
         "title": "GATE 2027: IIT Madras announces exam dates, registration starts on Aug 14",
         "link": "https://www.business-standard.com/education/news/gate-2027-iit-madras-announces-exam-dates-registration-starts-nc-126072000918_1.html",
         "date": null,
@@ -19560,6 +19560,48 @@
     {
         "title": "Palestinian death toll in Gaza war rises above 74,000 since war began",
         "link": "https://www.business-standard.com/world-news/palestinian-death-toll-in-gaza-war-rises-above-74-000-since-war-began-126092700225_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Containing costs",
+        "link": "https://www.business-standard.com/opinion/editorial/containing-costs-126092700824_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Exim Matters: Performance and not compulsion should bring members to EPCs",
+        "link": "https://www.business-standard.com/opinion/columns/exim-matters-performance-and-not-compulsion-should-bring-members-to-epcs-126092700819_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Election Commission's SIR response faces pushback from Opposition parties",
+        "link": "https://www.business-standard.com/politics/election-commission-s-sir-response-faces-pushback-from-opposition-parties-126092700823_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Piyush Goyal likely to meet USTR Jamieson Greer amid tariff threat",
+        "link": "https://www.business-standard.com/india-news/piyush-goyal-may-hold-bilateral-meeting-with-ustr-jamieson-greer-this-week-126092700512_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Trans ACNR, Maharashtra Oil among nine firms filing IPO papers with Sebi",
+        "link": "https://www.business-standard.com/markets/ipo/trans-acnr-maharashtra-oil-among-nine-firms-filing-ipo-papers-with-sebi-126092700435_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Bullion may stay volatile as US data, W Asia tensions take focus: Analysts",
+        "link": "https://www.business-standard.com/markets/news/bullion-may-stay-volatile-as-us-data-w-asia-tensions-take-focus-analysts-126092700447_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
