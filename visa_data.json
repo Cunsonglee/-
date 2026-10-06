@@ -7,13 +7,6 @@
         "source": "visasnews"
     },
     {
-        "title": "Cambodia is switching to an electronic format for visa issuance at embassies",
-        "link": "https://www.buch-dein-visum.de/en/news/kambodscha/kambodscha-stellt-visumausgabe-an-botschaften-auf-elektronisches-format-um-b127ce",
-        "date": "2026-10-05T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
         "title": "South Africa Overhauls Visa and Identity Systems in Major Home Affairs Digital Push",
         "link": "https://atta.travel/resource/south-africa-overhauls-visa-and-identity-systems-in-major-home-affairs-digital-push.html",
         "date": "2026-10-05T00:00:00",
@@ -33,6 +26,13 @@
         "date": "2026-10-05T00:00:00",
         "date_text": "Oct 05, 2026",
         "source": "et-travel"
+    },
+    {
+        "title": "Cambodia is switching to an electronic format for visa issuance at embassies",
+        "link": "https://www.buch-dein-visum.de/en/news/kambodscha/kambodscha-stellt-visumausgabe-an-botschaften-auf-elektronisches-format-um-b127ce",
+        "date": "2026-10-04T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
     },
     {
         "title": "BLS International crosses 500 million applications milestone",
@@ -20813,6 +20813,41 @@
     {
         "title": "Temple explained: Deepinder Goyal's bet on wearables to extend healthy life",
         "link": "https://www.business-standard.com/technology/tech-news/temple-explained-deepinder-goyal-s-bet-on-wearables-to-extend-healthy-life-126100500782_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Trade negotiations with US have reached a 'plateau': FM Sitharaman",
+        "link": "https://www.business-standard.com/economy/news/india-us-trade-talks-hit-plateau-further-concessions-difficult-fm-126100501275_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "CIL steps up coal supplies to power plants amid availability concerns",
+        "link": "https://www.business-standard.com/industry/news/cil-steps-up-coal-supplies-to-power-plants-amid-availability-concerns-126100501225_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Minimum 10% water cut in Maharashtra urban, rural local bodies from Oct 16",
+        "link": "https://www.business-standard.com/india-news/minimum-10-water-cut-in-maharashtra-urban-rural-local-bodies-from-oct-16-126100500726_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Uttar Pradesh plans International Trade City in Noida to boost exports",
+        "link": "https://www.business-standard.com/economy/uttar-pradesh/uttar-pradesh-plans-international-trade-city-in-noida-to-boost-exports-126100500908_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Supreme Court gets three new judges, working strength goes up to 37",
+        "link": "https://www.business-standard.com/india-news/supreme-court-gets-three-new-judges-working-strength-goes-up-to-37-126100500900_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
