@@ -1,5 +1,12 @@
 [
     {
+        "title": "Vietnam waives visas for Chinese tour groups to Nha Trang",
+        "link": "https://e.vnexpress.net/news/travel/visa/vietnam-waives-visas-for-chinese-tour-groups-to-nha-trang-5131497.html",
+        "date": "2026-10-13T00:00:00",
+        "date_text": "October 13, 2026",
+        "source": "vnexpress"
+    },
+    {
         "title": "South Africa | 60-day filing requirement for certain visa applications waived",
         "link": "https://www.bal.com/immigration-news/south-africa-60-day-filing-requirement-for-certain-visa-applications-waived/",
         "date": "2026-10-12T17:28:42",
@@ -23,6 +30,13 @@
     {
         "title": "South Africa: 60-Day Advance Filing Requirement Waived for Certain Visa Applications",
         "link": "https://www.fragomen.com/insights/south-africa-60-day-advance-filing-requirement-waived-for-certain-visa-applications.html",
+        "date": "2026-10-12T00:00:00",
+        "date_text": "October 12, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "Canada: Incoming Quebec Government Proposes Lower Immigration Targets and Stricter French-Language Requirements",
+        "link": "https://www.fragomen.com/insights/canada-incoming-quebec-government-proposes-lower-immigration-targets-and-stricter-french-language-requirements.html",
         "date": "2026-10-12T00:00:00",
         "date_text": "October 12, 2026",
         "source": "fragomen"
@@ -1218,13 +1232,6 @@
         "source": "buch-dein-visum"
     },
     {
-        "title": "Australian tourist banned from entering Indonesia for 10 years after public sex act",
-        "link": "https://e.vnexpress.net/news/travel/visa/australian-tourist-banned-from-entering-indonesia-for-10-years-after-public-sex-act-5123194.html",
-        "date": "2026-09-22T00:00:00",
-        "date_text": "September 22, 2026",
-        "source": "vnexpress"
-    },
-    {
         "title": "United States | President Trump issues orders targeting H-1B oversight and entry restrictions",
         "link": "https://www.bal.com/immigration-news/united-states-president-trump-issues-orders-targeting-h-1b-oversight-and-entry-restrictions/",
         "date": "2026-09-21T22:11:56",
@@ -1272,6 +1279,13 @@
         "date": "2026-09-21T09:15:15",
         "date_text": "September 21, 2026",
         "source": "visasnews"
+    },
+    {
+        "title": "Australian tourist banned from entering Indonesia for 10 years after public sex act",
+        "link": "https://e.vnexpress.net/news/travel/visa/australian-tourist-banned-from-entering-indonesia-for-10-years-after-public-sex-act-5123194.html",
+        "date": "2026-09-21T00:00:00",
+        "date_text": "September 21, 2026",
+        "source": "vnexpress"
     },
     {
         "title": "China: Online Portal Opened for Accommodation Registration",
@@ -21751,6 +21765,48 @@
     {
         "title": "PM Modi unveils ₹13K cr projects in TN, vows to work for state's growth",
         "link": "https://www.business-standard.com/india-news/pm-modi-unveils-13k-cr-projects-pledges-support-for-tamil-nadu-growth-126101100488_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "CJP announces protest in Rajasthan against 'illegal detention' by police",
+        "link": "https://www.business-standard.com/india-news/cjp-announces-protest-in-rajasthan-against-illegal-detention-by-police-126101300007_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Investors from US, China, India eye $844 million port project in Peru",
+        "link": "https://www.business-standard.com/book/investors-from-us-china-india-eye-844-million-port-project-in-peru-126101300051_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Best of Opinion: Disruption can't be stopped; resilience lies in response",
+        "link": "https://www.business-standard.com/opinion/specials/best-of-opinion-disruption-can-t-be-stopped-resilience-lies-in-response-126101300020_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Robust recovery likely to help sustain Dabur India's Q2FY27 growth",
+        "link": "https://www.business-standard.com/markets/news/robust-recovery-likely-to-help-sustain-dabur-india-s-q2fy27-growth-126101200933_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Equity mutual fund inflows hit 5-month high on small, midcap rush",
+        "link": "https://www.business-standard.com/markets/news/mid-smallcap-rush-lifts-equity-mf-inflows-to-five-month-high-in-september-126101200986_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "CreditAccess Grameen raises $175 million via syndicated social loan",
+        "link": "https://www.business-standard.com/companies/news/creditaccess-grameen-raises-175-million-via-syndicated-social-loan-126101200999_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
