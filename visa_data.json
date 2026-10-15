@@ -1,5 +1,26 @@
 [
     {
+        "title": "DR Congo: E-Visa system still in development",
+        "link": "https://visasnews.com/en/dr-congo-e-visa-system-still-in-development/",
+        "date": "2026-10-15T11:24:09",
+        "date_text": "October 15, 2026",
+        "source": "visasnews"
+    },
+    {
+        "title": "Republic of the Congo prepares to introduce e-Visa and ETA systems",
+        "link": "https://visasnews.com/en/republic-of-the-congo-prepares-to-introduce-e-visa-and-eta-systems/",
+        "date": "2026-10-15T10:16:35",
+        "date_text": "October 15, 2026",
+        "source": "visasnews"
+    },
+    {
+        "title": "Russia raises e-Visa fees by nearly 18% as expedited consular visa fees double",
+        "link": "https://visasnews.com/en/russia-raises-e-visa-fees-by-nearly-18-as-expedited-consular-visa-fees-double/",
+        "date": "2026-10-15T09:17:11",
+        "date_text": "October 15, 2026",
+        "source": "visasnews"
+    },
+    {
         "title": "Run out of money, American tourist arrested after 9 months of overstaying visa in Japan",
         "link": "https://e.vnexpress.net/news/travel/visa/run-out-of-money-american-tourist-arrested-after-9-months-of-overstaying-visa-in-japan-5132563.html",
         "date": "2026-10-15T00:00:00",
@@ -14,11 +35,53 @@
         "source": "et-travel"
     },
     {
+        "title": "DR Congo Plans to Introduce Electronic Visas: Reform of Entry Procedures Underway",
+        "link": "https://www.buch-dein-visum.de/en/news/allgemein/dr-kongo-plant-elektronisches-visum-reform-der-einreiseverfahren-laeuft-8a81b6",
+        "date": "2026-10-15T00:00:00",
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Russia Raises e-Visa Fees by Nearly 18% – Express Visa Fees Double",
+        "link": "https://www.buch-dein-visum.de/en/news/russland/russland-erhoeht-e-visum-gebuehren-um-fast-18-express-visa-verdoppeln-sich-17907f",
+        "date": "2026-10-15T00:00:00",
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Congo-Brazzaville Plans to Introduce an E-Visa and Electronic Travel Authorization (ETA)",
+        "link": "https://www.buch-dein-visum.de/en/news/allgemein/kongo-brazzaville-plant-e-visum-und-elektronische-reisegenehmigung-eta-157099",
+        "date": "2026-10-15T00:00:00",
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Running out of money, American tourist arrested after 9 months of overstaying visa in Japan",
+        "link": "https://e.vnexpress.net/news/travel/visa/running-out-of-money-american-tourist-arrested-after-9-months-of-overstaying-visa-in-japan-5132563.html",
+        "date": "2026-10-15T00:00:00",
+        "date_text": "October 15, 2026",
+        "source": "vnexpress"
+    },
+    {
+        "title": "Qatar simplifies tourist visa applications for Indian holidaymakers",
+        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/qatar-simplifies-tourist-visa-applications-for-indian-holidaymakers/134941727",
+        "date": "2026-10-15T00:00:00",
+        "date_text": "Oct 15, 2026",
+        "source": "et-travel"
+    },
+    {
         "title": "United States | DHS finalizes EAD auto-extension rule, proposes end to USCIS deference to previous approvals",
         "link": "https://www.bal.com/immigration-news/united-states-dhs-finalizes-ead-auto-extension-rule-proposes-end-to-uscis-deference-to-previous-approvals/",
         "date": "2026-10-14T20:06:35",
         "date_text": "October 14, 2026",
         "source": "bal"
+    },
+    {
+        "title": "US Ends Automatic 540-Day EAD Extensions From October 14, 2026: Who Is Affected?",
+        "link": "https://travelobiz.com/us-ends-automatic-540-day-ead-extensions/",
+        "date": "2026-10-14T17:31:38",
+        "date_text": "2026-10-14T23:01:38+05:30",
+        "source": "travelobiz"
     },
     {
         "title": "Google AI Overviews: Why AI summaries aren’t enough for visas and travel requirements",
@@ -105,6 +168,13 @@
         "source": "fragomen"
     },
     {
+        "title": "South Africa Waives 60-Day Rule for Visa Extensions and Status Changes",
+        "link": "https://travelobiz.com/south-africa-waives-60-day-rule-visa-extensions-status-changes/",
+        "date": "2026-10-13T07:43:09",
+        "date_text": "2026-10-13T13:13:09+05:30",
+        "source": "travelobiz"
+    },
+    {
         "title": "Vietnam waives visas for Chinese tour groups to Nha Trang",
         "link": "https://e.vnexpress.net/news/travel/visa/vietnam-waives-visas-for-chinese-tour-groups-to-nha-trang-5131497.html",
         "date": "2026-10-13T00:00:00",
@@ -152,6 +222,13 @@
         "date": "2026-10-12T07:42:17",
         "date_text": "October 12, 2026",
         "source": "visasnews"
+    },
+    {
+        "title": "Finland to Introduce Citizenship Test From March 2027: Who Must Take It?",
+        "link": "https://travelobiz.com/finland-citizenship-test-march-2027/",
+        "date": "2026-10-12T04:50:42",
+        "date_text": "2026-10-12T10:20:42+05:30",
+        "source": "travelobiz"
     },
     {
         "title": "Business Insider: How Would the $70,000 Fee on International Students Working in the US Impact Schools and Grads? 2 Lawyers Break It Down.",
@@ -22115,6 +22192,48 @@
     {
         "title": "Sebi proposes market cap-based SME listing norms, lower application size",
         "link": "https://www.business-standard.com/markets/news/sebi-proposes-market-cap-based-sme-listing-norms-lower-application-size-126101400870_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "What Himalayan Yoga Offers Conscious Leaders: Anand Mehrotra's Teaching on Purpose, Pressure and Non-Attachment",
+        "link": "https://www.business-standard.com/content/specials/what-himalayan-yoga-offers-conscious-leaders-anand-mehrotra-s-teaching-on-purpose-pressure-and-non-attachment-126101500938_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Jailer 2 Box Office Collection Day 1: Rajinikanth's film eyes ₹50 crore",
+        "link": "https://www.business-standard.com/entertainment/jailer-2-box-office-collection-day-1-rajinikanth-s-film-eyes-50-crore-nc-126101500971_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "WB NEET PG counselling 2026: Check registration, choice filling schedule",
+        "link": "https://www.business-standard.com/education/news/wb-neet-pg-counselling-2026-check-registration-choice-filling-schedule-nc-126101500850_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "States must assess resource needs before approving data centres: NITI Aayog",
+        "link": "https://www.business-standard.com/economy/news/states-must-assess-resource-needs-before-approving-data-centres-niti-aayog-126101500447_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Nestle India share price crashes 9% in intraday trade post Q2 results",
+        "link": "https://www.business-standard.com/markets/news/nestle-india-share-price-crashes-9-in-intraday-trade-post-q2-results-126101500502_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Mini car sales jump 86% in H1 as entry-level segment shows recovery signs",
+        "link": "https://www.business-standard.com/industry/auto/mini-car-sales-h1-fy27-siam-entry-level-passenger-vehicles-126101500506_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
