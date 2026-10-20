@@ -28,6 +28,27 @@
         "source": "buch-dein-visum"
     },
     {
+        "title": "Minimum Salary Changes Announced",
+        "link": "https://www.fragomen.com/insights/minimum-salary-changes-announced.html",
+        "date": "2026-10-20T00:00:00",
+        "date_text": "October 20, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "Singapore: Updates Introduced to Streamline Application and Document Upload Process",
+        "link": "https://www.fragomen.com/insights/singapore-updates-introduced-to-streamline-application-and-document-upload-process.html",
+        "date": "2026-10-20T00:00:00",
+        "date_text": "October 20, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "Middle East: Penalties Introduced for Late Payment of Social Insurance Contributions",
+        "link": "https://www.fragomen.com/insights/middle-east-penalties-introduced-for-late-payment-of-social-insurance-contributions.html",
+        "date": "2026-10-20T00:00:00",
+        "date_text": "October 20, 2026",
+        "source": "fragomen"
+    },
+    {
         "title": "United States | Sudan, Ukraine TPS beneficiaries maintain work authorization pending further USCIS guidance",
         "link": "https://www.bal.com/immigration-news/united-states-sudan-ukraine-tps-beneficiaries-maintain-work-authorization-pending-further-uscis-guidance/",
         "date": "2026-10-19T21:12:10",
@@ -138,13 +159,6 @@
         "date": "2026-10-16T00:00:00",
         "date_text": "Oct 16, 2026",
         "source": "et-travel"
-    },
-    {
-        "title": "Minimum Salary Changes Announced",
-        "link": "https://www.fragomen.com/insights/minimum-salary-changes-announced.html",
-        "date": "2026-10-16T00:00:00",
-        "date_text": "October 16, 2026",
-        "source": "fragomen"
     },
     {
         "title": "VFS Global opens first visa application centre in Guwahati, serves 14 countries",
@@ -8682,13 +8696,6 @@
     {
         "title": "Worldwide: Eid-al-Adha Closures",
         "link": "https://www.fragomen.com/insights/worldwide-eid-al-adha-closures.html",
-        "date": "2026-05-20T00:00:00",
-        "date_text": "May 20, 2026",
-        "source": "fragomen"
-    },
-    {
-        "title": "Singapore: Updates Introduced to Streamline Application and Document Upload Process",
-        "link": "https://www.fragomen.com/insights/singapore-updates-introduced-to-streamline-application-and-document-upload-process.html",
         "date": "2026-05-20T00:00:00",
         "date_text": "May 20, 2026",
         "source": "fragomen"
@@ -22941,6 +22948,48 @@
     {
         "title": "AI tool predicts cancer patients' survival chances from a single face photo",
         "link": "https://www.business-standard.com/technology/artificial-intelligence/ai-tool-predicts-cancer-patients-survival-chances-from-a-single-face-photo-126102000114_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Cost pressures to persist for cement major UltraTech in the near term",
+        "link": "https://www.business-standard.com/markets/news/cost-pressures-to-persist-for-cement-major-ultratech-in-the-near-term-126102000907_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Direct plans gain in long-term SIPs, but regular plans continue to dominate",
+        "link": "https://www.business-standard.com/markets/mutual-fund/direct-plans-gain-in-long-term-sips-but-regular-plans-continue-to-dominate-126102000626_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Some AIFs in GIFT City get tax notices despite exemption, raising concerns",
+        "link": "https://www.business-standard.com/markets/news/some-aifs-in-gift-city-get-tax-notices-despite-exemption-raising-concerns-126102000894_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "IndusInd General Insurance names Sharad Mathur as Managing Director & CEO",
+        "link": "https://www.business-standard.com/companies/people/indusind-general-insurance-appoints-sharad-mathur-as-md-ceo-126102000611_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Newsprint manufacturers' body seeks PM intervention to resolve coal crisis",
+        "link": "https://www.business-standard.com/industry/news/newsprint-makers-seek-pm-modi-s-intervention-over-coal-supply-disruptions-126102000628_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Retail auto sales rise on high base this Navratri, but cars see 14% drop",
+        "link": "https://www.business-standard.com/economy/news/gst-driven-sales-surge-in-2025-may-weigh-on-navratri-auto-sales-this-year-126102000627_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
