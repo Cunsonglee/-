@@ -14,20 +14,6 @@
         "source": "et-travel"
     },
     {
-        "title": "Russian Federation: Current Travel and Safety Information (as of October 21, 2026)",
-        "link": "https://www.buch-dein-visum.de/en/news/russland/russische-foederation-aktuelle-reise-und-sicherheitshinweise-stand-21-10-2026-db05be",
-        "date": "2026-10-21T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
-        "title": "U.S.: More than 300,000 visas revoked since January 2025",
-        "link": "https://www.buch-dein-visum.de/en/news/usa/usa-mehr-als-300-000-visa-seit-januar-2025-widerrufen-783059",
-        "date": "2026-10-21T00:00:00",
-        "date_text": "Today",
-        "source": "buch-dein-visum"
-    },
-    {
         "title": "Australia: Character Considerations for Visa Decisions Strengthened",
         "link": "https://www.fragomen.com/insights/australia-character-considerations-for-visa-decisions-strengthened.html",
         "date": "2026-10-21T00:00:00",
@@ -77,6 +63,20 @@
         "source": "visasnews"
     },
     {
+        "title": "Russian Federation: Current Travel and Safety Information (as of October 21, 2026)",
+        "link": "https://www.buch-dein-visum.de/en/news/russland/russische-foederation-aktuelle-reise-und-sicherheitshinweise-stand-21-10-2026-db05be",
+        "date": "2026-10-20T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "U.S.: More than 300,000 visas revoked since January 2025",
+        "link": "https://www.buch-dein-visum.de/en/news/usa/usa-mehr-als-300-000-visa-seit-januar-2025-widerrufen-783059",
+        "date": "2026-10-20T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
         "title": "Middle East - The Latest News on Mobility and Travel Considerations",
         "link": "https://www.fragomen.com/insights/latest-information-Middle-East-crisis.html",
         "date": "2026-10-20T00:00:00",
@@ -108,14 +108,14 @@
         "title": "Singapore: Current Travel and Safety Information for Tourists",
         "link": "https://www.buch-dein-visum.de/en/news/singapur/singapur-aktuelle-reise-und-sicherheitshinweise-fuer-touristen-7b23dd",
         "date": "2026-10-20T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "20 Oct",
         "source": "buch-dein-visum"
     },
     {
         "title": "EU Considers Schengen Visa Waiver for Saudi Arabia, Bahrain, Kuwait, Oman, and Qatar",
         "link": "https://www.buch-dein-visum.de/en/news/europeische-union/eu-erwaegt-schengen-visumbefreiung-fuer-saudi-arabien-bahrain-kuwait-oman-und-katar-5f02b3",
         "date": "2026-10-20T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "20 Oct",
         "source": "buch-dein-visum"
     },
     {
@@ -23095,6 +23095,48 @@
     {
         "title": "Jio is a technology company, not just a telco: Akash Ambani ahead of IPO",
         "link": "https://www.business-standard.com/companies/news/jio-is-a-technology-company-not-just-a-telco-akash-ambani-ahead-of-ipo-126102000661_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "OpenAI president seeks AI safeguards as group he funds opposes curbs",
+        "link": "https://www.business-standard.com/technology/artificial-intelligence/openai-president-seeks-ai-safeguards-as-group-he-funds-opposes-curbs-126102101497_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Willing to join new Ukraine peace talks in November: Russian Prez Putin",
+        "link": "https://www.business-standard.com/world-news/willing-to-join-new-ukraine-peace-talks-in-november-russian-prez-putin-126102101473_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Instilling confidence in election process is vital: Supreme Court",
+        "link": "https://www.business-standard.com/india-news/instilling-confidence-in-election-process-is-vital-supreme-court-126102101282_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "India, New Zealand sign pact for electronic exchange of trade origin data",
+        "link": "https://www.business-standard.com/economy/news/india-new-zealand-sign-pact-for-electronic-exchange-of-trade-origin-data-126102101041_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "SFC Environmental Technologies IPO opens Oct 27, price band at ₹313-330",
+        "link": "https://www.business-standard.com/markets/news/sfc-environmental-technologies-ipo-opens-oct-27-price-band-at-313-330-126102100484_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Eternal Q2 profit jumps 92% to ₹125 crore but falls short of estimates",
+        "link": "https://www.business-standard.com/companies/quarterly-results/eternal-q2-profit-jumps-92-to-125-crore-but-falls-short-of-estimates-126102100855_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
