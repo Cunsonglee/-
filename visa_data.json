@@ -49,6 +49,20 @@
         "source": "buch-dein-visum"
     },
     {
+        "title": "Minimum Salary Changes Announced",
+        "link": "https://www.fragomen.com/insights/minimum-salary-changes-announced.html",
+        "date": "2026-10-23T00:00:00",
+        "date_text": "October 23, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "BioSpace: As H-1B Visa Changes Keep Coming, Biopharmas Adjust Hiring Approach",
+        "link": "https://www.fragomen.com/insights/biospace-as-h-1b-visa-changes-keep-coming-biopharmas-adjust-hiring-approach.html",
+        "date": "2026-10-23T00:00:00",
+        "date_text": "October 23, 2026",
+        "source": "fragomen"
+    },
+    {
         "title": "United States | November 2026 Visa Bulletin: Dates for Filing chart applies, showing no movement across EB categories",
         "link": "https://www.bal.com/immigration-news/united-states-november-2026-visa-bulletin-dates-for-filing-chart-applies-showing-no-movement-across-eb-categories/",
         "date": "2026-10-22T21:25:26",
@@ -219,13 +233,6 @@
     {
         "title": "Middle East - The Latest News on Mobility and Travel Considerations",
         "link": "https://www.fragomen.com/insights/latest-information-Middle-East-crisis.html",
-        "date": "2026-10-20T00:00:00",
-        "date_text": "October 20, 2026",
-        "source": "fragomen"
-    },
-    {
-        "title": "Minimum Salary Changes Announced",
-        "link": "https://www.fragomen.com/insights/minimum-salary-changes-announced.html",
         "date": "2026-10-20T00:00:00",
         "date_text": "October 20, 2026",
         "source": "fragomen"
@@ -23438,6 +23445,48 @@
     {
         "title": "Trump admin offers mixed messages on limits to Ukraine's Starshield access",
         "link": "https://www.business-standard.com/world-news/trump-admin-offers-mixed-messages-on-limits-to-ukraine-s-starshield-access-126102300033_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "From tathastu to delulu",
+        "link": "https://www.business-standard.com/opinion/columns/from-tathastu-to-delulu-126102301677_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Tumultuous week: Midcaps and smallcaps suffer worst losses in 20 months",
+        "link": "https://www.business-standard.com/markets/news/tumultuous-week-midcaps-and-smallcaps-suffer-worst-losses-in-20-months-126102301443_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "In Nitish Kumar's name and his caste base",
+        "link": "https://www.business-standard.com/opinion/columns/in-nitish-kumar-s-name-and-his-caste-base-126102301662_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "US startup claims it turned mercury into gold in lab using nuclear fusion",
+        "link": "https://www.business-standard.com/world-news/us-startup-claims-it-turned-mercury-into-gold-in-lab-using-nuclear-fusion-126102300985_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Deepak Reddy to replace Tapan Singhel as Bajaj General Insurance MD & CEO",
+        "link": "https://www.business-standard.com/companies/news/deepak-reddy-to-replace-tapan-singhel-as-bajaj-general-insurance-md-ceo-126102301015_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "SBI data breach explained: What are your rights if personal data is leaked?",
+        "link": "https://www.business-standard.com/industry/banking/sbi-data-breach-explained-what-are-your-rights-if-personal-data-is-leaked-126102301021_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
