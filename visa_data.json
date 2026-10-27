@@ -1,5 +1,12 @@
 [
     {
+        "title": "Myanmar extends visa-on-arrival scheme for tourists from 5 Asian markets",
+        "link": "https://e.vnexpress.net/news/travel/visa/myanmar-extends-visa-on-arrival-scheme-for-tourists-from-5-asian-markets-5136923.html",
+        "date": "2026-10-27T00:00:00",
+        "date_text": "October 27, 2026",
+        "source": "vnexpress"
+    },
+    {
         "title": "South African Tourism engages Indian travel trade to explain new ETA process",
         "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/south-african-tourism-engages-indian-travel-trade-to-explain-new-eta-process/135207305?utm_source=latest_news&utm_medium=sectionListing",
         "date": "2026-10-26T00:00:00",
@@ -343,13 +350,6 @@
         "source": "fragomen"
     },
     {
-        "title": "Southeast Asia's 2nd most powerful passport returns to its highest ranking ever",
-        "link": "https://e.vnexpress.net/news/travel/visa/southeast-asia-s-2nd-most-powerful-passport-returns-to-its-highest-ranking-ever-5133099.html",
-        "date": "2026-10-17T00:00:00",
-        "date_text": "October 17, 2026",
-        "source": "vnexpress"
-    },
-    {
         "title": "World's second most visited country to remove border checks for Italian tourists",
         "link": "https://e.vnexpress.net/news/travel/visa/world-s-second-most-visited-country-to-remove-border-checks-for-italian-tourists-5133519.html",
         "date": "2026-10-17T00:00:00",
@@ -411,6 +411,13 @@
         "date": "2026-10-16T11:01:00",
         "date_text": "October 16, 2026",
         "source": "visadone"
+    },
+    {
+        "title": "Southeast Asia's 2nd most powerful passport returns to its highest ranking ever",
+        "link": "https://e.vnexpress.net/news/travel/visa/southeast-asia-s-2nd-most-powerful-passport-returns-to-its-highest-ranking-ever-5133099.html",
+        "date": "2026-10-16T00:00:00",
+        "date_text": "October 16, 2026",
+        "source": "vnexpress"
     },
     {
         "title": "UK study visa refusals impact university offers for foreign students: Report",
@@ -23858,6 +23865,27 @@
     {
         "title": "Mankind Pharma Q2 PAT rises 37.7% on strong domestic chronic business",
         "link": "https://www.business-standard.com/companies/quarterly-results/mankind-pharma-q2-pat-rises-37-7-on-strong-domestic-chronic-business-126102601083_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Worli leads Mumbai's luxury housing market: Lighthouse Luxury report",
+        "link": "https://www.business-standard.com/industry/news/worli-leads-mumbai-s-luxury-housing-market-lighthouse-luxury-report-126102601087_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Small finance banks expand reach, but India's credit gap remains wide",
+        "link": "https://www.business-standard.com/specials/bs-events/small-finance-banks-expand-reach-but-india-s-credit-gap-remains-wide-126102601143_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Centre poised to extend duty-free cotton imports as output may fall 12-18%",
+        "link": "https://www.business-standard.com/industry/news/centre-poised-to-extend-duty-free-cotton-imports-as-output-may-fall-12-18-126102601220_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
