@@ -1,5 +1,12 @@
 [
     {
+        "title": "Southeast Asia's second most visited country considers visa waivers to counter 30% decline in Latin American arrivals",
+        "link": "https://e.vnexpress.net/news/travel/visa/southeast-asia-s-second-most-visited-country-considers-visa-waivers-to-counter-30-decline-in-latin-american-arrivals-5137427.html",
+        "date": "2026-10-28T00:00:00",
+        "date_text": "October 28, 2026",
+        "source": "vnexpress"
+    },
+    {
         "title": "United States | Saudi Arabia added to CBP’s list of Global Entry partner countries",
         "link": "https://www.bal.com/immigration-news/united-states-saudi-arabia-added-to-cbps-list-of-global-entry-partner-countries/",
         "date": "2026-10-27T20:26:52",
@@ -413,13 +420,6 @@
         "source": "fragomen"
     },
     {
-        "title": "World's second most visited country to remove border checks for Italian tourists",
-        "link": "https://e.vnexpress.net/news/travel/visa/world-s-second-most-visited-country-to-remove-border-checks-for-italian-tourists-5133519.html",
-        "date": "2026-10-17T00:00:00",
-        "date_text": "October 17, 2026",
-        "source": "vnexpress"
-    },
-    {
         "title": "Philippines mulls visa-free entry for Chinese tourists through more airports",
         "link": "https://e.vnexpress.net/news/travel/visa/philippines-mulls-visa-free-entry-for-chinese-tourists-through-more-airports-5132088.html",
         "date": "2026-10-17T00:00:00",
@@ -446,6 +446,13 @@
         "date": "2026-10-16T14:13:02",
         "date_text": "October 16, 2026",
         "source": "visasnews"
+    },
+    {
+        "title": "World's second most visited country to remove border checks for Italian tourists",
+        "link": "https://e.vnexpress.net/news/travel/visa/world-s-second-most-visited-country-to-remove-border-checks-for-italian-tourists-5133519.html",
+        "date": "2026-10-16T00:00:00",
+        "date_text": "October 16, 2026",
+        "source": "vnexpress"
     },
     {
         "title": "Southeast Asia's 2nd most powerful passport returns to its highest ranking ever",
@@ -23970,6 +23977,48 @@
     {
         "title": "AI in banking here to stay; banks must gear up for change, say experts",
         "link": "https://www.business-standard.com/specials/bs-events/ai-in-banking-here-to-stay-banks-must-gear-up-for-change-say-experts-126102701497_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "OpenAI plans to buy chips from Google as part of its AI build-out",
+        "link": "https://www.business-standard.com/technology/artificial-intelligence/openai-plans-to-buy-chips-from-google-as-part-of-its-ai-build-out-126102800194_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Canada PR: Ontario reopens regional programme for skilled foreign workers",
+        "link": "https://www.business-standard.com/immigration/canada-pr-ontario-reopens-regional-programme-for-skilled-foreign-workers-126102800146_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "EC issues guidelines for officers' transfer, posting ahead of UP polls",
+        "link": "https://www.business-standard.com/india-news/ec-issues-guidelines-for-officers-transfer-posting-ahead-of-up-polls-126102800036_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "A stunning turnaround",
+        "link": "https://www.business-standard.com/opinion/editorial/a-stunning-turnaround-126102701804_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "The new rules of cybersecurity",
+        "link": "https://www.business-standard.com/opinion/columns/the-new-rules-of-cybersecurity-126102701822_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "India and the battle for satellites: The race for wider connectivity",
+        "link": "https://www.business-standard.com/technology/tech-news/india-and-the-battle-for-satellites-the-race-for-wider-connectivity-126102701823_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
