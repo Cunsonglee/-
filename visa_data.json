@@ -1,5 +1,75 @@
 [
     {
+        "title": "South Africa: ETA expands to 53 countries ahead of e-Visa shutdown",
+        "link": "https://visasnews.com/en/south-africa-eta-expands-to-53-countries-ahead-of-e-visa-shutdown/",
+        "date": "2026-11-06T15:40:48",
+        "date_text": "November 6, 2026",
+        "source": "visasnews"
+    },
+    {
+        "title": "Saudi Arabia expands tourist e-Visa eligibility to four more nationalities",
+        "link": "https://visasnews.com/en/saudi-arabia-expands-tourist-e-visa-eligibility-to-four-more-nationalities/",
+        "date": "2026-11-06T10:08:56",
+        "date_text": "November 6, 2026",
+        "source": "visasnews"
+    },
+    {
+        "title": "Kenya Makes Travel Health Insurance Mandatory for Eligible Foreign Visitors",
+        "link": "https://visadone.com/news/kenya-makes-travel-health-insurance-mandatory-for-eligible-foreign-visitors/",
+        "date": "2026-11-06T09:30:41",
+        "date_text": "November 6, 2026",
+        "source": "visadone"
+    },
+    {
+        "title": "Taiwan Resumes Visa Applications from Moroccan Nationals",
+        "link": "https://visadone.com/news/taiwan-resumes-visa-applications-from-moroccan-nationals/",
+        "date": "2026-11-06T09:30:41",
+        "date_text": "November 6, 2026",
+        "source": "visadone"
+    },
+    {
+        "title": "China Shifts Visa Processing to Embassy and Consulates in India",
+        "link": "https://visadone.com/news/china-visa-new-application-process-india/",
+        "date": "2026-11-06T09:30:41",
+        "date_text": "November 6, 2026",
+        "source": "visadone"
+    },
+    {
+        "title": "United States: New Health Declaration Rule for Inbound Flights",
+        "link": "https://visadone.com/news/united-states-new-health-declaration-rule-for-inbound-flights/",
+        "date": "2026-11-06T09:30:41",
+        "date_text": "November 6, 2026",
+        "source": "visadone"
+    },
+    {
+        "title": "Ireland: Employment Permits Portal Offline Following Unauthorized Activity",
+        "link": "https://www.fragomen.com/insights/ireland-employment-permits-portal-offline-following-unauthorized-activity.html",
+        "date": "2026-11-06T00:00:00",
+        "date_text": "November 6, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "Saudi Arabia Extends E-Visa for Tourists to Four Additional Nationalities",
+        "link": "https://www.buch-dein-visum.de/en/news/saudi-arabien/saudi-arabien-erweitert-e-visum-fuer-touristen-auf-vier-weitere-nationalitaeten-e91ea7",
+        "date": "2026-11-06T00:00:00",
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Govt relaxes passport and visa rules for foreign nationals residing in India",
+        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/govt-relaxes-passport-and-visa-rules-for-foreign-nationals-residing-in-india/135611705?utm_source=latest_news&utm_medium=sectionListing",
+        "date": "2026-11-06T00:00:00",
+        "date_text": "Nov 06, 2026",
+        "source": "et-travel"
+    },
+    {
+        "title": "South Africa expands electronic travel authorisation for Indian travellers, adds family applications",
+        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/south-africa-expands-electronic-travel-authorisation-for-indian-travellers-adds-family-applications/135608975?utm_source=latest_news&utm_medium=sectionListing",
+        "date": "2026-11-06T00:00:00",
+        "date_text": "Nov 06, 2026",
+        "source": "et-travel"
+    },
+    {
         "title": "Saudi Arabia | Saudization minimum salary thresholds to increase in 2027, 2028",
         "link": "https://www.bal.com/immigration-news/saudi-arabia-saudization-minimum-salary-thresholds-to-increase-in-2027-2028/",
         "date": "2026-11-05T20:08:52",
@@ -268,13 +338,6 @@
     {
         "title": "United Kingdom: Government Confirms Final Earned Settlement Framework",
         "link": "https://www.fragomen.com/insights/united-kingdom-government-confirms-final-earned-settlement-framework.html",
-        "date": "2026-11-03T00:00:00",
-        "date_text": "November 3, 2026",
-        "source": "fragomen"
-    },
-    {
-        "title": "Ireland: Employment Permits Portal Offline Following Unauthorized Activity",
-        "link": "https://www.fragomen.com/insights/ireland-employment-permits-portal-offline-following-unauthorized-activity.html",
         "date": "2026-11-03T00:00:00",
         "date_text": "November 3, 2026",
         "source": "fragomen"
@@ -558,34 +621,6 @@
         "date": "2026-10-27T20:26:52",
         "date_text": "October 27, 2026",
         "source": "bal"
-    },
-    {
-        "title": "Travel Insurance Now Compulsory for Foreign Visitors to Tanzania",
-        "link": "https://visadone.com/news/travel-insurance-now-compulsory-for-foreign-visitors-to-tanzania/",
-        "date": "2026-10-27T10:05:52",
-        "date_text": "October 27, 2026",
-        "source": "visadone"
-    },
-    {
-        "title": "Kenya Makes Travel Health Insurance Mandatory for Eligible Foreign Visitors",
-        "link": "https://visadone.com/news/kenya-makes-travel-health-insurance-mandatory-for-eligible-foreign-visitors/",
-        "date": "2026-10-27T10:05:52",
-        "date_text": "October 27, 2026",
-        "source": "visadone"
-    },
-    {
-        "title": "Taiwan Resumes Visa Applications from Moroccan Nationals",
-        "link": "https://visadone.com/news/taiwan-resumes-visa-applications-from-moroccan-nationals/",
-        "date": "2026-10-27T10:05:52",
-        "date_text": "October 27, 2026",
-        "source": "visadone"
-    },
-    {
-        "title": "China Shifts Visa Processing to Embassy and Consulates in India",
-        "link": "https://visadone.com/news/china-visa-new-application-process-india/",
-        "date": "2026-10-27T10:05:52",
-        "date_text": "October 27, 2026",
-        "source": "visadone"
     },
     {
         "title": "Myanmar extends visa-on-arrival scheme for tourists from 5 Asian markets",
@@ -1370,6 +1405,13 @@
         "date": "2026-10-09T14:59:14",
         "date_text": "October 9, 2026",
         "source": "visasnews"
+    },
+    {
+        "title": "Travel Insurance Now Compulsory for Foreign Visitors to Tanzania",
+        "link": "https://visadone.com/news/travel-insurance-now-compulsory-for-foreign-visitors-to-tanzania/",
+        "date": "2026-10-09T10:02:15",
+        "date_text": "October 9, 2026",
+        "source": "visadone"
     },
     {
         "title": "BLS International partners with Signzy to strengthen AI-led visa verification",
@@ -25447,6 +25489,48 @@
     {
         "title": "Trump blames US market crash on Democrats' midterm election victories",
         "link": "https://www.business-standard.com/world-news/trump-blames-us-market-crash-on-democrats-midterm-election-victories-126110600089_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Gland Pharma Q2FY27 results: Net profit rises 58% to ₹290.75 crore",
+        "link": "https://www.business-standard.com/companies/quarterly-results/gland-pharma-q2fy27-results-net-profit-rises-58-to-290-75-crore-126110601734_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Record FII selling of ₹4.55 trillion meets record DII buying in Samvat 2082",
+        "link": "https://www.business-standard.com/markets/news/record-fii-selling-of-4-55-trillion-meets-record-dii-buying-in-samvat-2082-126110601834_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "SC says OBC creamy layer ruling will apply to CSE 2025 service allocation",
+        "link": "https://www.business-standard.com/india-news/sc-says-obc-creamy-layer-ruling-will-apply-to-cse-2025-service-allocation-126110601787_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "SC issues notice to Kerala Congress office bearers over post targeting CJI",
+        "link": "https://www.business-standard.com/india-news/sc-issues-notice-to-kerala-congress-office-bearers-over-post-targeting-cji-126110601071_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Tech Mahindra to acquire more shares in Pininfarina, raise stake to 92.59%",
+        "link": "https://www.business-standard.com/companies/news/tech-mahindra-acquire-more-shares-in-pininfarina-raise-stake-to-92-59-pc-126110601080_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "SP Group's Eqyizen plans to raise up to $200 mn via rupee bonds: Bankers",
+        "link": "https://www.business-standard.com/industry/news/sp-group-s-eqyizen-plans-to-raise-up-to-200-mn-via-rupee-bonds-bankers-126110601096_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
