@@ -1,5 +1,19 @@
 [
     {
+        "title": "Canada | Permanent Rural Community Immigration Program introduced following pilot",
+        "link": "https://www.bal.com/immigration-news/canada-permanent-rural-community-immigration-program-introduced-following-pilot/",
+        "date": "2026-11-10T20:22:39",
+        "date_text": "November 10, 2026",
+        "source": "bal"
+    },
+    {
+        "title": "Saudi Arabia | Saudization rate to increase for technical engineering professions in 2027",
+        "link": "https://www.bal.com/immigration-news/saudi-arabia-saudization-rate-to-increase-for-technical-engineering-professions-in-2027/",
+        "date": "2026-11-10T20:19:32",
+        "date_text": "November 10, 2026",
+        "source": "bal"
+    },
+    {
         "title": "Eswatini prepares to officially launch its e-Visa system",
         "link": "https://visasnews.com/en/eswatini-prepares-to-officially-launch-its-e-visa-system/",
         "date": "2026-11-10T15:35:29",
@@ -17,14 +31,14 @@
         "title": "Eswatini is preparing for the official launch of its e-visa system",
         "link": "https://www.buch-dein-visum.de/en/news/allgemein/eswatini-bereitet-offiziellen-start-seines-e-visum-systems-vor-2fff49",
         "date": "2026-11-10T00:00:00",
-        "date_text": "Today",
+        "date_text": "Yesterday",
         "source": "buch-dein-visum"
     },
     {
         "title": "Canada Plans Facial Biometric Screening for eTA Applicants",
         "link": "https://www.buch-dein-visum.de/en/news/kanada/kanada-plant-gesichts-biometrie-pruefung-fuer-eta-antragsteller-654488",
         "date": "2026-11-10T00:00:00",
-        "date_text": "Today",
+        "date_text": "Yesterday",
         "source": "buch-dein-visum"
     },
     {
@@ -51,6 +65,20 @@
     {
         "title": "Philippines: Changes to Streamline Alien Employment Permit Processing; But May Delay Applications During Transition Period",
         "link": "https://www.fragomen.com/insights/philippines-changes-to-streamline-alien-employment-permit-processing-but-may-delay-applications-during-transition-period.html",
+        "date": "2026-11-10T00:00:00",
+        "date_text": "November 10, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "Canada: Rural Communities Program Updates",
+        "link": "https://www.fragomen.com/insights/canada-new-immigration-pilots-for-rural-and-francophone-minority-communities-forthcoming.html",
+        "date": "2026-11-10T00:00:00",
+        "date_text": "November 10, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "CDC Extends Entry Ban for Foreign Nationals Recently in DR Congo, Uganda, or South Sudan for Another 30 Days; U.S. Citizen Travel Restrictions Remain",
+        "link": "https://www.fragomen.com/insights/cdc-extends-entry-ban-for-foreign-nationals-recently-in-dr-congo-uganda-or-south-sudan-for-another-30-days-us-citizen-travel-restrictions-remain.html",
         "date": "2026-11-10T00:00:00",
         "date_text": "November 10, 2026",
         "source": "fragomen"
@@ -26021,6 +26049,48 @@
     {
         "title": "Knew country would be safe in his hands: Sonia on picking Manmohan as PM",
         "link": "https://www.business-standard.com/india-news/knew-country-would-be-safe-in-his-hands-sonia-on-picking-manmohan-as-pm-126111000166_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "India not a refuge but 'compelling' AI opportunity: Anand Mahindra",
+        "link": "https://www.business-standard.com/technology/artificial-intelligence/india-not-a-refuge-but-compelling-ai-opportunity-anand-mahindra-126111000734_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Centre doubles open market rice sale target to 5 mn tonnes to cool prices",
+        "link": "https://www.business-standard.com/industry/agriculture/centre-doubles-open-market-rice-sale-target-to-5-mn-tonnes-to-cool-prices-126111000857_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Coal gasification scheme receives only 2 applications in second round",
+        "link": "https://www.business-standard.com/industry/news/coal-gasification-scheme-receives-only-2-applications-in-second-round-126111000846_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Cognizant sets up Claude Frontier group with over 25,000 professionals",
+        "link": "https://www.business-standard.com/companies/news/cognizant-sets-up-claude-frontier-group-with-over-25-000-professionals-126111000713_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "PHDCCI seeks zero duty on LNG, naphtha, key feedstocks in Budget",
+        "link": "https://www.business-standard.com/economy/news/phdcci-seeks-zero-duty-on-lng-naphtha-key-feedstocks-in-budget-126111000654_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Anthropic targets $1.4 tn valuation in IPO, eyes $90.4 billion fundraise",
+        "link": "https://www.business-standard.com/world-news/anthropic-targets-1-4-tn-valuation-in-ipo-eyes-90-4-billion-fundraise-126111000700_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
