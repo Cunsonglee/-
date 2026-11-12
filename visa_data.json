@@ -1,5 +1,12 @@
 [
     {
+        "title": "Russia: E-Visa fees rise again",
+        "link": "https://visasnews.com/en/russia-e-visa-fees-rise-again/",
+        "date": "2026-11-12T16:08:36",
+        "date_text": "November 12, 2026",
+        "source": "visasnews"
+    },
+    {
         "title": "Could China extend its 30-day visa-free policy through 2027?",
         "link": "https://visasnews.com/en/could-china-extend-its-30-day-visa-free-policy-through-2027/",
         "date": "2026-11-12T12:19:49",
@@ -72,6 +79,55 @@
     {
         "title": "Ireland: New Seasonal Employment Permit Program Launched for Horticultural Sector Workers",
         "link": "https://www.fragomen.com/insights/ireland-new-seasonal-employment-permit-program-launched-for-horticultural-sector-workers.html",
+        "date": "2026-11-12T00:00:00",
+        "date_text": "November 12, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "Middle East - The Latest News on Mobility and Travel Considerations",
+        "link": "https://www.fragomen.com/insights/latest-information-Middle-East-crisis.html",
+        "date": "2026-11-12T00:00:00",
+        "date_text": "November 12, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "Russia Raises E-Visa Fees Again – An Increase of Nearly 27% Since October",
+        "link": "https://www.buch-dein-visum.de/en/news/russland/russland-erhoeht-e-visum-gebuehren-erneut-anstieg-um-fast-27-seit-oktober-c2470f",
+        "date": "2026-11-12T00:00:00",
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "China: Extension of the 30-day visa-free entry period through the end of 2027 Under Discussion",
+        "link": "https://www.buch-dein-visum.de/en/news/china/china-verlaengerung-der-30-taegigen-visumfreien-einreise-bis-ende-2027-im-gespraech-d823d9",
+        "date": "2026-11-12T00:00:00",
+        "date_text": "Today",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Fragomen Professionals Recognized in the 2027 Edition of The Best Lawyers in Mexico™",
+        "link": "https://www.fragomen.com/insights/fragomen-professionals-recognized-in-the-2027-edition-of-the-best-lawyers-in-mexico.html",
+        "date": "2026-11-12T00:00:00",
+        "date_text": "November 12, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "New Zealand: Green List Changes Effective March 2027",
+        "link": "https://www.fragomen.com/insights/new-zealand-green-list-changes-effective-march-2027.html",
+        "date": "2026-11-12T00:00:00",
+        "date_text": "November 12, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "Scottish Legal News: Scotland’s Investment Ambitions Depend on Workforce Readiness",
+        "link": "https://www.fragomen.com/insights/scottish-legal-news-scotlands-investment-ambitions-depend-on-workforce-readiness.html",
+        "date": "2026-11-12T00:00:00",
+        "date_text": "November 12, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "United States: October 2026 DOL PERM and PWD Processing Times",
+        "link": "https://www.fragomen.com/insights/united-states-october-2026-dol-perm-and-pwd-processing-times.html",
         "date": "2026-11-12T00:00:00",
         "date_text": "November 12, 2026",
         "source": "fragomen"
@@ -908,13 +964,6 @@
         "date": "2026-10-27T00:00:00",
         "date_text": "October 27, 2026",
         "source": "vnexpress"
-    },
-    {
-        "title": "Middle East - The Latest News on Mobility and Travel Considerations",
-        "link": "https://www.fragomen.com/insights/latest-information-Middle-East-crisis.html",
-        "date": "2026-10-27T00:00:00",
-        "date_text": "October 27, 2026",
-        "source": "fragomen"
     },
     {
         "title": "Australia expands biometric collection programme to visa applicants in India",
@@ -26343,6 +26392,48 @@
     {
         "title": "Megaspeed pledges cooperation with US amid Nvidia CEO Jensen Huang scandal",
         "link": "https://www.business-standard.com/world-news/megaspeed-pledges-cooperation-with-us-amid-nvidia-ceo-jensen-huang-scandal-126111200953_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Made-in-India civil aircraft to fly in two years, 100 new airports planned",
+        "link": "https://www.business-standard.com/industry/aviation/made-in-india-civil-aircraft-to-fly-in-two-years-100-new-airports-planned-126111201732_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "CAG initiates first nationwide audit of 39 discoms, 5 power departments",
+        "link": "https://www.business-standard.com/industry/news/cag-begins-first-national-power-sector-audit-discom-losses-at-3-4-trn-126111201729_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Karnataka bets on frontier technology to attract global investors in 2027",
+        "link": "https://www.business-standard.com/industry/news/karnataka-bets-on-frontier-technology-to-attract-global-investors-in-2027-126111201709_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Uttar Pradesh logs investment worth ₹52,800 crore in realty projects",
+        "link": "https://www.business-standard.com/economy/uttar-pradesh/uttar-pradesh-logs-investment-worth-52-800-crore-in-realty-projects-126111201301_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Banks raise deposit rates after RBI's Oct repo hike; lending rates inch up",
+        "link": "https://www.business-standard.com/industry/banking/banks-raise-deposit-rates-after-rbi-s-oct-repo-hike-lending-rates-inch-up-126111201311_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "FISME seeks sectoral export studies, testing overhaul to boost MSME trade",
+        "link": "https://www.business-standard.com/economy/news/fisme-seeks-sectoral-export-studies-testing-overhaul-to-boost-msme-trade-126111201394_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
