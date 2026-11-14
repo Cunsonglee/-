@@ -38,29 +38,36 @@
         "title": "Zambia Introduces Electronic Health Declaration for Travelers Entering the Country",
         "link": "https://www.buch-dein-visum.de/en/news/sambia/sambia-fuehrt-elektronische-gesundheitserklaerung-fuer-einreisende-ein-ab87b8",
         "date": "2026-11-13T00:00:00",
-        "date_text": "Today",
+        "date_text": "Yesterday",
         "source": "buch-dein-visum"
     },
     {
         "title": "ECOWAS is testing the ECOVISA portal for a planned joint West African visa",
         "link": "https://www.buch-dein-visum.de/en/news/allgemein/ecowas-testet-ecovisa-portal-fuer-geplantes-gemeinsames-westafrika-visum-5f9884",
         "date": "2026-11-13T00:00:00",
-        "date_text": "Today",
+        "date_text": "Yesterday",
         "source": "buch-dein-visum"
     },
     {
         "title": "Australia: “No Further Stay” Requirement Mandatory for All Visitor Visas Starting November 28, 2026",
         "link": "https://www.buch-dein-visum.de/en/news/australien/australien-no-further-stay-bedingung-ab-28-november-2026-fuer-alle-besuchervisa-verpflichtend-64a45b",
         "date": "2026-11-13T00:00:00",
-        "date_text": "Today",
+        "date_text": "Yesterday",
         "source": "buch-dein-visum"
     },
     {
         "title": "Global Microsoft Outage: New Zealand Suspends Visa Processing",
         "link": "https://www.buch-dein-visum.de/en/news/neuseeland/weltweiter-microsoft-ausfall-neuseeland-setzt-visabearbeitung-aus-1f5438",
         "date": "2026-11-13T00:00:00",
-        "date_text": "Today",
+        "date_text": "Yesterday",
         "source": "buch-dein-visum"
+    },
+    {
+        "title": "Times Higher Education: UK Student Visa Applications Fall in October",
+        "link": "https://www.fragomen.com/insights/times-higher-education-uk-student-visa-applications-fall-in-october.html",
+        "date": "2026-11-13T00:00:00",
+        "date_text": "November 13, 2026",
+        "source": "fragomen"
     },
     {
         "title": "Russia: E-Visa fees rise again",
@@ -108,14 +115,14 @@
         "title": "India Renames Tourist Visa as “Visitor Visa” and Introduces Two New Categories",
         "link": "https://www.buch-dein-visum.de/en/news/indien/indien-benennt-touristenvisum-in-visitor-visa-um-und-fuehrt-zwei-neue-kategorien-ein-26c386",
         "date": "2026-11-12T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "12 Nov",
         "source": "buch-dein-visum"
     },
     {
         "title": "Cape Verde Introduces E-Visas for 91 Nationalities; Airport Fee Rises to $44",
         "link": "https://www.buch-dein-visum.de/en/news/kap-verde/kap-verde-fuehrt-e-visum-fuer-91-nationalitaeten-ein-flughafengebuehr-steigt-auf-44-us-dollar-19aca6",
         "date": "2026-11-12T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "12 Nov",
         "source": "buch-dein-visum"
     },
     {
@@ -157,14 +164,14 @@
         "title": "Russia Raises E-Visa Fees Again – An Increase of Nearly 27% Since October",
         "link": "https://www.buch-dein-visum.de/en/news/russland/russland-erhoeht-e-visum-gebuehren-erneut-anstieg-um-fast-27-seit-oktober-c2470f",
         "date": "2026-11-12T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "12 Nov",
         "source": "buch-dein-visum"
     },
     {
         "title": "China: Extension of the 30-day visa-free entry period through the end of 2027 Under Discussion",
         "link": "https://www.buch-dein-visum.de/en/news/china/china-verlaengerung-der-30-taegigen-visumfreien-einreise-bis-ende-2027-im-gespraech-d823d9",
         "date": "2026-11-12T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "12 Nov",
         "source": "buch-dein-visum"
     },
     {
@@ -26539,6 +26546,48 @@
     {
         "title": "Vodafone Idea Q2 loss widens to ₹5,975 cr, revenue rises 6.2% to ₹11,884 cr",
         "link": "https://www.business-standard.com/companies/quarterly-results/vodafone-idea-q2-loss-widens-to-5-975-cr-revenue-rises-6-2-to-11-884-cr-126111201534_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Broken and shattered: Jensen Huang's last hours as Nvidia Corp's CEO",
+        "link": "https://www.business-standard.com/world-news/broken-and-shattered-jensen-huang-s-last-hours-as-nvidia-corp-s-ceo-126111301856_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "TVS Motor elevates Aniruddha Haldar to lead India two-wheeler business",
+        "link": "https://www.business-standard.com/companies/people/tvs-motor-elevates-aniruddha-haldar-to-lead-india-two-wheeler-business-126111301792_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Indian markets extend gains for 3rd straight week despite Nvidia crisis",
+        "link": "https://www.business-standard.com/markets/news/indian-markets-extend-gains-for-3rd-straight-week-despite-nvidia-crisis-126111301616_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "India's forex reserves rise by $2.49 billion to $719.55 billion: RBI data",
+        "link": "https://www.business-standard.com/finance/news/india-s-forex-reserves-rise-by-2-49-billion-to-719-55-billion-rbi-data-126111301246_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Centre directs states to monitor compliance with cancer drug margin caps",
+        "link": "https://www.business-standard.com/industry/news/centre-directs-states-to-monitor-compliance-with-cancer-drug-margin-caps-126111301355_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Edelweiss Financial Services Q2 FY27 results: Profit rises 18% to ₹207 cr",
+        "link": "https://www.business-standard.com/companies/quarterly-results/edelweiss-financial-services-q2-fy27-results-profit-rises-18-to-207-cr-126111301119_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
