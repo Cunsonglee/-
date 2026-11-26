@@ -3,7 +3,7 @@ name: Daily Visa Scraper
 on:
   schedule:
     # 覆盖夏令时 (UTC+2) 和 冬令时 (UTC+1) 的 7:00 和 14:00
-    - cron: '0 * * * *'
+    - cron: '0 5,6,12,13 * * *'
   workflow_dispatch:
 
 jobs:
@@ -12,12 +12,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: '3.9'
+          python-version: '3.12'
 
       - name: Install dependencies
         run: pip install requests beautifulsoup4 cloudscraper pandas deep-translator streamlit-antd-components lxml
