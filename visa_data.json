@@ -1,5 +1,19 @@
 [
     {
+        "title": "US to tighten visa regulations for foreign students, journalists",
+        "link": "https://travel.economictimes.indiatimes.com/news/visas-and-passports/us-to-tighten-visa-regulations-for-foreign-students-journalists/136232007?utm_source=latest_news&utm_medium=sectionListing",
+        "date": "2026-11-28T00:00:00",
+        "date_text": "Nov 28, 2026",
+        "source": "et-travel"
+    },
+    {
+        "title": "EES: More than 80 tourism organizations call for greater flexibility at European borders",
+        "link": "https://visasnews.com/en/ees-more-than-80-tourism-organizations-call-for-greater-flexibility-at-european-borders/",
+        "date": "2026-11-27T15:19:12",
+        "date_text": "November 27, 2026",
+        "source": "visasnews"
+    },
+    {
         "title": "Malawi: Network outage disrupts electronic visa (e-Visa) services",
         "link": "https://visasnews.com/en/malawi-network-outage-disrupts-electronic-visa-e-visa-services/",
         "date": "2026-11-27T09:15:17",
@@ -10,7 +24,7 @@
         "title": "Malawi: Network outage has disrupted e-visa services since November 25, 2026",
         "link": "https://www.buch-dein-visum.de/en/news/malawi/malawi-netzwerkausfall-beeintraechtigt-e-visa-dienste-seit-25-november-2026-f97ae8",
         "date": "2026-11-27T00:00:00",
-        "date_text": "Today",
+        "date_text": "Yesterday",
         "source": "buch-dein-visum"
     },
     {
@@ -19,6 +33,34 @@
         "date": "2026-11-27T00:00:00",
         "date_text": "November 27, 2026",
         "source": "vnexpress"
+    },
+    {
+        "title": "Worldwide: Temporary Ebola-Related Entry Restrictions Introduced",
+        "link": "https://www.fragomen.com/insights/middle-eastafrica-temporary-ebola-related-entry-restrictions-introduced.html",
+        "date": "2026-11-27T00:00:00",
+        "date_text": "November 27, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "EES Criticism: Over 80 tourism associations call for more flexible EU border controls",
+        "link": "https://www.buch-dein-visum.de/en/news/europeische-union/ees-kritik-ueber-80-tourismusverbaende-fordern-flexiblere-eu-grenzkontrollen-8a604a",
+        "date": "2026-11-27T00:00:00",
+        "date_text": "Yesterday",
+        "source": "buch-dein-visum"
+    },
+    {
+        "title": "Ireland: Notice Issued Allowing Travel on Recently Expired Residence Permits over 2026-2027 Holiday Period",
+        "link": "https://www.fragomen.com/insights/ireland-notice-issued-allowing-travel-on-recently-expired-residence-permits-over-2026-2027-holiday-period.html",
+        "date": "2026-11-27T00:00:00",
+        "date_text": "November 27, 2026",
+        "source": "fragomen"
+    },
+    {
+        "title": "Switzerland: Unchanged Quotas in 2027",
+        "link": "https://www.fragomen.com/insights/switzerland-unchanged-quotas-in-2027.html",
+        "date": "2026-11-27T00:00:00",
+        "date_text": "November 27, 2026",
+        "source": "fragomen"
     },
     {
         "title": "Egypt: e-Visa vs. Digital visa on arrival — What’s the difference and which should you choose?",
@@ -52,14 +94,14 @@
         "title": "Belarus Extends Visa-Free Travel for 38 European Countries Through the End of 2027",
         "link": "https://www.buch-dein-visum.de/en/news/belarus/belarus-verlaengert-visumfreiheit-fuer-38-europaeische-laender-bis-ende-2027-57de3c",
         "date": "2026-11-26T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "26 Nov",
         "source": "buch-dein-visum"
     },
     {
         "title": "Egypt: e-Visa or Digital Visa on Arrival — An Overview of the Differences",
         "link": "https://www.buch-dein-visum.de/en/news/agypten/aegypten-e-visum-oder-digitales-visum-bei-ankunft-die-unterschiede-im-ueberblick-27e5ab",
         "date": "2026-11-26T00:00:00",
-        "date_text": "Yesterday",
+        "date_text": "26 Nov",
         "source": "buch-dein-visum"
     },
     {
@@ -96,13 +138,6 @@
         "date": "2026-11-25T09:28:42",
         "date_text": "November 25, 2026",
         "source": "visasnews"
-    },
-    {
-        "title": "Worldwide: Temporary Ebola-Related Entry Restrictions Introduced",
-        "link": "https://www.fragomen.com/insights/middle-eastafrica-temporary-ebola-related-entry-restrictions-introduced.html",
-        "date": "2026-11-25T00:00:00",
-        "date_text": "November 25, 2026",
-        "source": "fragomen"
     },
     {
         "title": "Bulgaria: Current Travel and Safety Information (as of November 25, 2026)",
@@ -27190,6 +27225,48 @@
     {
         "title": "Over 500 cops deployed for Diljit's Mumbai concert after bomb threat",
         "link": "https://www.business-standard.com/india-news/over-500-cops-deployed-for-diljit-s-mumbai-concert-after-bomb-threat-126112700472_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Bird flu confirmed in TN's Coimbatore; culling continues in Cuddalore",
+        "link": "https://www.business-standard.com/health/bird-flu-confirmed-in-tn-s-coimbatore-culling-continues-in-cuddalore-126112800313_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "South states must unite against unfair delimitation: K'taka CM Shivakumar",
+        "link": "https://www.business-standard.com/india-news/south-states-must-unite-against-unfair-delimitation-k-taka-cm-shivakumar-126112800324_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "SC clears way for Hockey India elections on Dec 5, sets aside HC orders",
+        "link": "https://www.business-standard.com/india-news/sc-clears-way-for-hockey-india-elections-on-dec-5-sets-aside-hc-orders-126112800368_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "INDIA bloc calls delimitation Bill threat to democracy, vows to oppose it",
+        "link": "https://www.business-standard.com/india-news/kharge-hosts-india-bloc-meeting-to-discuss-strategy-on-delimitation-bill-126112800277_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Bisleri seeks FSSAI review over conflicting test results for Bengal batch",
+        "link": "https://www.business-standard.com/companies/news/bisleri-fssai-review-coliform-bacteria-west-bengal-water-batch-126112800322_1.html",
+        "date": null,
+        "date_text": "—",
+        "source": "business-standard"
+    },
+    {
+        "title": "Indian markets rebound in November after months of underperformance: HSBC",
+        "link": "https://www.business-standard.com/markets/news/indian-markets-rebound-in-november-after-months-of-underperformance-hsbc-126112800271_1.html",
         "date": null,
         "date_text": "—",
         "source": "business-standard"
